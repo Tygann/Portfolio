@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <title>Tyler · Designer</title>
+  <meta name="description" content="Tyler is a product designer working on UI design and front-end development for iPhone apps.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-name" href="/">Tyler</a>
+      <nav class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Product Designer</p>
+      <h1>Interfaces that feel<br>obvious in hindsight.</h1>
+      <p class="lede">I design and build calm, considered software for iPhone and the web, from the first sketch to the last pixel.</p>
+      <div class="hero-actions">
+        <a class="button" href="#work">See the work</a>
+        <a class="link" href="#contact">Get in touch ›</a>
+      </div>
+    </section>
+
+    <section id="work" class="work">
+      <h2>Selected work</h2>
+
+      <article class="project">
+        <div class="project-copy">
+          <p class="eyebrow">iPhone app · Peach Byte Labs</p>
+          <h3>Reeve Money</h3>
+          <p>Contributed UI design and front-end development to Reeve Money, an app by Peach Byte Labs.</p>
+        </div>
+        <div class="device">
+          <div class="device-screen">
+            <span class="device-placeholder">Screenshot coming soon</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project project-flip">
+        <div class="project-copy">
+          <p class="eyebrow">iPhone app · Peach Byte Labs</p>
+          <h3>DishFork</h3>
+          <p>Contributed UI design and front-end development to DishFork, an app by Peach Byte Labs.</p>
+        </div>
+        <div class="device">
+          <div class="device-screen">
+            <span class="device-placeholder">Screenshot coming soon</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="about" class="about">
+      <h2>About</h2>
+      <p>A short bio goes here: where you started, what you care about in design, and what you are working on now.</p>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Let’s talk.</h2>
+      <p class="lede">Open to new projects and collaborations.</p>
+      <a class="button" href="mailto:hello@example.com">Email me</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year">2026</span> Tyler. Designed and built by hand.</p>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

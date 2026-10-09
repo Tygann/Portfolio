@@ -11,6 +11,8 @@ test('privacy routes while preserving API and website routing', async () => {
   };
   try {
     for (const [path, upstream] of [
+      ['/support', 'https://tylerkeegan.com/renfo/support/'],
+      ['/support/?source=app', 'https://tylerkeegan.com/renfo/support/?source=app'],
       ['/privacy', 'https://tylerkeegan.com/renfo/privacy/'],
       ['/privacy/?source=app', 'https://tylerkeegan.com/renfo/privacy/?source=app'],
       ['/', 'https://tylerkeegan.com/renfo/'],
@@ -22,6 +24,7 @@ test('privacy routes while preserving API and website routing', async () => {
       assert.equal(calls.at(-1), upstream);
     }
     for (const [url, target] of [
+      ['https://www.renfo.app/support', 'https://renfo.app/support'],
       ['https://www.renfo.app/privacy', 'https://renfo.app/privacy'],
       ['https://renfo.app/?festival=123', 'https://web.renfo.app/?festival=123'],
       ['https://renfo.app/account', 'https://web.renfo.app/account'],

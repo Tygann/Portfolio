@@ -17,6 +17,9 @@ export default {
       url.hostname = "renfo.app";
       return Response.redirect(url.toString(), 301);
     }
+    if (path === "/support" || path === "/support/") {
+      return fetch(SITE + "/renfo/support/" + url.search);
+    }
     if (path === "/privacy" || path === "/privacy/") {
       return fetch(SITE + "/renfo/privacy/" + url.search);
     }

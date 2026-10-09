@@ -40,7 +40,7 @@ Do not move api/connect, edit secrets, delete KV data, or change email/tunnel DN
 ## Renfo website routing
 
 `renfo-site` is captured in `cloudflare/renfo-site/`. It serves the Portfolio Renfo
-landing page and `/privacy` while preserving the existing API, well-known,
+landing page, `/support`, and `/privacy` while preserving the existing API, well-known,
 festival deep-link, and web-app routing. Deploy with:
 
 ```
@@ -48,4 +48,4 @@ node --test cloudflare/renfo-site/worker.test.mjs
 wrangler deploy --config cloudflare/renfo-site/wrangler.jsonc
 ```
 
-Publish the Portfolio page first, then verify `https://renfo.app/privacy`.
+Publish the Portfolio page first, then verify `https://renfo.app/support` and `https://renfo.app/privacy`.

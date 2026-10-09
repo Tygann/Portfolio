@@ -72,38 +72,38 @@
 
 /* Renfo page uses the Renfo icon's palette: crimson field, gold crown */
 .theme-renfo {
-  --bg: #FBF6EC;
+  --bg: #FCF8F0;
   --card: #FFFFFF;
-  --text: #2A0E10;
-  --text-2: #7A5A50;
-  --hairline: rgba(42, 14, 16, 0.09);
-  --nav-bg: rgba(251, 246, 236, 0.74);
+  --text: #321416;
+  --text-2: #775C55;
+  --hairline: rgba(50, 20, 22, 0.09);
+  --nav-bg: rgba(252, 248, 240, 0.74);
   --device: #1E0709;
-  --accent: #A3161F;
-  --button: #A3161F;
+  --accent: #AD2027;
+  --button: #AD2027;
   --on-button: #FFFFFF;
-  --glow: rgba(193, 39, 45, 0.18);
-  --field: radial-gradient(560px 520px at 10% -4%, rgba(193, 39, 45, 0.18), transparent 70%),
-    radial-gradient(520px 480px at 92% 2%, rgba(240, 199, 94, 0.26), transparent 70%),
-    linear-gradient(#F6E8D6, #FBF6EC 62%);
+  --glow: rgba(173, 32, 39, 0.18);
+  --field: radial-gradient(560px 520px at 10% -4%, rgba(173, 32, 39, 0.18), transparent 70%),
+    radial-gradient(520px 480px at 92% 2%, rgba(245, 212, 119, 0.26), transparent 70%),
+    linear-gradient(#F8EEDC, #FCF8F0 62%);
 }
 
 @media (prefers-color-scheme: dark) {
   .theme-renfo {
-    --bg: #1A0608;
-    --card: #2A0C0F;
-    --text: #FBEFE0;
-    --text-2: #C29A88;
+    --bg: #1C090B;
+    --card: #2D1215;
+    --text: #FFF4DF;
+    --text-2: #C7ABA0;
     --hairline: rgba(255, 255, 255, 0.08);
-    --nav-bg: rgba(26, 6, 8, 0.74);
+    --nav-bg: rgba(28, 9, 11, 0.74);
     --device: #0D0304;
-    --accent: #F0C75E;
-    --button: #F0C75E;
-    --on-button: #2A0E10;
-    --glow: rgba(193, 39, 45, 0.42);
-    --field: radial-gradient(560px 520px at 10% -4%, rgba(193, 39, 45, 0.48), transparent 70%),
-      radial-gradient(520px 480px at 92% 2%, rgba(217, 138, 53, 0.20), transparent 70%),
-      linear-gradient(#3A0C10, #1A0608 62%);
+    --accent: #F5D477;
+    --button: #F5D477;
+    --on-button: #321416;
+    --glow: rgba(173, 32, 39, 0.34);
+    --field: radial-gradient(560px 520px at 10% -4%, rgba(173, 32, 39, 0.36), transparent 70%),
+      radial-gradient(520px 480px at 92% 2%, rgba(245, 212, 119, 0.14), transparent 70%),
+      linear-gradient(#351216, #1C090B 62%);
   }
 }
 

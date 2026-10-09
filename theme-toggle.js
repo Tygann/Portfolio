@@ -1,6 +1,4 @@
-// Development helper: a floating Auto / Light / Dark segmented picker.
-// It rewrites the stylesheet's prefers-color-scheme media rules, so the CSS needs no changes.
-// To remove it, delete this file and the <script src="/theme-toggle.js"> tag on each page.
+// Shared header appearance menu. Auto follows the system preference.
 (() => {
   const DARK = '(prefers-color-scheme: dark)';
   const svg = body => `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
@@ -10,6 +8,7 @@
     { mode: 'dark', label: 'Dark', icon: svg('<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>') },
   ];
   let mode = localStorage.getItem('theme') || 'auto';
+  if (!options.some(option => option.mode === mode)) mode = 'auto';
 
   const media = mode => (mode === 'auto' ? DARK : mode === 'dark' ? 'all' : 'not all');
 
@@ -24,33 +23,77 @@
   }
   const darkSources = [...document.querySelectorAll('picture source[media*="prefers-color-scheme: dark"]')];
 
+  const nav = document.querySelector('.nav-links');
+  if (!nav) return;
   const picker = document.createElement('div');
-  picker.className = 'theme-toggle';
-  picker.setAttribute('role', 'radiogroup');
-  picker.setAttribute('aria-label', 'Appearance');
+  picker.className = 'appearance';
+  const trigger = document.createElement('button');
+  trigger.type = 'button';
+  trigger.className = 'appearance-trigger';
+  trigger.setAttribute('aria-label', 'Appearance');
+  trigger.setAttribute('aria-haspopup', 'menu');
+  trigger.setAttribute('aria-expanded', 'false');
+  trigger.setAttribute('aria-controls', 'appearance-menu');
+  trigger.title = 'Appearance';
+  const menu = document.createElement('div');
+  menu.id = 'appearance-menu';
+  menu.className = 'appearance-menu';
+  menu.setAttribute('role', 'menu');
+  menu.setAttribute('aria-label', 'Appearance');
+  menu.hidden = true;
   const buttons = options.map(option => {
     const button = document.createElement('button');
     button.type = 'button';
-    button.setAttribute('role', 'radio');
-    button.setAttribute('aria-label', option.label);
-    button.title = option.label;
-    button.innerHTML = option.icon;
+    button.setAttribute('role', 'menuitemradio');
+    button.tabIndex = -1;
+    button.innerHTML = option.icon + '<span>' + option.label + '</span><span class="appearance-check" aria-hidden="true">✓</span>';
     button.addEventListener('click', () => {
       mode = option.mode;
       localStorage.setItem('theme', mode);
       apply();
+      close(true);
     });
-    picker.append(button);
+    menu.append(button);
     return button;
   });
+  function close(focus = false) {
+    menu.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    if (focus) trigger.focus();
+  }
+  function open(index = options.findIndex(option => option.mode === mode)) {
+    menu.hidden = false;
+    trigger.setAttribute('aria-expanded', 'true');
+    buttons[index].focus();
+  }
+  trigger.addEventListener('click', () => menu.hidden ? open() : close());
+  trigger.addEventListener('keydown', event => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      open(event.key === 'ArrowDown' ? 0 : buttons.length - 1);
+    }
+  });
+  menu.addEventListener('keydown', event => {
+    const index = buttons.indexOf(document.activeElement);
+    if (event.key === 'Escape') { event.preventDefault(); close(true); }
+    if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+      event.preventDefault();
+      const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : (index + (event.key === 'ArrowDown' ? 1 : -1) + buttons.length) % buttons.length;
+      buttons[next].focus();
+    }
+  });
+  document.addEventListener('click', event => { if (!picker.contains(event.target)) close(); });
+  picker.addEventListener('focusout', event => { if (!picker.contains(event.relatedTarget)) close(); });
+  picker.append(trigger, menu);
+  nav.insertBefore(picker, nav.querySelector('.pill'));
 
   function apply() {
     darkRules.forEach(rule => { rule.media.mediaText = media(mode); });
     darkSources.forEach(source => { source.media = media(mode); });
     document.documentElement.style.colorScheme = mode === 'auto' ? '' : mode;
+    trigger.innerHTML = options.find(option => option.mode === mode).icon;
     buttons.forEach((button, i) => button.setAttribute('aria-checked', options[i].mode === mode));
   }
 
-  document.body.append(picker);
   apply();
 })();

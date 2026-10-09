@@ -267,12 +267,13 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 .role { list-style: none; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
 .role li { border: 1px solid var(--hairline); border-radius: 980px; padding: 6px 14px; font-size: 14px; color: var(--text-2); }
 
-/* Device frame: drop a real screenshot into .device-screen as an <img> */
+/* Device frame, matching the PBL app sites: black bezel, thin titanium rim, neutral shadow.
+   Drop a real screenshot into .device-screen as an <img> */
 .device {
   justify-self: center; margin: 0 auto;
   width: min(300px, 78vw); aspect-ratio: 9 / 19.5;
-  background: var(--device); border-radius: 52px; padding: 11px;
-  box-shadow: 0 30px 80px var(--glow), 0 20px 40px rgba(0, 0, 0, 0.18);
+  background: #0B0B0C; border-radius: 52px; padding: 10px;
+  box-shadow: 0 0 0 1.5px #5E5E62, 0 0 0 3px rgba(0, 0, 0, 0.5), 0 30px 60px rgba(0, 0, 0, 0.28);
 }
 .device-screen {
   position: relative;

@@ -284,6 +284,10 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 .hero .device { margin-top: 72px; }
 .actions { margin-top: 36px; display: flex; gap: 24px; justify-content: center; align-items: center; flex-wrap: wrap; }
 
+.theme-renfo .hero .actions,
+.theme-homestead .hero .actions,
+.theme-iwatch .hero .actions { flex-direction: column; gap: 18px; }
+
 .button {
   display: inline-block; background: var(--button); color: var(--on-button);
   font-size: 17px; font-weight: 500; padding: 12px 22px; border-radius: 12px;

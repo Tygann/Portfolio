@@ -135,15 +135,15 @@
 .accent-reeve     { --accent: #077D8A; --button: #077D8A; --on-button: #FFFFFF; --glow: rgba(10, 176, 192, 0.16); }
 .accent-dishfork  { --accent: #B6492E; --button: #B6492E; --on-button: #FFFFFF; --glow: rgba(182, 73, 46, 0.18); }
 .accent-renfo     { --accent: #8C2F39; --button: #8C2F39; --on-button: #FFFFFF; --glow: rgba(201, 162, 39, 0.20); }
-.accent-homestead { --accent: #23845C; --button: #23845C; --on-button: #FFFFFF; --glow: rgba(35, 132, 92, 0.18); }
-.accent-iwatch    { --accent: #C2185B; --button: #C2185B; --on-button: #FFFFFF; --glow: rgba(194, 24, 91, 0.16); }
+.accent-homestead { --accent: #1560C8; --button: #1560C8; --on-button: #FFFFFF; --glow: rgba(31, 123, 230, 0.18); }
+.accent-iwatch    { --accent: #0A74DC; --button: #0A84FF; --on-button: #FFFFFF; --glow: rgba(58, 168, 255, 0.20); }
 
 @media (prefers-color-scheme: dark) {
   .accent-reeve     { --accent: #2FE0E6; --button: #2FE0E6; --on-button: #011C24; --glow: rgba(10, 176, 192, 0.38); }
   .accent-dishfork  { --accent: #DE7A57; --button: #B6492E; --on-button: #FFFFFF; --glow: rgba(182, 73, 46, 0.35); }
   .accent-renfo     { --accent: #E6C35C; --button: #E6C35C; --on-button: #2A1F02; --glow: rgba(140, 47, 57, 0.45); }
-  .accent-homestead { --accent: #5FD6A0; --button: #5FD6A0; --on-button: #032417; --glow: rgba(35, 132, 92, 0.40); }
-  .accent-iwatch    { --accent: #FF6FA5; --button: #FF6FA5; --on-button: #2A0414; --glow: rgba(194, 24, 91, 0.38); }
+  .accent-homestead { --accent: #9ED8F0; --button: #9ED8F0; --on-button: #0A2A55; --glow: rgba(31, 123, 230, 0.40); }
+  .accent-iwatch    { --accent: #4DB2FF; --button: #4DB2FF; --on-button: #021A33; --glow: rgba(58, 168, 255, 0.36); }
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -238,8 +238,8 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 .tile-reeve     { --tile-a: #0AB0C0; --tile-b: #077D8A; }
 .tile-dishfork  { --tile-a: #DE7A57; --tile-b: #B6492E; }
 .tile-renfo     { --tile-a: #b33a46; --tile-b: #5e1a22; }
-.tile-homestead { --tile-a: #3fbf86; --tile-b: #1a6b4a; }
-.tile-iwatch    { --tile-a: #ff5c93; --tile-b: #8e0f42; }
+.tile-homestead { --tile-a: #2A86EC; --tile-b: #1560C8; }
+.tile-iwatch    { --tile-a: #45B0FF; --tile-b: #1683F0; }
 
 /* Landing: project cards */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }

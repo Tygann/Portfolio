@@ -48,9 +48,9 @@
   --button: #345F91;
   --on-button: #FFFFFF;
   --glow: rgba(52, 95, 145, 0.12);
-  --field: radial-gradient(560px 520px at 10% -4%, rgba(137, 166, 200, 0.16), transparent 70%),
-    radial-gradient(520px 480px at 92% 2%, rgba(224, 210, 187, 0.18), transparent 70%),
-    linear-gradient(#F0F1F1, #F8F7F4 62%);
+  --field: radial-gradient(560px 520px at 10% -4%, rgba(137, 166, 200, 0.28), transparent 70%),
+    radial-gradient(520px 480px at 92% 2%, rgba(224, 210, 187, 0.25), transparent 70%),
+    linear-gradient(#EAF0F6, #F8F7F4 62%);
 }
 
 @media (prefers-color-scheme: dark) {

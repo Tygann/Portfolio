@@ -102,7 +102,7 @@
     --on-button: #321416;
     --glow: rgba(173, 32, 39, 0.34);
     --field: radial-gradient(560px 520px at 10% -4%, rgba(173, 32, 39, 0.36), transparent 70%),
-      radial-gradient(520px 480px at 92% 2%, rgba(245, 212, 119, 0.14), transparent 70%),
+      radial-gradient(520px 480px at 92% 2%, rgba(245, 212, 119, 0.08), transparent 70%),
       linear-gradient(#351216, #1C090B 62%);
   }
 }
@@ -157,7 +157,8 @@
     --on-button: #0B2545;
     --glow: rgba(46, 107, 194, 0.35);
     --field: radial-gradient(560px 520px at 10% -4%, rgba(46, 107, 194, 0.34), transparent 70%),
-      radial-gradient(520px 480px at 92% 2%, rgba(109, 198, 221, 0.16), transparent 70%),
+      radial-gradient(520px 480px at 92% 2%, rgba(109, 198, 221, 0.08), transparent 70%),
+      radial-gradient(520px 480px at 92% 2%, rgba(185, 195, 245, 0.10), transparent 70%),
       linear-gradient(#12243E, #0B1526 62%);
   }
 
@@ -173,8 +174,8 @@
     --button: #9CCBFF;
     --on-button: #102A4C;
     --glow: rgba(57, 137, 249, 0.35);
-    --field: radial-gradient(560px 520px at 10% -4%, rgba(57, 137, 249, 0.36), transparent 70%),
-      radial-gradient(520px 480px at 92% 2%, rgba(155, 192, 228, 0.17), transparent 70%),
+    --field: radial-gradient(560px 520px at 10% -4%, rgba(57, 137, 249, 0.42), transparent 70%),
+      radial-gradient(520px 480px at 92% 2%, rgba(155, 192, 228, 0.10), transparent 70%),
       linear-gradient(#142C4D, #0C1628 62%);
   }
 }

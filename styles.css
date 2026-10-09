@@ -1,4 +1,4 @@
-/* Home and the DishFork page use DishFork's palette (dishfork.com) */
+/* Default palette: DishFork (dishfork.com). */
 :root {
   --bg: #FBF7F2;
   --card: #FFFFFF;
@@ -32,6 +32,43 @@
     --field: radial-gradient(560px 520px at 10% -4%, rgba(182, 73, 46, 0.40), transparent 70%),
       radial-gradient(520px 480px at 92% 2%, rgba(237, 176, 74, 0.14), transparent 70%),
       linear-gradient(#2B231F, #201C19 62%);
+  }
+}
+
+/* Portfolio: warm neutrals with restrained blue accents. */
+.theme-portfolio {
+  --bg: #F8F7F4;
+  --card: #FFFFFF;
+  --text: #22252A;
+  --text-2: #656970;
+  --hairline: rgba(34, 37, 42, 0.09);
+  --nav-bg: rgba(248, 247, 244, 0.74);
+  --device: #22252A;
+  --accent: #345F91;
+  --button: #345F91;
+  --on-button: #FFFFFF;
+  --glow: rgba(52, 95, 145, 0.12);
+  --field: radial-gradient(560px 520px at 10% -4%, rgba(137, 166, 200, 0.16), transparent 70%),
+    radial-gradient(520px 480px at 92% 2%, rgba(224, 210, 187, 0.18), transparent 70%),
+    linear-gradient(#F0F1F1, #F8F7F4 62%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-portfolio {
+    --bg: #191A1C;
+    --card: #242629;
+    --text: #F5F4F0;
+    --text-2: #ADB1B8;
+    --hairline: rgba(245, 244, 240, 0.08);
+    --nav-bg: rgba(25, 26, 28, 0.74);
+    --device: #0D0E10;
+    --accent: #ACC8EA;
+    --button: #ACC8EA;
+    --on-button: #172536;
+    --glow: rgba(97, 128, 167, 0.18);
+    --field: radial-gradient(560px 520px at 10% -4%, rgba(97, 128, 167, 0.18), transparent 70%),
+      radial-gradient(520px 480px at 92% 2%, rgba(160, 145, 123, 0.10), transparent 70%),
+      linear-gradient(#202329, #191A1C 62%);
   }
 }
 

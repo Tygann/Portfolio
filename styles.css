@@ -409,3 +409,12 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
   .nav-links { gap: 16px; }
   .nav-links .hide-sm { display: none; }
 }
+
+/* Support and privacy pages share the app palette and typography. */
+.document-hero { padding-bottom: 56px; }
+.document-copy { max-width: 768px; margin: 0 auto; padding: 0 24px 96px; }
+.document-copy h2 { font-size: clamp(26px, 4vw, 34px); margin: 40px 0 16px; }
+.document-copy p, .document-copy li { color: var(--text-2); font-size: 18px; line-height: 1.6; }
+.document-copy ul { padding-left: 24px; }
+.document-copy li + li { margin-top: 12px; }
+.document-copy a { overflow-wrap: anywhere; }

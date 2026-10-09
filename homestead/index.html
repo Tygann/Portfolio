@@ -15,6 +15,7 @@
       <a class="nav-name" href="/homestead/"><span class="tile tile-homestead"><img src="/icons/homestead.png" alt=""></span>Homestead</a>
       <nav class="nav-links">
         <a href="#features">Features</a>
+        <a href="/homestead/support/">Support</a>
         <a href="/">Tyler Keegan</a>
         <a class="pill" href="https://testflight.apple.com/join/WU5kETTE">Join the beta</a>
       </nav>
@@ -32,7 +33,7 @@
           <a class="button" href="https://testflight.apple.com/join/WU5kETTE">Join the beta on TestFlight</a>
           <a class="link" href="#features">See what it does ›</a>
         </div>
-        <p class="meta">A personal project by Tyler Keegan · In beta · iPhone &amp; iPad</p>
+        <p class="meta">A personal project by Tyler Keegan · In beta · iPhone &amp; iPad<br>Requires an existing Home Assistant installation.</p>
         <div class="device"><div class="device-screen"><picture><source media="(prefers-color-scheme: dark)" srcset="/homestead/screens/1-dark.webp"><img src="/homestead/screens/1-light.webp" alt="Homestead welcome screen"></picture></div></div>
       </section>
     </div>
@@ -50,7 +51,7 @@
       <div class="feature-copy">
         <p class="eyebrow">Areas</p>
         <h2>Explore your home.</h2>
-        <p>Browse devices and entities by area, using the organization you’ve already set up in Home Assistant.</p>
+        <p>Connect to your existing Home Assistant setup, with the devices, areas, and automations you already use. Browse devices and entities by area to find what you need.</p>
       </div>
       <div class="device"><div class="device-screen"><picture><source media="(prefers-color-scheme: dark)" srcset="/homestead/screens/3-dark.webp"><img src="/homestead/screens/3-light.webp" alt="Homestead rooms" loading="lazy"></picture></div></div>
     </section>
@@ -76,13 +77,13 @@
     <section class="about">
       <p class="eyebrow">Widgets</p>
       <h2>Your home, on your Home Screen.</h2>
-      <p>Keep controls, device status, sensors, and actions close at hand with Home Screen widgets.</p>
+      <p>Keep controls, device status, sensors, and actions close at hand with Home Screen widgets. Receive Home Assistant notifications to stay informed about your home.</p>
     </section>
 
     <section class="about">
       <p class="eyebrow">Privacy</p>
       <h2>Private by design.</h2>
-      <p>Homestead connects to the Home Assistant servers you choose. Credentials stay in your device’s Keychain. Homestead does not sell personal information or use third-party advertising.</p>
+      <p>Homestead connects to the Home Assistant servers you choose. Credentials stay in your device’s Keychain. Homestead does not sell personal information or use third-party advertising. <a href="/homestead/privacy/">Read the privacy policy ›</a></p>
       <p class="meta">Requires an existing Home Assistant installation. Homestead is an independent third-party client and is not affiliated with or endorsed by the Home Assistant project.</p>
     </section>
 
@@ -98,7 +99,7 @@
 
   <footer class="footer">
     <p>© <span class="year">2026</span> Tyler Keegan</p>
-    <a href="/">All projects</a>
+    <nav aria-label="Footer"><a href="/homestead/support/">Support</a> · <a href="/homestead/privacy/">Privacy</a> · <a href="/">All projects</a></nav>
   </footer>
 
   <script>document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());</script>

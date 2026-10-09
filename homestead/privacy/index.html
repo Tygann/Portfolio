@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <title>Privacy Policy · Homestead</title>
+  <meta name="description" content="Privacy Policy for Homestead, a native Home Assistant app for iPhone and iPad.">
+  <link rel="icon" type="image/png" href="/icons/me.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="theme-homestead">
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-name" href="/homestead/"><span class="tile tile-homestead"><img src="/icons/homestead.png" alt=""></span>Homestead</a>
+      <nav class="nav-links">
+        <a href="/homestead/#features">Features</a>
+        <a href="/homestead/support/">Support</a>
+        <a href="/">Tyler Keegan</a>
+        <a class="pill" href="https://testflight.apple.com/join/WU5kETTE">Join the beta</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero-wrap"><section class="hero document-hero">
+      <span class="tile"><img src="/icons/homestead.png" alt="Homestead app icon"></span>
+      <h1>Privacy Policy</h1><p class="meta">Last updated October 9, 2026</p>
+    </section></div>
+    <article class="document-copy" aria-label="Privacy Policy">
+<p>Homestead is a native client for Home Assistant. It connects directly to Home Assistant servers that you choose and stores Home Assistant credentials in the device Keychain.</p>
+<h2>Data Homestead handles</h2>
+<ul><li>Home Assistant server addresses, entity state, registry metadata, dashboards, and preferences needed to provide the app.</li><li>Home Assistant sign-in credentials stored locally in the device Keychain.</li><li>Pseudonymous notification delivery identifiers used to relay Home Assistant notifications to Apple Push Notification service. The notification relay does not retain the device name or app version.</li><li>Optional iCloud key-value data for Homestead-owned server metadata, dashboards, safety preferences, and small appearance preferences. Credentials, Home Assistant state, notification secrets, widget snapshots, and wallpaper images are not placed in Homestead’s iCloud sync payload.</li><li>App Store purchase and subscription status supplied by Apple through StoreKit.</li></ul>
+<h2>Data sharing</h2>
+<p>Homestead does not sell personal information or use third-party advertising. Home Assistant data is sent only to the Home Assistant servers configured by the user, Apple services required for platform features such as StoreKit, iCloud, and push notifications, and Homestead’s notification relay when remote Home Assistant notification delivery is enabled.</p>
+<h2>Storage and deletion</h2>
+<p>Most Homestead data is stored on the user’s device. Removing a server or deleting the app removes its local data subject to normal device backups and Apple platform behavior. Notification relay identifiers expire automatically 90 days after the most recent registration. Users can disable Homestead iCloud sync in Settings, manage App Store purchases through their Apple Account, and request earlier deletion of notification relay data by contacting support.</p>
+<h2>Contact</h2>
+<p>Questions about privacy or support can be sent to <a href="mailto:support@homesteadcontrol.com">support@homesteadcontrol.com</a>.</p>
+    </article>
+  </main>
+  <footer class="footer">
+    <p>© <span class="year">2026</span> Tyler Keegan</p>
+    <nav aria-label="Footer"><a href="/homestead/support/">Support</a> · <a href="/homestead/privacy/">Privacy</a> · <a href="/">All projects</a></nav>
+  </footer>
+
+  <script>document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());</script>
+  <script src="/theme-toggle.js"></script>
+</body>
+</html>

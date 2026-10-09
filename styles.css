@@ -189,6 +189,8 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
   color: #fff; font-size: 34px; font-weight: 700;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
+.tile img { width: 100%; height: 100%; border-radius: inherit; display: block; }
+.tile:has(img) { background: none; }
 .tile-me        { --tile-a: #EDB04A; --tile-b: #B6492E; }
 .tile-reeve     { --tile-a: #0AB0C0; --tile-b: #077D8A; }
 .tile-dishfork  { --tile-a: #DE7A57; --tile-b: #B6492E; }

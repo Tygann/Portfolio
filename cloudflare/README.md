@@ -36,3 +36,16 @@ API tests for push behavior without registering production devices or sending pu
 For rollback, move root/www back to homestead-api and restore those two entries in
 its Wrangler configuration. The preserved old sitePage.ts remains available there.
 Do not move api/connect, edit secrets, delete KV data, or change email/tunnel DNS.
+
+## Renfo website routing
+
+`renfo-site` is captured in `cloudflare/renfo-site/`. It serves the Portfolio Renfo
+landing page and `/privacy` while preserving the existing API, well-known,
+festival deep-link, and web-app routing. Deploy with:
+
+```
+node --test cloudflare/renfo-site/worker.test.mjs
+wrangler deploy --config cloudflare/renfo-site/wrangler.jsonc
+```
+
+Publish the Portfolio page first, then verify `https://renfo.app/privacy`.

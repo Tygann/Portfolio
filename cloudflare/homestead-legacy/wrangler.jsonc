@@ -1,0 +1,7 @@
+{
+  "name": "homestead-legacy",
+  "compatibility_date": "2026-10-09",
+  "workers_dev": true,
+  "routes": [{ "pattern": "legacy.homesteadcontrol.com", "custom_domain": true }],
+  "assets": { "directory": "./public", "not_found_handling": "404-page" }
+}

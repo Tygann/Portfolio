@@ -309,11 +309,17 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 /* Development helper from theme-toggle.js; delete with it */
 .theme-toggle {
   position: fixed; right: 16px; bottom: 16px; z-index: 20;
-  padding: 8px 14px; border-radius: 980px; border: 1px solid var(--hairline);
-  background: var(--nav-bg); color: var(--text);
+  display: flex; gap: 2px; padding: 3px; border-radius: 980px; border: 1px solid var(--hairline);
+  background: var(--nav-bg);
   backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
-  font: 500 13px var(--font-text); cursor: pointer;
 }
+.theme-toggle button {
+  display: flex; align-items: center; justify-content: center;
+  width: 34px; height: 28px; border: 0; border-radius: 980px;
+  background: none; color: var(--text-2); cursor: pointer;
+}
+.theme-toggle button:hover { color: var(--text); }
+.theme-toggle button[aria-checked="true"] { background: var(--card); color: var(--text); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18); }
 
 @media (max-width: 760px) {
   section { padding: 96px 20px; }

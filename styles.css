@@ -435,7 +435,7 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 .appearance-trigger:hover { background: var(--card); }
 .appearance-menu {
   position: absolute; top: calc(100% + 10px); right: 0; z-index: 20;
-  min-width: 160px; padding: 6px; border-radius: 14px;
+  min-width: 140px; padding: 6px; border-radius: 14px;
   border: 1px solid var(--hairline); background: var(--bg);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
 }

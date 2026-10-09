@@ -446,7 +446,7 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
   background: transparent; color: var(--text); cursor: pointer; text-align: left;
 }
 .appearance-menu button:hover, .appearance-menu button:focus-visible { background: var(--card); }
-.appearance-check { margin-left: auto; visibility: hidden; }
+.appearance-check { width: 14px; flex-shrink: 0; text-align: center; visibility: hidden; }
 .appearance-menu button[aria-checked="true"] .appearance-check { visibility: visible; }
 .appearance-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 

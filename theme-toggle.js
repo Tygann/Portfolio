@@ -46,7 +46,7 @@
     button.type = 'button';
     button.setAttribute('role', 'menuitemradio');
     button.tabIndex = -1;
-    button.innerHTML = option.icon + '<span>' + option.label + '</span><span class="appearance-check" aria-hidden="true">✓</span>';
+    button.innerHTML = '<span class="appearance-check" aria-hidden="true">✓</span>' + option.icon + '<span>' + option.label + '</span>';
     button.addEventListener('click', () => {
       mode = option.mode;
       localStorage.setItem('theme', mode);

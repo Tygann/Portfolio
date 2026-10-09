@@ -314,6 +314,9 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 /* Hero, with a soft accent glow behind it */
 .hero-wrap { background: var(--field) no-repeat top / 100% 720px; }
 .hero { text-align: center; padding-top: 112px; }
+/* Keep the portfolio introduction close to the work it introduces. */
+.theme-portfolio .hero { padding-bottom: 64px; }
+.theme-portfolio #work { padding-top: 64px; }
 .hero .tile { margin: 0 auto 40px; }
 .hero .lede { margin: 24px auto 0; }
 .hero .subhead { color: var(--accent); font-family: var(--font-display); font-size: clamp(22px, 2.8vw, 30px); font-weight: 600; margin-top: 24px; }

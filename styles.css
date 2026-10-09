@@ -107,6 +107,78 @@
   }
 }
 
+/* Homestead: blue foundation, frosted cyan and lavender highlights. */
+.theme-homestead {
+  --bg: #F5F8FD;
+  --card: #FFFFFF;
+  --text: #17263D;
+  --text-2: #56677E;
+  --hairline: rgba(23, 38, 61, 0.09);
+  --nav-bg: rgba(245, 248, 253, 0.74);
+  --device: #17263D;
+  --accent: #2E6BC2;
+  --button: #2E6BC2;
+  --on-button: #FFFFFF;
+  --glow: rgba(46, 107, 194, 0.18);
+  --field: radial-gradient(560px 520px at 10% -4%, rgba(158, 223, 239, 0.30), transparent 70%),
+    radial-gradient(520px 480px at 92% 2%, rgba(199, 207, 249, 0.28), transparent 70%),
+    linear-gradient(#EAF1FC, #F5F8FD 62%);
+}
+
+/* iWatch: brighter blue with the icon's cream and ice-blue highlights. */
+.theme-iwatch {
+  --bg: #F7F9FD;
+  --card: #FFFFFF;
+  --text: #152640;
+  --text-2: #586A82;
+  --hairline: rgba(21, 38, 64, 0.09);
+  --nav-bg: rgba(247, 249, 253, 0.74);
+  --device: #152640;
+  --accent: #2467CE;
+  --button: #2467CE;
+  --on-button: #FFFFFF;
+  --glow: rgba(57, 137, 249, 0.18);
+  --field: radial-gradient(560px 520px at 10% -4%, rgba(104, 180, 248, 0.28), transparent 70%),
+    radial-gradient(520px 480px at 92% 2%, rgba(245, 232, 211, 0.38), transparent 70%),
+    linear-gradient(#EDF3FC, #F7F9FD 62%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-homestead {
+    --bg: #0B1526;
+    --card: #14233A;
+    --text: #EEF4FF;
+    --text-2: #A6B6CB;
+    --hairline: rgba(238, 244, 255, 0.09);
+    --nav-bg: rgba(11, 21, 38, 0.74);
+    --device: #060D18;
+    --accent: #9EDFEF;
+    --button: #9EDFEF;
+    --on-button: #0B2545;
+    --glow: rgba(46, 107, 194, 0.35);
+    --field: radial-gradient(560px 520px at 10% -4%, rgba(46, 107, 194, 0.34), transparent 70%),
+      radial-gradient(520px 480px at 92% 2%, rgba(109, 198, 221, 0.16), transparent 70%),
+      linear-gradient(#12243E, #0B1526 62%);
+  }
+
+  .theme-iwatch {
+    --bg: #0C1628;
+    --card: #162640;
+    --text: #FAF6EF;
+    --text-2: #A8B8CE;
+    --hairline: rgba(250, 246, 239, 0.09);
+    --nav-bg: rgba(12, 22, 40, 0.74);
+    --device: #070D18;
+    --accent: #9CCBFF;
+    --button: #9CCBFF;
+    --on-button: #102A4C;
+    --glow: rgba(57, 137, 249, 0.35);
+    --field: radial-gradient(560px 520px at 10% -4%, rgba(57, 137, 249, 0.36), transparent 70%),
+      radial-gradient(520px 480px at 92% 2%, rgba(155, 192, 228, 0.17), transparent 70%),
+      linear-gradient(#142C4D, #0C1628 62%);
+  }
+}
+
 /* Personal app pages: neutral ground, each app's own accent */
 .theme-app {
   --bg: #FFFFFF;

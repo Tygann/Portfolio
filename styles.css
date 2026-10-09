@@ -70,6 +70,43 @@
   }
 }
 
+/* Renfo page uses the Renfo icon's palette: crimson field, gold crown */
+.theme-renfo {
+  --bg: #FBF6EC;
+  --card: #FFFFFF;
+  --text: #2A0E10;
+  --text-2: #7A5A50;
+  --hairline: rgba(42, 14, 16, 0.09);
+  --nav-bg: rgba(251, 246, 236, 0.74);
+  --device: #1E0709;
+  --accent: #A3161F;
+  --button: #A3161F;
+  --on-button: #FFFFFF;
+  --glow: rgba(193, 39, 45, 0.18);
+  --field: radial-gradient(560px 520px at 10% -4%, rgba(193, 39, 45, 0.18), transparent 70%),
+    radial-gradient(520px 480px at 92% 2%, rgba(240, 199, 94, 0.26), transparent 70%),
+    linear-gradient(#F6E8D6, #FBF6EC 62%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-renfo {
+    --bg: #1A0608;
+    --card: #2A0C0F;
+    --text: #FBEFE0;
+    --text-2: #C29A88;
+    --hairline: rgba(255, 255, 255, 0.08);
+    --nav-bg: rgba(26, 6, 8, 0.74);
+    --device: #0D0304;
+    --accent: #F0C75E;
+    --button: #F0C75E;
+    --on-button: #2A0E10;
+    --glow: rgba(193, 39, 45, 0.42);
+    --field: radial-gradient(560px 520px at 10% -4%, rgba(193, 39, 45, 0.48), transparent 70%),
+      radial-gradient(520px 480px at 92% 2%, rgba(217, 138, 53, 0.20), transparent 70%),
+      linear-gradient(#3A0C10, #1A0608 62%);
+  }
+}
+
 /* Personal app pages: neutral ground, each app's own accent */
 .theme-app {
   --bg: #FFFFFF;

@@ -1,6 +1,6 @@
 const SITE = "https://tylerkeegan.com";
 const WEB = "https://web.renfo.app";
-const PAGE_FILES = ["/styles.css", "/theme-toggle.js", "/icons/", "/renfo/"];
+const PAGE_FILES = ["/styles.css", "/theme-toggle.js", "/icons/", "/social/", "/renfo/"];
 
 export default {
   async fetch(request) {
@@ -16,6 +16,9 @@ export default {
     if (url.hostname === "www.renfo.app") {
       url.hostname = "renfo.app";
       return Response.redirect(url.toString(), 301);
+    }
+    if (path === "/robots.txt" || path === "/sitemap.xml") {
+      return fetch(SITE + "/renfo" + path);
     }
     if (path === "/support" || path === "/support/") {
       return fetch(SITE + "/renfo/support/" + url.search);

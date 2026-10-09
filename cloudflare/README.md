@@ -49,3 +49,13 @@ wrangler deploy --config cloudflare/renfo-site/wrangler.jsonc
 ```
 
 Publish the Portfolio page first, then verify `https://renfo.app/support` and `https://renfo.app/privacy`.
+
+## Search and sharing
+
+Each public domain exposes its own `/robots.txt` and `/sitemap.xml`. Portfolio
+app copies canonicalize to the branded domains for Renfo and Homestead. Website
+Workers also proxy `/social/` assets; API, OAuth, and festival routing stay separate.
+Validate with `python3 scripts/check-search.py` and both Worker routing tests.
+
+Social preview sources are in `scripts/social-previews.html`; rendered 1200 × 630
+PNG files are in `social/`. The renderer is noindex and excluded by robots.txt.

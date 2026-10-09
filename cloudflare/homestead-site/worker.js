@@ -1,7 +1,9 @@
 const ORIGIN = 'https://tylerkeegan.com';
 const pages = new Map([
   ['/', '/homestead/'],
-  ['/og.png', '/icons/homestead.png'],
+  ['/og.png', '/social/homestead.png'],
+  ['/robots.txt', '/homestead/robots.txt'],
+  ['/sitemap.xml', '/homestead/sitemap.xml'],
   ['/support', '/homestead/support/'],
   ['/support/', '/homestead/support/'],
   ['/privacy', '/homestead/privacy/'],
@@ -33,7 +35,7 @@ export default {
       return Response.redirect(url.toString(), 308);
     }
     const asset = ['/styles.css', '/theme-toggle.js'].includes(url.pathname) ||
-      url.pathname.startsWith('/icons/') || url.pathname.startsWith('/homestead/screens/');
+      url.pathname.startsWith('/icons/') || url.pathname.startsWith('/social/') || url.pathname.startsWith('/homestead/screens/');
     const path = pages.get(url.pathname) || (asset ? url.pathname : null);
     if (!path) return new Response('Not found.', { status: 404 });
     const upstream = new URL(path, ORIGIN);

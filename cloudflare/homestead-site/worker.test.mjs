@@ -7,7 +7,7 @@ test('maps website pages and assets while dropping credentials', async () => {
   const seen = [];
   globalThis.fetch = async request => { seen.push(request); return new Response('ok'); };
   try {
-    for (const [path, expected] of [['/', '/homestead/'], ['/support', '/homestead/support/'], ['/privacy/', '/homestead/privacy/'], ['/styles.css', '/styles.css'], ['/homestead/screens/1-dark.webp', '/homestead/screens/1-dark.webp']]) {
+    for (const [path, expected] of [['/robots.txt', '/homestead/robots.txt'], ['/sitemap.xml', '/homestead/sitemap.xml'], ['/social/homestead.png', '/social/homestead.png'], ['/', '/homestead/'], ['/support', '/homestead/support/'], ['/privacy/', '/homestead/privacy/'], ['/styles.css', '/styles.css'], ['/homestead/screens/1-dark.webp', '/homestead/screens/1-dark.webp']]) {
       await worker.fetch(request(path + '?test=1', { headers: { Authorization: 'Bearer test', Cookie: 'test=1' } }));
       const upstream = seen.at(-1);
       assert.equal(upstream.url, 'https://tylerkeegan.com' + expected + '?test=1');

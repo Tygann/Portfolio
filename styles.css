@@ -1,48 +1,112 @@
+/* Home and the DishFork page use DishFork's palette (dishfork.com) */
 :root {
-  --bg: #ffffff;
-  --bg-alt: #f5f5f7;
-  --card: #f5f5f7;
-  --text: #1d1d1f;
-  --text-2: #6e6e73;
-  --hairline: rgba(0, 0, 0, 0.08);
-  --nav-bg: rgba(255, 255, 255, 0.72);
-  --device: #1d1d1f;
-  --accent: #5e5ce6;
-  --on-accent: #ffffff;
-  --glow: rgba(94, 92, 230, 0.18);
+  --bg: #FBF7F2;
+  --card: #FFFFFF;
+  --text: #201C19;
+  --text-2: #6B615A;
+  --hairline: rgba(32, 28, 25, 0.09);
+  --nav-bg: rgba(251, 247, 242, 0.74);
+  --device: #1C1815;
+  --accent: #B6492E;
+  --button: #B6492E;
+  --on-button: #FFFFFF;
+  --glow: rgba(182, 73, 46, 0.18);
+  --field: radial-gradient(560px 520px at 10% -4%, rgba(222, 122, 87, 0.20), transparent 70%),
+    radial-gradient(520px 480px at 92% 2%, rgba(237, 176, 74, 0.20), transparent 70%),
+    linear-gradient(#F6ECE1, #FBF7F2 62%);
   --font-display: "SF Pro Rounded", ui-rounded, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   --font-text: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #000000;
-    --bg-alt: #0d0d0f;
-    --card: #1c1c1e;
-    --text: #f5f5f7;
-    --text-2: #a1a1a6;
-    --hairline: rgba(255, 255, 255, 0.12);
-    --nav-bg: rgba(22, 22, 23, 0.72);
-    --device: #3a3a3c;
-    --accent: #8e8cff;
-    --on-accent: #0b0b2a;
-    --glow: rgba(142, 140, 255, 0.22);
+    --bg: #201C19;
+    --card: #2C2724;
+    --text: #FBF7F2;
+    --text-2: #A99D93;
+    --hairline: rgba(255, 255, 255, 0.08);
+    --nav-bg: rgba(32, 28, 25, 0.74);
+    --device: #0E0C0B;
+    --accent: #DE7A57;
+    --glow: rgba(182, 73, 46, 0.35);
+    --field: radial-gradient(560px 520px at 10% -4%, rgba(182, 73, 46, 0.40), transparent 70%),
+      radial-gradient(520px 480px at 92% 2%, rgba(237, 176, 74, 0.14), transparent 70%),
+      linear-gradient(#2B231F, #201C19 62%);
   }
 }
 
-/* Per-project themes: set on <body> */
-.theme-reeve     { --accent: #0b8a96; --glow: rgba(11, 138, 150, 0.18); }
-.theme-dishfork  { --accent: #c4472b; --glow: rgba(196, 71, 43, 0.16); }
-.theme-renfo     { --accent: #8c2f39; --glow: rgba(201, 162, 39, 0.20); }
-.theme-homestead { --accent: #23845c; --glow: rgba(35, 132, 92, 0.18); }
-.theme-iwatch    { --accent: #c2185b; --glow: rgba(194, 24, 91, 0.16); }
+/* Reeve page uses Reeve's palette (reevemoney.com) */
+.theme-reeve {
+  --bg: #F2F7F8;
+  --card: #FFFFFF;
+  --text: #0B2530;
+  --text-2: #55747D;
+  --hairline: rgba(11, 37, 48, 0.08);
+  --nav-bg: rgba(242, 247, 248, 0.72);
+  --accent: #077D8A;
+  --button: #077D8A;
+  --on-button: #FFFFFF;
+  --glow: rgba(10, 176, 192, 0.16);
+  --field: radial-gradient(520px 520px at 12% -2%, rgba(10, 176, 192, 0.16), transparent 70%),
+    radial-gradient(480px 480px at 92% 4%, rgba(224, 184, 96, 0.16), transparent 70%),
+    linear-gradient(#E3EFF2, #F2F7F8 60%, #F0F5F7);
+}
 
 @media (prefers-color-scheme: dark) {
-  .theme-reeve     { --accent: #3ad6e3; --on-accent: #032326; --glow: rgba(14, 116, 128, 0.45); }
-  .theme-dishfork  { --accent: #ff8a6b; --on-accent: #2a0d05; --glow: rgba(196, 71, 43, 0.35); }
-  .theme-renfo     { --accent: #e6c35c; --on-accent: #2a1f02; --glow: rgba(140, 47, 57, 0.45); }
-  .theme-homestead { --accent: #5fd6a0; --on-accent: #032417; --glow: rgba(35, 132, 92, 0.40); }
-  .theme-iwatch    { --accent: #ff6fa5; --on-accent: #2a0414; --glow: rgba(194, 24, 91, 0.38); }
+  .theme-reeve {
+    --bg: #011C24;
+    --card: #042A35;
+    --text: #EAF7F9;
+    --text-2: #76A3AE;
+    --hairline: rgba(255, 255, 255, 0.07);
+    --nav-bg: rgba(1, 28, 36, 0.72);
+    --accent: #2FE0E6;
+    --button: #2FE0E6;
+    --on-button: #011C24;
+    --glow: rgba(10, 176, 192, 0.38);
+    --field: radial-gradient(520px 520px at 12% -2%, rgba(10, 176, 192, 0.38), transparent 70%),
+      radial-gradient(480px 480px at 92% 4%, rgba(28, 110, 116, 0.34), transparent 70%),
+      linear-gradient(#023644, #011C24 60%, #021A22);
+  }
+}
+
+/* Personal app pages: neutral ground, each app's own accent */
+.theme-app {
+  --bg: #FFFFFF;
+  --card: #F5F5F7;
+  --text: #1D1D1F;
+  --text-2: #6E6E73;
+  --hairline: rgba(0, 0, 0, 0.08);
+  --nav-bg: rgba(255, 255, 255, 0.72);
+  --device: #1D1D1F;
+  --field: radial-gradient(ellipse 80% 60% at 50% 0%, var(--glow), transparent 70%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-app {
+    --bg: #000000;
+    --card: #1C1C1E;
+    --text: #F5F5F7;
+    --text-2: #A1A1A6;
+    --hairline: rgba(255, 255, 255, 0.12);
+    --nav-bg: rgba(22, 22, 23, 0.72);
+    --device: #3A3A3C;
+  }
+}
+
+/* App accents: on a page's <body>, or on a home card to tint its buttons */
+.accent-reeve     { --accent: #077D8A; --button: #077D8A; --on-button: #FFFFFF; --glow: rgba(10, 176, 192, 0.16); }
+.accent-dishfork  { --accent: #B6492E; --button: #B6492E; --on-button: #FFFFFF; --glow: rgba(182, 73, 46, 0.18); }
+.accent-renfo     { --accent: #8C2F39; --button: #8C2F39; --on-button: #FFFFFF; --glow: rgba(201, 162, 39, 0.20); }
+.accent-homestead { --accent: #23845C; --button: #23845C; --on-button: #FFFFFF; --glow: rgba(35, 132, 92, 0.18); }
+.accent-iwatch    { --accent: #C2185B; --button: #C2185B; --on-button: #FFFFFF; --glow: rgba(194, 24, 91, 0.16); }
+
+@media (prefers-color-scheme: dark) {
+  .accent-reeve     { --accent: #2FE0E6; --button: #2FE0E6; --on-button: #011C24; --glow: rgba(10, 176, 192, 0.38); }
+  .accent-dishfork  { --accent: #DE7A57; --button: #B6492E; --on-button: #FFFFFF; --glow: rgba(182, 73, 46, 0.35); }
+  .accent-renfo     { --accent: #E6C35C; --button: #E6C35C; --on-button: #2A1F02; --glow: rgba(140, 47, 57, 0.45); }
+  .accent-homestead { --accent: #5FD6A0; --button: #5FD6A0; --on-button: #032417; --glow: rgba(35, 132, 92, 0.40); }
+  .accent-iwatch    { --accent: #FF6FA5; --button: #FF6FA5; --on-button: #2A0414; --glow: rgba(194, 24, 91, 0.38); }
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -98,10 +162,10 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 .nav-links { display: flex; align-items: center; gap: 24px; }
 .nav-links a { color: var(--text); font-size: 13px; opacity: 0.8; }
 .nav-links a:hover { opacity: 1; text-decoration: none; }
-.nav-links .pill { opacity: 1; background: var(--accent); color: var(--on-accent); padding: 5px 12px; border-radius: 980px; font-weight: 500; }
+.nav-links .pill { opacity: 1; background: var(--button); color: var(--on-button); padding: 5px 12px; border-radius: 980px; font-weight: 500; }
 
 /* Hero, with a soft accent glow behind it */
-.hero-wrap { background: radial-gradient(ellipse 80% 60% at 50% 0%, var(--glow), transparent 70%); }
+.hero-wrap { background: var(--field) no-repeat top / 100% 720px; }
 .hero { text-align: center; padding-top: 112px; }
 .hero .tile { margin: 0 auto 40px; }
 .hero .lede { margin: 24px auto 0; }
@@ -111,7 +175,7 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 .actions { margin-top: 36px; display: flex; gap: 24px; justify-content: center; align-items: center; flex-wrap: wrap; }
 
 .button {
-  display: inline-block; background: var(--accent); color: var(--on-accent);
+  display: inline-block; background: var(--button); color: var(--on-button);
   font-size: 17px; font-weight: 500; padding: 12px 22px; border-radius: 12px;
 }
 .button:hover { text-decoration: none; filter: brightness(1.08); }
@@ -125,9 +189,9 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
   color: #fff; font-size: 34px; font-weight: 700;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
-.tile-me        { --tile-a: #7d7bff; --tile-b: #4b48c9; }
-.tile-reeve     { --tile-a: #2fc7d4; --tile-b: #0a6f79; }
-.tile-dishfork  { --tile-a: #f07a55; --tile-b: #b43a20; }
+.tile-me        { --tile-a: #EDB04A; --tile-b: #B6492E; }
+.tile-reeve     { --tile-a: #0AB0C0; --tile-b: #077D8A; }
+.tile-dishfork  { --tile-a: #DE7A57; --tile-b: #B6492E; }
 .tile-renfo     { --tile-a: #b33a46; --tile-b: #5e1a22; }
 .tile-homestead { --tile-a: #3fbf86; --tile-b: #1a6b4a; }
 .tile-iwatch    { --tile-a: #ff5c93; --tile-b: #8e0f42; }
@@ -135,12 +199,17 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 /* Landing: project cards */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
 .card {
-  background: var(--card); border-radius: 28px; padding: 48px 36px;
+  background: var(--card); border: 1px solid var(--hairline); border-radius: 28px; padding: 48px 36px;
   display: flex; flex-direction: column; align-items: center; text-align: center;
 }
 .card .tile { margin-bottom: 20px; }
 .card .name { font-family: var(--font-display); font-size: 19px; font-weight: 600; }
-.card .kind { color: var(--text-2); font-size: 12px; margin-bottom: 20px; }
+.card .badge {
+  margin: 8px 0 20px; padding: 4px 10px; border-radius: 980px;
+  font-size: 12px; font-weight: 600;
+  color: var(--text-2); border: 1px solid var(--hairline);
+}
+.card .badge-mine { color: var(--accent); border-color: currentColor; }
 .card h3 { margin-bottom: 12px; }
 .card p { color: var(--text-2); font-size: 15px; max-width: 340px; }
 .card .actions { margin-top: auto; padding-top: 28px; gap: 18px; }

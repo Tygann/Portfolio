@@ -306,6 +306,15 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 }
 .footer a { color: var(--text-2); }
 
+/* Development helper from theme-toggle.js; delete with it */
+.theme-toggle {
+  position: fixed; right: 16px; bottom: 16px; z-index: 20;
+  padding: 8px 14px; border-radius: 980px; border: 1px solid var(--hairline);
+  background: var(--nav-bg); color: var(--text);
+  backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+  font: 500 13px var(--font-text); cursor: pointer;
+}
+
 @media (max-width: 760px) {
   section { padding: 96px 20px; }
   .hero { padding-top: 80px; }

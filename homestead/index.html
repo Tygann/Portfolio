@@ -23,7 +23,7 @@
   <meta name="twitter:image" content="https://homesteadcontrol.com/social/homestead.png">
   <meta name="twitter:image:alt" content="Homestead — branded app preview">
   <link rel="icon" type="image/png" href="/icons/homestead-web.png">
-  <link rel="stylesheet" href="/styles.css?v=6ddb08129f49">
+  <link rel="stylesheet" href="/styles.css?v=5b101bdbd9ac">
 </head>
 <body class="theme-homestead app-site">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -41,17 +41,18 @@
 
   <main id="main-content" tabindex="-1">
     <div class="hero-wrap">
-      <section class="hero">
-        <span class="tile tile-homestead"><img fetchpriority="high" width="88" height="88" decoding="async" src="/icons/homestead-web.png" alt="Homestead app icon"></span>
-        <h1>Your home,<br>truly native.</h1>
-        <p class="subhead">Home Assistant, the Apple way.</p>
-        <p class="lede">Control your Home Assistant home on iPhone and iPad. Your devices, dashboards, and history. All close at hand.</p>
-        <div class="actions">
-          <a class="button" href="https://testflight.apple.com/join/WU5kETTE">Join the beta on TestFlight</a>
-          <a class="link" href="#features">See what it does<span class="link-chevron" aria-hidden="true"></span></a>
+      <section class="hero hero-product">
+        <div class="hero-copy">
+          <span class="tile tile-homestead"><img fetchpriority="high" width="88" height="88" decoding="async" src="/icons/homestead-web.png" alt="Homestead app icon"></span>
+          <h1>Your home,<br>truly native.</h1>
+          <p class="lede">Control your Home Assistant home on iPhone and iPad. Your devices, dashboards, and history. All close at hand.</p>
+          <div class="actions">
+            <a class="button testflight-button" href="https://testflight.apple.com/join/WU5kETTE">Join the beta on TestFlight</a>
+            <a class="link" href="#features">See what it does<span class="link-chevron" aria-hidden="true"></span></a>
+          </div>
+          <p class="meta">In beta for iPhone and iPad.<br>Requires an existing Home Assistant installation.</p>
         </div>
-        <p class="meta">A personal project by Tyler Keegan · In beta · iPhone &amp; iPad<br>Requires an existing Home Assistant installation.</p>
-        <div class="device"><div class="device-screen"><picture><source media="(prefers-color-scheme: dark)" srcset="/homestead/screens/1-dark.webp"><img width="1206" height="2622" decoding="async" src="/homestead/screens/1-light.webp" alt="Homestead welcome screen"></picture></div></div>
+        <div class="device"><div class="device-screen"><picture><source media="(prefers-color-scheme: dark)" srcset="/homestead/screens/1-dark.webp"><img width="1206" height="2622" decoding="async" src="/homestead/screens/1-light.webp" fetchpriority="high" alt="Homestead welcome screen"></picture></div></div>
       </section>
     </div>
 
@@ -59,18 +60,18 @@
       <div class="feature-copy">
         <p class="eyebrow">Controls</p>
         <h2>One tap. Done.</h2>
-        <p>Adjust lights and climate, secure doors, run scenes, and control everyday devices with familiar Apple-platform interactions.</p>
+        <p>Browse your devices by area. Adjust lights and climate, secure doors, and run scenes with familiar controls.</p>
       </div>
       <div class="device"><div class="device-screen"><picture><source media="(prefers-color-scheme: dark)" srcset="/homestead/screens/2-dark.webp"><img width="1206" height="2622" decoding="async" src="/homestead/screens/2-light.webp" alt="Homestead controls" loading="lazy"></picture></div></div>
     </section>
-    
+
     <section class="feature feature-flip">
       <div class="feature-copy">
-        <p class="eyebrow">Areas</p>
-        <h2>Explore your home.</h2>
-        <p>Connect to your existing Home Assistant setup, with the devices, areas, and automations you already use. Browse devices and entities by area to find what you need.</p>
+        <p class="eyebrow">Customization</p>
+        <h2>Every card. Your way.</h2>
+        <p>Choose controls and card sizes for dashboards that work for you. Keep device status and actions close at hand with Home Screen widgets.</p>
       </div>
-      <div class="device"><div class="device-screen"><picture><source media="(prefers-color-scheme: dark)" srcset="/homestead/screens/3-dark.webp"><img width="1206" height="2622" decoding="async" src="/homestead/screens/3-light.webp" alt="Homestead rooms" loading="lazy"></picture></div></div>
+      <div class="device"><div class="device-screen"><picture><source media="(prefers-color-scheme: dark)" srcset="/homestead/screens/5-dark.webp"><img width="1206" height="2622" decoding="async" src="/homestead/screens/5-light.webp" alt="Customizing a thermostat card in Homestead" loading="lazy"></picture></div></div>
     </section>
 
     <section class="feature">
@@ -82,20 +83,6 @@
       <div class="device"><div class="device-screen"><picture><source media="(prefers-color-scheme: dark)" srcset="/homestead/screens/4-dark.webp"><img width="1206" height="2622" decoding="async" src="/homestead/screens/4-light.webp" alt="Temperature history in Homestead" loading="lazy"></picture></div></div>
     </section>
     
-    <section class="feature feature-flip">
-      <div class="feature-copy">
-        <p class="eyebrow">Customization</p>
-        <h2>Every card. Your way.</h2>
-        <p>Choose controls, adjust card sizes, and bring devices, charts, cameras, and weather together in dashboards that work for you.</p>
-      </div>
-      <div class="device"><div class="device-screen"><picture><source media="(prefers-color-scheme: dark)" srcset="/homestead/screens/5-dark.webp"><img width="1206" height="2622" decoding="async" src="/homestead/screens/5-light.webp" alt="Customizing a thermostat card in Homestead" loading="lazy"></picture></div></div>
-    </section>
-    
-    <section class="about">
-      <p class="eyebrow">Widgets</p>
-      <h2>Your home, on your Home Screen.</h2>
-      <p>Keep controls, device status, sensors, and actions close at hand with Home Screen widgets. Receive Home Assistant notifications to stay informed about your home.</p>
-    </section>
 
     <section class="about">
       <p class="eyebrow">Privacy</p>
@@ -105,17 +92,17 @@
     </section>
 
     <section class="contact">
-      <h2>More from Tyler.</h2>
-      <p class="lede">Homestead is one of a few apps I make on the side.</p>
+      <h2>Make yourself at home.</h2>
+      <p class="lede">Try Homestead with your existing Home Assistant setup on iPhone and iPad.</p>
       <div class="actions">
-        <a class="button" href="https://tylerkeegan.com/#work">See all projects</a>
-        <a class="link" href="mailto:Tyler@Keegan.me">Tyler@Keegan.me</a>
+        <a class="button testflight-button" href="https://testflight.apple.com/join/WU5kETTE">Join the beta on TestFlight</a>
+        <a class="link" href="/homestead/support/">Get support</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>© <span class="year">2026</span> Tyler Keegan</p>
+    <p>A personal project by Tyler Keegan.<br>© <span class="year">2026</span> Tyler Keegan</p>
     <nav aria-label="Footer"><a href="/homestead/support/">Support</a> · <a href="/homestead/privacy/">Privacy</a> · <a href="https://tylerkeegan.com/">All projects</a></nav>
   </footer>
 

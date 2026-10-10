@@ -649,24 +649,55 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
   .theme-reeve .hero .actions, .theme-dishfork .hero .actions { flex-direction: column; gap: var(--space-2); }
 }
 
-/* Every app landing page shares the same composition, with its own palette. */
-.app-site .hero { text-align: center; padding-top: var(--space-8); padding-bottom: var(--space-8); }
-.app-site .hero h1 { font-size: clamp(40px, 7vw, 80px); max-width: 18ch; margin-inline: auto; }
-.app-site .hero .tile { margin: 0 auto var(--space-4); }
-.app-site .hero .subhead { max-width: 38ch; margin-inline: auto; text-wrap: balance; }
-.app-site .hero .lede { max-width: 56ch; }
-.app-site .actions { flex-direction: column; gap: var(--space-1); }
+
+/* Shared app composition: readable copy beside the product, then a short feature story. */
+.app-site section { padding-block: 56px; }
+.app-site .hero { padding-block: 64px; }
+.app-site .hero-product { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 64px; align-items: center; text-align: left; }
+.app-site .hero h1 { font-size: clamp(40px, 5.5vw, 72px); max-width: 18ch; margin: 0; text-wrap: balance; }
+.app-site .hero .tile { margin: 0 0 24px; width: 72px; height: 72px; border-radius: 18px; }
+.app-site .hero .lede { margin: 24px 0 0; max-width: 42ch; text-wrap: pretty; }
+.app-site .hero .actions { justify-content: flex-start; align-items: flex-start; flex-direction: row; }
+.app-site .actions { flex-direction: row; gap: 20px; }
 .app-site .actions > .link { min-height: 44px; }
-.app-site .hero .device { margin-top: var(--space-6); }
-.app-site .feature { padding-block: var(--space-8); }
-.app-site .contact { padding-block: var(--space-8); }
+.app-site .store-badge { margin: 12px; }
+.app-site .hero .store-badge { margin-left: 0; }
+.app-site .meta { font-size: 14px; line-height: 1.6; }
+.app-site .hero .device { margin: 0 auto; }
+.app-site .device { width: min(320px, 78vw); }
+/* Real screenshots retain their proportions without a simulated Apple product bezel. */
+.app-site .device:has(img) { aspect-ratio: auto; padding: 0; border: 1px solid var(--hairline); border-radius: 24px; background: transparent; box-shadow: none; }
+.app-site .device:has(img) .device-screen { height: auto; border-radius: 23px; }
+.app-site .device-screen img { height: auto; object-fit: contain; }
+.app-site .feature { gap: 64px; align-items: start; }
+.app-site .feature-copy { padding-top: 56px; }
+.app-site .feature h2 { max-width: 16ch; text-wrap: balance; }
+.app-site .feature p { line-height: 1.6; text-wrap: pretty; }
+.app-site .feature .eyebrow { color: var(--accent); font-size: 16px; }
+.app-site .feature + .feature { border-top: 1px solid var(--hairline); }
+.app-site .role { justify-content: flex-start; }
+.app-site .contact { margin-block: 40px; padding: 56px 24px; border-radius: 24px; background: var(--card); max-width: 1032px; }
+.app-site .about .meta { font-size: 14px; margin-top: 24px; }
+.app-site .footer { font-size: 14px; }
 @media (max-width: 900px) {
-  .app-site .feature { grid-template-columns: 1fr; gap: var(--space-4); text-align: center; }
+  .app-site .hero-product { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .app-site .hero h1, .app-site .hero .tile { margin-inline: auto; }
+  .app-site .hero .lede { margin-inline: auto; }
+  .app-site .hero .actions { justify-content: center; align-items: center; }
+  .app-site .hero .store-badge { margin-left: 12px; }
+  .app-site .role { justify-content: center; }
+  .app-site .feature { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+  .app-site .feature-copy { padding-top: 0; }
   .app-site .feature-flip .feature-copy { order: 0; }
-  .app-site .feature p { margin-inline: auto; }
+  .app-site .feature h2, .app-site .feature p { margin-inline: auto; }
+  .app-site .contact { margin-inline: 20px; }
 }
 @media (max-width: 760px) {
-  .app-site .hero { padding-top: var(--space-6); }
-  .app-site .hero h1 { font-size: clamp(32px, 10vw, 40px); }
-  .app-site .feature { padding-block: var(--space-6); }
+  .app-site section, .app-site .hero { padding-block: 48px; }
+  .app-site .hero h1 { font-size: clamp(36px, 10vw, 52px); }
+  .app-site .hero .actions { flex-direction: column; gap: 8px; }
+  .app-site .contact { margin-block: 24px; }
 }
+
+/* Beta actions match the 48px download badge height with site-native styling. */
+.app-site .testflight-button { min-height: 48px; padding: 12px 24px; border-radius: 8px; font-size: 16px; line-height: 24px; }

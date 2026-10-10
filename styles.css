@@ -774,3 +774,10 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 .app-footer p { margin: 0; }
 .app-footer nav { justify-content: flex-start; gap: 4px 24px; }
 .app-footer .footer-attribution { display: inline; }
+@media (max-width: 760px) {
+  .app-footer { flex-direction: column; align-items: stretch; gap: 16px; padding-block: 20px 24px; }
+  .app-footer nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; }
+  .app-footer nav:has(a:nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .app-footer nav a { justify-content: center; text-align: center; }
+  .app-footer > p { order: 1; text-align: center; font-size: 12px; }
+}

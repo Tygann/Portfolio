@@ -18,7 +18,7 @@ class Head(HTMLParser):
         if tag == 'link' and attrs.get('rel') == 'canonical': self.canonical.append(attrs['href'])
         if tag == 'title': self.title += 1
 
-pages = [ROOT / 'index.html'] + list(ROOT.glob('*/index.html')) + list((ROOT / 'renfo').glob('*/index.html')) + list((ROOT / 'homestead').glob('*/index.html'))
+pages = [ROOT / 'index.html'] + list(ROOT.glob('*/index.html')) + list((ROOT / 'renfo').glob('*/index.html')) + list((ROOT / 'homestead').glob('*/index.html')) + list((ROOT / 'iwatch').glob('*/index.html'))
 canonical = set()
 for page in pages:
     h = Head(); h.feed(page.read_text())

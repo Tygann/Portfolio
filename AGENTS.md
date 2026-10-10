@@ -18,3 +18,8 @@
 - Keep archived files in `cloudflare/homestead-legacy` unchanged unless the user specifically requests archive changes.
 - When shared CSS changes, update its version query in the active HTML pages to avoid stale cached styling.
 - Validate metadata with `scripts/check-search.py`. When relevant, run the Cloudflare Worker routing tests with `node --test cloudflare/renfo-site/worker.test.mjs cloudflare/homestead-site/worker.test.mjs`.
+
+# Privacy policy status
+
+- iWatch privacy page is provisional: app source is not available in this repository. Verify accounts, storage/sync, data providers, analytics/advertising, permissions, sharing, retention/deletion, and age audience before treating it as a complete policy. Keep its provisional notice until verified.
+- Reeve and DishFork belong to Peach Byte Labs; their company owns their privacy policies. Do not create policies for them here.

@@ -661,7 +661,8 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .app-site section { padding-block: 56px; }
 .app-site .hero { padding-block: 64px; }
 .app-site .hero-wrap { background: var(--bg); background-size: 100% 100%; background-repeat: no-repeat; }
-.app-site .features-chapter { --features-surface: color-mix(in srgb, var(--bg) 93%, var(--text) 7%); position: relative; background: var(--card); background: var(--features-surface); padding-block: 48px 24px; }
+.app-site { --features-surface: color-mix(in srgb, var(--bg) 93%, var(--text) 7%); }
+.app-site .features-chapter { position: relative; background: var(--card); background: var(--features-surface); padding-block: 48px 24px; }
 .app-site .hero-product { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; align-items: center; text-align: left; }
 .app-site .hero h1 { font-size: clamp(40px, 5.5vw, 72px); max-width: 18ch; margin: 0; text-wrap: balance; }
 .app-site .hero .tile { margin: 0 0 24px; width: 72px; height: 72px; border-radius: 18px; }
@@ -689,10 +690,10 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .app-site .feature h2 { max-width: 16ch; text-wrap: balance; }
 .app-site .feature p { line-height: 1.6; text-wrap: pretty; }
 .app-site .feature .eyebrow { color: var(--accent); color: color-mix(in srgb, var(--accent) 85%, var(--text) 15%); font-size: 16px; }
-.app-site .features-chapter a { color: color-mix(in srgb, var(--accent) 85%, var(--text) 15%); }
+.app-site .contact .link, .app-site .features-chapter a { color: color-mix(in srgb, var(--accent) 85%, var(--text) 15%); }
 .app-site .feature + .feature { border-top: 0; }
 .app-site .role { justify-content: flex-start; }
-.app-site .contact { margin-block: 40px; padding: 56px 24px; border-radius: 24px; background: color-mix(in srgb, var(--bg) 97%, var(--text) 3%); max-width: 1032px; }
+.app-site .contact { margin-block: 40px; padding: 56px 24px; border-radius: 24px; background: var(--features-surface); max-width: 1032px; }
 /* Flat light surfaces separate the hero, feature story, and closing invitation.
    Keep dark surfaces and the manual appearance picker on the existing palette. */
 @media (prefers-color-scheme: dark) {

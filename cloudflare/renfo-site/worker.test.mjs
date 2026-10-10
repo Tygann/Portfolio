@@ -11,6 +11,7 @@ test('privacy routes while preserving API and website routing', async () => {
   };
   try {
     for (const [path, upstream] of [
+      ['/navigation.js', 'https://tylerkeegan.com/navigation.js'],
       ['/robots.txt', 'https://tylerkeegan.com/renfo/robots.txt'],
       ['/sitemap.xml', 'https://tylerkeegan.com/renfo/sitemap.xml'],
       ['/social/renfo.png', 'https://tylerkeegan.com/social/renfo.png'],

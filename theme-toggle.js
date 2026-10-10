@@ -63,6 +63,7 @@
     if (focus) trigger.focus();
   }
   function open(index = options.findIndex(option => option.mode === mode)) {
+    document.dispatchEvent(new Event('site-appearance-open'));
     menu.hidden = false;
     trigger.setAttribute('aria-expanded', 'true');
     buttons[index].focus();
@@ -84,6 +85,7 @@
     }
   });
   document.addEventListener('click', event => { if (!picker.contains(event.target)) close(); });
+  document.addEventListener('site-navigation-open', () => close());
   picker.addEventListener('focusout', event => { if (!picker.contains(event.relatedTarget)) close(); });
   picker.append(trigger, menu);
   nav.insertBefore(picker, nav.querySelector('.pill'));

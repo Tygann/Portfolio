@@ -1,0 +1,53 @@
+// Mobile navigation uses ordinary links and a nonmodal disclosure.
+(() => {
+  const header = document.querySelector('.nav');
+  const nav = header?.querySelector('.nav-links');
+  if (!nav) return;
+  const links = [...nav.children].filter(element => element.tagName === 'A');
+  if (!links.length) return;
+  const trigger = document.createElement('button');
+  trigger.type = 'button';
+  trigger.className = 'navigation-toggle';
+  trigger.setAttribute('aria-label', 'Navigation');
+  trigger.setAttribute('aria-expanded', 'false');
+  trigger.setAttribute('aria-controls', 'mobile-navigation');
+  trigger.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>';
+  const panel = document.createElement('nav');
+  panel.id = 'mobile-navigation';
+  panel.className = 'navigation-panel';
+  panel.setAttribute('aria-label', 'Site navigation');
+  panel.hidden = true;
+  links.forEach(link => {
+    const copy = link.cloneNode(true);
+    copy.removeAttribute('class');
+    copy.removeAttribute('id');
+    panel.append(copy);
+  });
+  function close(focus = false) {
+    panel.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    if (focus) trigger.focus();
+  }
+  trigger.addEventListener('click', () => {
+    if (!panel.hidden) return close();
+    document.dispatchEvent(new Event('site-navigation-open'));
+    panel.hidden = false;
+    trigger.setAttribute('aria-expanded', 'true');
+    panel.querySelector('a').focus();
+  });
+  panel.addEventListener('click', event => { if (event.target.closest('a')) close(); });
+  header.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !panel.hidden) { event.preventDefault(); close(true); }
+  });
+  document.addEventListener('click', event => {
+    if (!panel.contains(event.target) && !trigger.contains(event.target)) close();
+  });
+  header.addEventListener('focusout', event => {
+    if (!panel.contains(event.relatedTarget) && !trigger.contains(event.relatedTarget)) close();
+  });
+  document.addEventListener('site-appearance-open', () => close());
+  matchMedia('(max-width: 760px)').addEventListener('change', () => close());
+  nav.append(trigger);
+  header.append(panel);
+  header.classList.add('nav-ready');
+})();

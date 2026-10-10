@@ -1,6 +1,6 @@
 const SITE = "https://tylerkeegan.com";
 const WEB = "https://web.renfo.app";
-const PAGE_FILES = ["/styles.css", "/theme-toggle.js", "/icons/", "/social/", "/renfo/"];
+const PAGE_FILES = ["/styles.css", "/theme-toggle.js", "/navigation.js", "/icons/", "/social/", "/renfo/"];
 
 export default {
   async fetch(request) {

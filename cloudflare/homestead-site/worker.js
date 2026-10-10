@@ -34,7 +34,7 @@ export default {
       url.pathname = aliases.get(url.pathname);
       return Response.redirect(url.toString(), 308);
     }
-    const asset = ['/styles.css', '/theme-toggle.js'].includes(url.pathname) ||
+    const asset = ['/styles.css', '/theme-toggle.js', '/navigation.js'].includes(url.pathname) ||
       url.pathname.startsWith('/icons/') || url.pathname.startsWith('/social/') || url.pathname.startsWith('/homestead/screens/');
     const path = pages.get(url.pathname) || (asset ? url.pathname : null);
     if (!path) return new Response('Not found.', { status: 404 });

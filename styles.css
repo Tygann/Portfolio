@@ -504,7 +504,9 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 
 /* Support and privacy pages share the app palette and typography. */
 .document-hero { padding-bottom: 56px; }
-.document-copy { max-width: 768px; margin: 0 auto; padding: 0 24px 96px; }
+.document-copy { max-width: 768px; margin: 0 auto; padding: 40px 24px 96px; }
+.document-copy > :first-child { margin-top: 0; }
+@media (max-width: 760px) { .document-copy { padding-top: 24px; } }
 .document-copy h2 { font-size: clamp(26px, 4vw, 34px); margin: 40px 0 16px; }
 .document-copy p, .document-copy li { color: var(--text-2); font-size: 18px; line-height: 1.6; }
 .document-copy ul { padding-left: 24px; }

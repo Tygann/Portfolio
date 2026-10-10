@@ -739,6 +739,10 @@ html:has(.app-site) { scroll-padding-top: 92px; }
   box-shadow: 0 6px 24px rgba(0, 0, 0, .14);
 }
 .app-site .nav-floating .navigation-panel { top: calc(100% + 20px); }
+@media (min-width: 1088px) {
+  /* Expand only the floating surface; preserve the controls' original inset. */
+  .app-site .nav-floating .nav-inner { width: calc(100% - 24px); max-width: 1064px; padding-inline: 40px; }
+}
 @media (max-width: 760px) {
   .app-site .nav-ready .nav-links > .pill { display: inline-flex; min-height: 32px; margin-block: 6px; padding: 5px 12px; }
   /* Extend the hit area without increasing the visible pill height. */

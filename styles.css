@@ -654,9 +654,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .app-site section { padding-block: 56px; }
 .app-site .hero { padding-block: 64px; }
 .app-site .hero-wrap { background: var(--field); background-size: 100% 100%; background-repeat: no-repeat; }
-.app-site .features-chapter { --features-surface: color-mix(in srgb, var(--bg) 94%, var(--text) 6%); position: relative; background: var(--card); background: var(--features-surface); padding-block: 48px 24px; }
-/* Blend inside the existing empty space, keeping headings on a solid surface. */
-.app-site .features-chapter::before { content: ''; position: absolute; inset: -40px 0 auto; height: 80px; background: linear-gradient(to bottom, var(--bg), var(--features-surface)); pointer-events: none; }
+.app-site .features-chapter { --features-surface: color-mix(in srgb, var(--bg) 97%, var(--text) 3%); position: relative; background: var(--card); background: var(--features-surface); padding-block: 48px 24px; }
 .app-site .features-intro { text-align: center; padding-block: 0 16px; }
 .app-site .features-intro + .feature { padding-top: 32px; }
 .app-site .features-intro h2 { max-width: 24ch; margin-inline: auto; font-size: clamp(28px, 3.2vw, 40px); text-wrap: balance; }
@@ -712,7 +710,6 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 @media (max-width: 760px) {
   .app-site section, .app-site .hero { padding-block: 48px; }
   .app-site .features-chapter { padding-block: 40px 8px; }
-  .app-site .features-chapter::before { top: -24px; height: 48px; }
   .app-site .features-intro { padding-block: 0 8px; }
   .app-site .features-intro + .feature { padding-top: 24px; }
   .app-site .hero h1 { font-size: clamp(36px, 10vw, 52px); }

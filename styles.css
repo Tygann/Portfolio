@@ -655,9 +655,6 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .app-site .hero { padding-block: 64px; }
 .app-site .hero-wrap { background: var(--field); background-size: 100% 100%; background-repeat: no-repeat; }
 .app-site .features-chapter { --features-surface: color-mix(in srgb, var(--bg) 97%, var(--text) 3%); position: relative; background: var(--card); background: var(--features-surface); padding-block: 48px 24px; }
-.app-site .features-intro { text-align: center; padding-block: 0 16px; }
-.app-site .features-intro + .feature { padding-top: 32px; }
-.app-site .features-intro h2 { max-width: 24ch; margin-inline: auto; font-size: clamp(28px, 3.2vw, 40px); text-wrap: balance; }
 .app-site .hero-product { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; align-items: center; text-align: left; }
 .app-site .hero h1 { font-size: clamp(40px, 5.5vw, 72px); max-width: 18ch; margin: 0; text-wrap: balance; }
 .app-site .hero .tile { margin: 0 0 24px; width: 72px; height: 72px; border-radius: 18px; }
@@ -710,8 +707,6 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 @media (max-width: 760px) {
   .app-site section, .app-site .hero { padding-block: 48px; }
   .app-site .features-chapter { padding-block: 40px 8px; }
-  .app-site .features-intro { padding-block: 0 8px; }
-  .app-site .features-intro + .feature { padding-top: 24px; }
   .app-site .hero h1 { font-size: clamp(36px, 10vw, 52px); }
   .app-site .hero .actions { flex-direction: column; gap: 8px; }
   .app-site .contact { margin-block: 24px; }

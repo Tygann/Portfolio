@@ -31,6 +31,10 @@ test('floating navigation and appearance survive scrolling and resizing', async 
   await page.evaluate(() => scrollTo({ top: 650, behavior: 'instant' }));
   await expect(page.locator('.nav')).toHaveClass(/nav-floating/);
   await expect(page.locator('.nav-links > .pill')).toBeVisible();
+  await page.locator('#features').evaluate(el => { location.hash = el.id; });
+  await expect.poll(() => page.locator('#features').evaluate(el => el.getBoundingClientRect().top)).toBeGreaterThanOrEqual(90);
+  await page.locator('.contact .button').evaluate(el => { scrollTo(0, el.getBoundingClientRect().top + scrollY - 20); el.focus({ preventScroll: true }); });
+  expect(await page.locator('.contact .button').evaluate(el => el.getBoundingClientRect().top)).toBeGreaterThanOrEqual(80);
   await page.getByRole('button', { name: 'Navigation', exact: true }).click();
   await page.getByRole('button', { name: 'Appearance', exact: true }).click();
   await page.getByRole('menuitemradio', { name: 'Dark', exact: true }).click();

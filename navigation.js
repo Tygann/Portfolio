@@ -14,6 +14,13 @@
       header.classList.toggle('nav-floating', !entry.isIntersecting);
     }, { rootMargin: '56px 0px 0px 0px' });
     observer.observe(marker);
+    // Keep keyboard-focused content clear of the persistent floating bar.
+    document.addEventListener('focusin', event => {
+      if (header.contains(event.target) || !event.target.closest('main')) return;
+      const top = event.target.getBoundingClientRect().top;
+      const clearance = header.getBoundingClientRect().bottom + 16;
+      if (top < clearance) window.scrollBy({ top: top - clearance, behavior: 'instant' });
+    });
   }
   const links = [...nav.children].filter(element => element.tagName === 'A');
   if (!links.length) return;

@@ -396,7 +396,7 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 }
 .card h3 { margin-bottom: 12px; }
 .card p { color: var(--text-2); font-size: 17px; line-height: 1.5; max-width: 340px; }
-.card .actions { margin-top: auto; padding-top: 28px; gap: 18px; flex-direction: column; }
+.card .actions { margin-top: auto; padding-top: 28px; gap: 8px; flex-direction: column; }
 .card .actions .link { font-size: 15px; min-height: 44px; display: inline-flex; align-items: center; }
 
 /* Project pages: alternating feature rows */

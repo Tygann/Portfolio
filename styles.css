@@ -351,7 +351,7 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 .link { font-size: 17px; font-weight: 500; }
 /* Apple's official badge, shown unaltered at the height of a .button */
 .store-badge { display: inline-block; line-height: 0; }
-.store-badge img { height: 48px; width: auto; }
+.store-badge img { height: 48px; width: 143.6px; }
 
 /* App tile: a stand-in until real app icons arrive */
 .tile {

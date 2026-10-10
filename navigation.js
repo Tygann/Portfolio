@@ -3,6 +3,18 @@
   const header = document.querySelector('.nav');
   const nav = header?.querySelector('.nav-links');
   if (!nav) return;
+  const appPage = document.body.classList.contains('app-site');
+  if (appPage) {
+    // Observe the original header position while keeping its space in the layout.
+    const marker = document.createElement('div');
+    marker.setAttribute('aria-hidden', 'true');
+    marker.style.cssText = 'height:1px;margin-bottom:-1px;pointer-events:none';
+    header.before(marker);
+    const observer = new IntersectionObserver(([entry]) => {
+      header.classList.toggle('nav-floating', !entry.isIntersecting);
+    }, { rootMargin: '56px 0px 0px 0px' });
+    observer.observe(marker);
+  }
   const links = [...nav.children].filter(element => element.tagName === 'A');
   if (!links.length) return;
   const trigger = document.createElement('button');
@@ -37,7 +49,7 @@
   });
   panel.addEventListener('click', event => { if (event.target.closest('a')) setTimeout(() => close(), 0); });
   header.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && !panel.hidden) { event.preventDefault(); close(true); }
+    if (event.key === 'Escape' && !event.defaultPrevented && !panel.hidden) { event.preventDefault(); close(true); }
   });
   document.addEventListener('click', event => {
     if (!panel.contains(event.target) && !trigger.contains(event.target)) close();
@@ -49,9 +61,20 @@
       if (!panel.contains(document.activeElement) && document.activeElement !== trigger) close();
     }, 0);
   });
-  document.addEventListener('site-appearance-open', () => close());
-  matchMedia('(max-width: 760px)').addEventListener('change', () => close());
+  document.addEventListener('site-appearance-open', () => { if (!appPage) close(); });
+  const mobile = matchMedia('(max-width: 760px)');
+  function updateLayout() {
+    close();
+    if (!appPage) return;
+    const picker = header.querySelector('.appearance');
+    if (!picker) return;
+    document.dispatchEvent(new Event('site-navigation-open'));
+    if (mobile.matches) panel.append(picker);
+    else nav.insertBefore(picker, nav.querySelector('.pill'));
+  }
+  mobile.addEventListener('change', updateLayout);
   nav.append(trigger);
   header.append(panel);
   header.classList.add('nav-ready');
+  updateLayout();
 })();

@@ -716,3 +716,35 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
   .nav-inner { padding-left: max(24px, env(safe-area-inset-left)); padding-right: max(24px, env(safe-area-inset-right)); }
   section, .document-copy, .footer { padding-left: max(24px, env(safe-area-inset-left)); padding-right: max(24px, env(safe-area-inset-right)); }
 }
+
+/* App pages retain one navigation bar that detaches after its original position. */
+html:has(.app-site) { scroll-padding-top: 92px; }
+.app-site .nav-inner { transition: border-radius 180ms ease, background-color 180ms ease, box-shadow 180ms ease; }
+.app-site .nav-floating { background: transparent; border-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.app-site .nav-floating .nav-inner {
+  width: calc(100% - 24px); max-width: 1032px; transform: translateY(12px);
+  padding-inline: 16px; border: 1px solid var(--hairline); border-radius: 24px;
+  background: var(--bg); background: color-mix(in srgb, var(--bg) 94%, transparent);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
+}
+.app-site .nav-floating .navigation-panel { top: calc(100% + 20px); }
+@media (max-width: 760px) {
+  .app-site .nav-ready .nav-links > .pill { display: inline-flex; min-height: 44px; margin-block: 0; padding: 8px 12px; }
+  .app-site .nav-ready .nav-links > .pill::before { display: none; }
+  .app-site .nav-links { gap: 4px; }
+  .app-site .nav-inner { gap: 8px; flex-wrap: nowrap; }
+  .app-site .nav-name { font-size: 15px; gap: 6px; min-width: 0; }
+  .app-site .nav-name .tile { width: 20px; height: 20px; }
+  .app-site .nav-links .pill { font-size: 12px; }
+  .app-site .nav-floating .nav-inner { padding-inline: 12px; }
+  .app-site .navigation-panel { width: min(240px, calc(100vw - 32px)); max-height: calc(100dvh - 104px); overflow-y: auto; }
+  .app-site .navigation-panel .appearance { border-top: 1px solid var(--hairline); margin-top: 8px; padding-top: 8px; }
+  .app-site .navigation-panel .appearance-trigger { width: 100%; justify-content: flex-start; gap: 12px; padding-inline: 16px; border-radius: var(--radius-control); }
+  .app-site .navigation-panel .appearance-trigger::after { content: 'Appearance'; font: 500 17px var(--font-text); }
+  .app-site .navigation-panel .appearance-menu { position: static; margin-top: 8px; box-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) { .app-site .nav-inner { transition: none; } }
+@media (prefers-reduced-transparency: reduce) { .app-site .nav-floating .nav-inner { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; } }
+@media (prefers-contrast: more) { .app-site .nav-floating .nav-inner { border-color: var(--text-2); } }
+@media (max-height: 400px) { .app-site .nav { position: relative; } .app-site .nav-floating .nav-inner { transform: none; } }

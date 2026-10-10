@@ -653,7 +653,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 /* Shared app composition: readable copy beside the product, then a short feature story. */
 .app-site section { padding-block: 56px; }
 .app-site .hero { padding-block: 64px; }
-.app-site .hero-product { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 64px; align-items: center; text-align: left; }
+.app-site .hero-product { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; align-items: center; text-align: left; }
 .app-site .hero h1 { font-size: clamp(40px, 5.5vw, 72px); max-width: 18ch; margin: 0; text-wrap: balance; }
 .app-site .hero .tile { margin: 0 0 24px; width: 72px; height: 72px; border-radius: 18px; }
 .app-site .hero .lede { margin: 24px 0 0; max-width: 42ch; text-wrap: pretty; }
@@ -663,7 +663,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .app-site .store-badge { margin: 12px; }
 .app-site .hero .store-badge { margin-left: 0; }
 .app-site .meta { font-size: 14px; line-height: 1.6; }
-.app-site .hero .device { margin: 0 auto; }
+.app-site .hero .device { margin: 0; justify-self: start; }
 .app-site .device { width: min(300px, 78vw); }
 /* Apple's unmodified iPhone 17 PNG surrounds its matching 1206 × 2622 screen.
    Keep the full artwork visible; do not add shadows or crop the bezel. */
@@ -673,6 +673,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .app-site .device-screen img { height: auto; object-fit: contain; }
 .app-site .feature { gap: 80px; align-items: center; padding-block: 72px; }
 .app-site .feature-copy { padding-top: 0; }
+.app-site .feature .device { margin: 0; justify-self: start; }
 .app-site .feature h2 { max-width: 16ch; text-wrap: balance; }
 .app-site .feature p { line-height: 1.6; text-wrap: pretty; }
 .app-site .feature .eyebrow { color: var(--accent); font-size: 16px; }
@@ -683,6 +684,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .app-site .footer { font-size: 14px; }
 @media (max-width: 900px) {
   .app-site .hero-product { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .app-site .hero .device, .app-site .feature .device { margin-inline: auto; justify-self: center; }
   .app-site .hero h1, .app-site .hero .tile { margin-inline: auto; }
   .app-site .hero .lede { margin-inline: auto; }
   .app-site .hero .actions { justify-content: center; align-items: center; }
@@ -726,9 +728,10 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 .app-site .nav-floating .nav-inner {
   width: calc(100% - 24px); max-width: 1032px; transform: translateY(12px);
   padding-inline: 16px; border: 1px solid var(--hairline); border-radius: 24px;
-  background: var(--bg); background: color-mix(in srgb, var(--bg) 94%, transparent);
+  background: var(--bg); background: color-mix(in srgb, var(--bg) 90%, var(--text) 10%);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
+  border-color: color-mix(in srgb, var(--text) 20%, transparent);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .18);
 }
 .app-site .nav-floating .navigation-panel { top: calc(100% + 20px); }
 @media (max-width: 760px) {

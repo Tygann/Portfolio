@@ -17,3 +17,9 @@ The website Worker asset allowlists include navigation.js; API and authenticatio
 Standard system headings and semibold hierarchy; visually smaller header actions with 44px hit areas; side-by-side Homestead/Renfo desktop heroes with shorter copy; quieter contribution labels; lower icon shadows; featured customization/festival panels; and removal of empty screenshot frames. Added reduced-transparency and increased-contrast CSS fallbacks. Original backup tag and ZIP retained.
 
 Validated all ten pages at 320, 390, 760, and 1024 CSS pixels with no horizontal overflow. Mobile navigation opening and focus were checked again. Search metadata and Worker routing tests passed. Screen-reader and browser zoom verification remain outstanding; CSS media fallbacks are implemented but were not tested against OS accessibility settings.
+
+## Typography and spacing polish
+
+Defined shared 8/16/24/32/48/64/96px spacing values, eased body tracking, distinguished section and card heading sizes/leading, tightened project metadata spacing, and retained the 8px card action gap and 44px link targets. Light cards use subtle outlines without shadows; dark mode slightly strengthens outline separation. Shared decorative chevrons and an SVG menu checkmark align control details. Content, screenshots, app palettes, and the original backup are retained.
+
+Checks: all ten pages at 320/390/760/1024 CSS pixels without horizontal overflow, light/dark appearance switching and visual inspection, JavaScript syntax, search metadata, and whitespace validation.

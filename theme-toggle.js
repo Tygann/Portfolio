@@ -47,7 +47,7 @@
     button.type = 'button';
     button.setAttribute('role', 'menuitemradio');
     button.tabIndex = -1;
-    button.innerHTML = '<span class="appearance-check" aria-hidden="true">✓</span>' + option.icon + '<span>' + option.label + '</span>';
+    button.innerHTML = '<span class="appearance-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4 10-10"/></svg></span>' + option.icon + '<span>' + option.label + '</span>';
     button.addEventListener('click', () => {
       mode = option.mode;
       try { localStorage.setItem('theme', mode); } catch { /* Keep the choice for this page. */ }

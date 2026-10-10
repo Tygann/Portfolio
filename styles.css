@@ -664,17 +664,19 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .app-site .hero .store-badge { margin-left: 0; }
 .app-site .meta { font-size: 14px; line-height: 1.6; }
 .app-site .hero .device { margin: 0 auto; }
-.app-site .device { width: min(320px, 78vw); }
-/* Real screenshots retain their proportions without a simulated Apple product bezel. */
-.app-site .device:has(img) { aspect-ratio: auto; padding: 0; border: 1px solid var(--hairline); border-radius: 24px; background: transparent; box-shadow: none; }
-.app-site .device:has(img) .device-screen { height: auto; border-radius: 23px; }
+.app-site .device { width: min(300px, 78vw); }
+/* Apple's unmodified iPhone 17 PNG surrounds its matching 1206 × 2622 screen.
+   Keep the full artwork visible; do not add shadows or crop the bezel. */
+.app-site .device:has(img) { position: relative; aspect-ratio: 1350 / 2760; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.app-site .device:has(img)::after { content: ''; position: absolute; inset: 0; background: url('/icons/device-frames/iphone-17-black.png') center / 100% 100% no-repeat; pointer-events: none; }
+.app-site .device:has(img) .device-screen { position: absolute; left: 5.333333%; top: 2.5%; width: 89.333333%; height: 95%; border-radius: 14% / 6.5%; }
 .app-site .device-screen img { height: auto; object-fit: contain; }
-.app-site .feature { gap: 64px; align-items: start; }
-.app-site .feature-copy { padding-top: 56px; }
+.app-site .feature { gap: 80px; align-items: center; padding-block: 72px; }
+.app-site .feature-copy { padding-top: 0; }
 .app-site .feature h2 { max-width: 16ch; text-wrap: balance; }
 .app-site .feature p { line-height: 1.6; text-wrap: pretty; }
 .app-site .feature .eyebrow { color: var(--accent); font-size: 16px; }
-.app-site .feature + .feature { border-top: 1px solid var(--hairline); }
+.app-site .feature + .feature { border-top: 0; }
 .app-site .role { justify-content: flex-start; }
 .app-site .contact { margin-block: 40px; padding: 56px 24px; border-radius: 24px; background: var(--card); max-width: 1032px; }
 .app-site .about .meta { font-size: 14px; margin-top: 24px; }

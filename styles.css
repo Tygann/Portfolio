@@ -728,7 +728,8 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 
 /* App pages retain one navigation bar that detaches after its original position. */
 html:has(.app-site) { scroll-padding-top: 92px; }
-.app-site .nav-inner { width: calc(100% - 24px); max-width: 1032px; border: 1px solid transparent; transition: border-radius 180ms ease, background-color 180ms ease, box-shadow 180ms ease; }
+.app-site .nav { transition: background-color 220ms ease, border-color 220ms ease; }
+.app-site .nav-inner { width: calc(100% - 24px); max-width: 1032px; border: 1px solid transparent; transform: translateY(0); transition: transform 220ms ease, max-width 220ms ease, padding 220ms ease, border-radius 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease; }
 .app-site .nav-floating { background: transparent; border-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
 .app-site .nav-floating .nav-inner {
   width: calc(100% - 24px); max-width: 1032px; transform: translateY(12px);
@@ -759,7 +760,7 @@ html:has(.app-site) { scroll-padding-top: 92px; }
   .app-site .navigation-panel .appearance-trigger::after { content: 'Appearance'; font: 500 17px var(--font-text); }
   .app-site .navigation-panel .appearance-menu { position: static; margin-top: 8px; box-shadow: none; }
 }
-@media (prefers-reduced-motion: reduce) { .app-site .nav-inner { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .app-site .nav, .app-site .nav-inner { transition: none; } }
 @media (prefers-reduced-transparency: reduce) { .app-site .nav-floating .nav-inner { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; } }
 @media (prefers-contrast: more) { .app-site .nav-floating .nav-inner { border-color: var(--text-2); } }
 @media (max-height: 400px) { .app-site .nav { position: relative; } .app-site .nav-floating .nav-inner { transform: none; } }

@@ -1,3 +1,6 @@
 .telegram-out/
 .DS_Store
 .codex-previews/
+node_modules/
+test-results/
+playwright-report/

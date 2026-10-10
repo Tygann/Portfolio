@@ -1,0 +1,18 @@
+{
+  "name": "tyler-portfolio",
+  "private": true,
+  "scripts": {
+    "preview": "node scripts/preview.mjs",
+    "check:routing": "node --test cloudflare/renfo-site/worker.test.mjs cloudflare/homestead-site/worker.test.mjs",
+    "check:visual": "playwright test",
+    "setup:browser": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "axe-core": "^4.14.0"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  }
+}

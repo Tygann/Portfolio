@@ -10,6 +10,7 @@
 
 # Repository context
 
+- For cloud environment setup and portable preview/browser checks, follow `CLOUD_WORKFLOW.md`. Use `npm ci` and the checked-in lockfile; development tooling is not part of the deployed static site.
 - This repository contains static portfolio and app marketing pages with shared styling in `styles.css`.
 - Renfo and Homestead branded sites use the page sources here through the Cloudflare routing described in `cloudflare/README.md`.
 - Keep archived files in `cloudflare/homestead-legacy` unchanged unless the user specifically requests archive changes.

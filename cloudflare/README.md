@@ -59,3 +59,5 @@ Validate with `python3 scripts/check-search.py` and both Worker routing tests.
 
 Social preview sources are in `scripts/social-previews.html`; rendered 1200 × 630
 PNG files are in `social/`. The renderer is noindex and excluded by robots.txt.
+
+Homestead legal information is served from `/homestead/legal/` on Portfolio. Deploy the updated homestead-site Worker to enable the branded `/legal` route and its aliases; footer links use the Portfolio URL so they remain usable before that deployment.

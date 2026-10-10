@@ -3,7 +3,7 @@ import { createRequire } from 'node:module';
 import { mkdir } from 'node:fs/promises';
 const require = createRequire(import.meta.url);
 const axePath = require.resolve('axe-core/axe.min.js');
-const routes = ['', 'renfo/', 'homestead/', 'iwatch/', 'iwatch/privacy/', 'reeve/', 'dishfork/', 'renfo/support/', 'renfo/privacy/', 'renfo/legal/', 'homestead/support/', 'homestead/privacy/'];
+const routes = ['', 'renfo/', 'homestead/', 'iwatch/', 'iwatch/privacy/', 'reeve/', 'dishfork/', 'renfo/support/', 'renfo/privacy/', 'renfo/legal/', 'homestead/support/', 'homestead/privacy/', 'homestead/legal/'];
 
 for (const width of [1440, 390, 320]) for (const theme of ['light', 'dark']) for (const route of routes) {
   test(`${route || 'portfolio'} ${width}px ${theme}`, async ({ page }) => {

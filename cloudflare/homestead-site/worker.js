@@ -1,5 +1,7 @@
 const ORIGIN = 'https://tylerkeegan.com';
 const pages = new Map([
+  ['/legal', '/homestead/legal/'],
+  ['/legal/', '/homestead/legal/'],
   ['/', '/homestead/'],
   ['/og.png', '/social/homestead.png'],
   ['/robots.txt', '/homestead/robots.txt'],
@@ -10,6 +12,7 @@ const pages = new Map([
   ['/privacy/', '/homestead/privacy/'],
 ]);
 const aliases = new Map([
+  ['/homestead/legal', '/legal'], ['/homestead/legal/', '/legal'],
   ['/homestead', '/'], ['/homestead/', '/'],
   ['/homestead/support', '/support'], ['/homestead/support/', '/support'],
   ['/homestead/privacy', '/privacy'], ['/homestead/privacy/', '/privacy'],

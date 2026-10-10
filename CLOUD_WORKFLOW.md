@@ -29,7 +29,7 @@ Playwright starts and stops that server automatically when running tests. Screen
 are saved to `.codex-previews/`, which is excluded from Git. Use those screenshots
 in visual-change reports, while confirming whether they display on the user's client.
 
-The visual checks cover twelve active pages at 1440, 390, and 320 pixels in light and
+The visual checks cover thirteen active pages at 1440, 390, and 320 pixels in light and
 dark appearance, including local image decoding, horizontal overflow, automated
 accessibility checks, and floating-header/menu behavior. These checks do not establish
 full accessibility certification or validate third-party artwork rights.

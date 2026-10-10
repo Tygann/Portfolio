@@ -5,6 +5,21 @@
   if (!nav) return;
   const appPage = document.body.classList.contains('app-site');
   if (appPage) {
+    // Keep one prominent download action while the hero action is on screen.
+    // Preserve the header slot and never hide a keyboard-focused link.
+    const heroAction = document.querySelector('.hero .actions > .store-badge, .hero .actions > .button');
+    const headerAction = nav.querySelector(':scope > .pill');
+    if (heroAction && headerAction) {
+      let heroVisible = false;
+      const updateAction = () => header.classList.toggle('hero-action-visible', heroVisible && document.activeElement !== headerAction);
+      const actionObserver = new IntersectionObserver(([entry]) => {
+        heroVisible = entry.intersectionRatio >= 0.5;
+        updateAction();
+      }, { rootMargin: '-92px 0px 0px 0px', threshold: [0, 0.5, 1] });
+      actionObserver.observe(heroAction);
+      headerAction.addEventListener('focus', updateAction);
+      headerAction.addEventListener('blur', updateAction);
+    }
     // Observe the original header position while keeping its space in the layout.
     const marker = document.createElement('div');
     marker.setAttribute('aria-hidden', 'true');

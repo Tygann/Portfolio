@@ -47,3 +47,24 @@ test('floating navigation and appearance survive scrolling and resizing', async 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
 });
+
+test('download action stays available without competing with the visible hero', async ({ page }) => {
+  for (const width of [1440, 390, 320]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/renfo/');
+    const action = page.locator('.nav-links > .pill');
+    await expect(action).toBeHidden();
+    const left = await page.locator('.nav-name').evaluate(el => el.getBoundingClientRect().left);
+    await page.evaluate(() => scrollTo(0, 1500));
+    await expect(action).toBeVisible();
+    await expect.poll(() => page.locator('.nav-name').evaluate(el => el.getBoundingClientRect().left)).toBe(left);
+    await action.focus();
+    await page.evaluate(() => scrollTo(0, 0));
+    await expect(page.locator('.hero .store-badge')).toBeInViewport({ ratio: 0.5 });
+    await expect(action).toBeVisible();
+    await action.evaluate(el => el.blur());
+    await expect(action).toBeHidden();
+  }
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  expect(await page.locator('.nav-inner').evaluate(el => getComputedStyle(el).transitionDuration)).toBe('0s');
+});

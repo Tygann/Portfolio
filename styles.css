@@ -659,7 +659,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .app-site .hero h1 { font-size: clamp(40px, 5.5vw, 72px); max-width: 18ch; margin: 0; text-wrap: balance; }
 .app-site .hero .tile { margin: 0 0 24px; width: 72px; height: 72px; border-radius: 18px; }
 .app-site .hero .lede { margin: 24px 0 0; max-width: 42ch; text-wrap: pretty; }
-.app-site .hero .actions { justify-content: flex-start; align-items: flex-start; flex-direction: row; }
+.app-site .hero .actions { justify-content: flex-start; align-items: center; flex-direction: row; }
 .app-site .actions { flex-direction: row; gap: 20px; }
 .app-site .actions > .link { min-height: 44px; }
 .app-site .store-badge { margin: 12px; }
@@ -733,21 +733,19 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 /* App pages retain one navigation bar that detaches after its original position. */
 html:has(.app-site) { scroll-padding-top: 92px; }
 .app-site .nav { transition: background-color 220ms ease, border-color 220ms ease; }
-.app-site .nav-inner { width: calc(100% - 24px); max-width: 1032px; border: 1px solid transparent; transform: translateY(0); transition: transform 220ms ease, max-width 220ms ease, padding 220ms ease, border-radius 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease; }
+/* Match section gutters inside the 12px floating inset, accounting for its 1px border.
+   Keep the same geometry in both states so controls never shift sideways. */
+.app-site .nav-inner { width: calc(100% - 24px); max-width: 1080px; padding-inline: clamp(11px, calc(50vw - 529px), 23px); border: 1px solid transparent; transform: translateY(0); transition: transform 220ms ease, border-radius 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease; }
 .app-site .nav-floating { background: transparent; border-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
 .app-site .nav-floating .nav-inner {
-  width: calc(100% - 24px); max-width: 1032px; transform: translateY(12px);
-  padding-inline: 24px; border: 1px solid var(--hairline); border-radius: 24px;
+  transform: translateY(12px);
+  border: 1px solid var(--hairline); border-radius: 24px;
   background: var(--bg); background: color-mix(in srgb, var(--bg) 84%, var(--text) 6%);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border-color: color-mix(in srgb, var(--text) 12%, transparent);
   box-shadow: 0 6px 24px rgba(0, 0, 0, .14);
 }
 .app-site .nav-floating .navigation-panel { top: calc(100% + 20px); }
-@media (min-width: 1088px) {
-  /* Expand only the floating surface; preserve the controls' original inset. */
-  .app-site .nav-floating .nav-inner { width: calc(100% - 24px); max-width: 1064px; padding-inline: 40px; }
-}
 @media (max-width: 760px) {
   .app-site .nav-ready .nav-links > .pill { display: inline-flex; min-height: 32px; margin-block: 6px; padding: 5px 12px; }
   /* Extend the hit area without increasing the visible pill height. */
@@ -757,7 +755,7 @@ html:has(.app-site) { scroll-padding-top: 92px; }
   .app-site .nav-name { font-size: 15px; gap: 6px; min-width: 0; }
   .app-site .nav-name .tile { width: 20px; height: 20px; }
   .app-site .nav-links .pill { font-size: 12px; }
-  .app-site .nav-floating .nav-inner { padding-inline: 16px; }
+  .app-site .nav-inner { padding-left: max(7px, calc(env(safe-area-inset-left) - 13px)); padding-right: max(7px, calc(env(safe-area-inset-right) - 13px)); }
   .app-site .navigation-panel { width: min(240px, calc(100vw - 32px)); max-height: calc(100dvh - 104px); overflow-y: auto; }
   .app-site .navigation-panel .appearance { border-top: 1px solid var(--hairline); margin-top: 8px; padding-top: 8px; }
   .app-site .navigation-panel .appearance-trigger { width: 100%; justify-content: flex-start; gap: 12px; padding-inline: 16px; border-radius: var(--radius-control); }

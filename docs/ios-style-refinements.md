@@ -11,3 +11,9 @@ Before these changes, commit `4935cd9` was preserved as the pushed tag `portfoli
 All ten pages checked at 320, 390, 760, and 1024 CSS pixels without horizontal overflow. Browser checks covered navigation links, keyboard opening, Escape dismissal and focus return, appearance selection, and mutually exclusive popovers. JavaScript syntax, search metadata, Worker routing tests, and whitespace checks passed. No formal screen-reader audit was performed in this pass.
 
 The website Worker asset allowlists include navigation.js; API and authentication routing is unchanged.
+
+## Second pass
+
+Standard system headings and semibold hierarchy; visually smaller header actions with 44px hit areas; side-by-side Homestead/Renfo desktop heroes with shorter copy; quieter contribution labels; lower icon shadows; featured customization/festival panels; and removal of empty screenshot frames. Added reduced-transparency and increased-contrast CSS fallbacks. Original backup tag and ZIP retained.
+
+Validated all ten pages at 320, 390, 760, and 1024 CSS pixels with no horizontal overflow. Mobile navigation opening and focus were checked again. Search metadata and Worker routing tests passed. Screen-reader and browser zoom verification remain outstanding; CSS media fallbacks are implemented but were not tested against OS accessibility settings.

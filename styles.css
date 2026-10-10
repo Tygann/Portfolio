@@ -14,7 +14,7 @@
   --field: radial-gradient(560px 520px at 10% -4%, rgba(222, 122, 87, 0.20), transparent 70%),
     radial-gradient(520px 480px at 92% 2%, rgba(237, 176, 74, 0.20), transparent 70%),
     linear-gradient(#F6ECE1, #FBF7F2 62%);
-  --font-display: "SF Pro Rounded", ui-rounded, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   --font-text: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
 }
 
@@ -291,9 +291,9 @@ h1, h2, h3, .tile {
   line-height: 1.07;
 }
 
-h1 { font-size: clamp(44px, 7.5vw, 88px); font-weight: 700; letter-spacing: -0.03em; }
-h2 { font-size: clamp(32px, 5vw, 56px); font-weight: 700; }
-h3 { font-size: clamp(24px, 2.6vw, 30px); font-weight: 700; }
+h1 { font-size: clamp(44px, 7.5vw, 88px); font-weight: 600; letter-spacing: -0.03em; }
+h2 { font-size: clamp(32px, 5vw, 56px); font-weight: 600; }
+h3 { font-size: clamp(24px, 2.6vw, 30px); font-weight: 600; }
 
 section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
 
@@ -544,4 +544,42 @@ section { padding: 128px 24px; max-width: 1080px; margin: 0 auto; }
   .button, .nav-links .pill, .appearance-trigger, .navigation-toggle, .link { transition: none; }
   .appearance-menu:not([hidden]), .navigation-panel:not([hidden]) { animation: none; }
   .button:active, .nav-links .pill:active, .appearance-trigger:active, .navigation-toggle:active { transform: none; }
+}
+
+/* Product presentation: quieter chrome, clear reading order, and real imagery. */
+.nav-links .pill { position: relative; min-height: 32px; margin-block: 6px; }
+.nav-links .pill::before { content: ""; position: absolute; inset: -6px 0; }
+.hero { padding-top: 72px; }
+.hero .tile { margin-bottom: 28px; }
+.hero .subhead { font-family: var(--font-text); font-size: clamp(20px, 2.4vw, 26px); }
+.hero .actions { margin-top: 28px; }
+.hero .device { margin-top: 48px; }
+.hero .lede, .card h3, .section-head h2 { text-wrap: balance; }
+.card { border-color: color-mix(in srgb, var(--text) 5%, transparent); }
+.card .badge, .card .badge-mine { background: transparent; color: var(--text-2); font-weight: 400; padding: 0; margin: 6px 0 20px; }
+.tile { box-shadow: 0 6px 18px rgba(0, 0, 0, .10); }
+.product-hero .hero-copy { min-width: 0; }
+.feature-panel { background: var(--card); border-radius: 28px; padding: 64px; margin-block: 48px; overflow: hidden; }
+.feature-panel .device { margin-bottom: -160px; }
+.feature-text { grid-template-columns: 1fr; text-align: center; padding-block: 64px; }
+.feature-text p { margin-inline: auto; max-width: 600px; }
+@media (min-width: 900px) {
+  .product-hero { display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: center; gap: 64px; text-align: left; padding-block: 64px; }
+  .product-hero h1 { font-size: clamp(52px, 5.8vw, 76px); }
+  .product-hero .tile, .product-hero .lede { margin-left: 0; }
+  .product-hero .actions { align-items: flex-start; }
+  .product-hero .device { margin-top: 0; }
+}
+@media (max-width: 760px) {
+  .hero { padding-top: 48px; }
+  .feature-panel { margin: 24px 16px; padding: 40px 20px 0; }
+  .feature-panel .device { margin-bottom: -100px; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .nav, .appearance-menu, .navigation-panel { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+@media (prefers-contrast: more) {
+  .card, .nav, .appearance-menu, .navigation-panel, .footer { border-color: var(--text-2); }
+  .nav-links a { opacity: 1; }
+  .meta, .card .badge { color: var(--text); }
 }

@@ -653,7 +653,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 /* Shared app composition: readable copy beside the product, then a short feature story. */
 .app-site section { padding-block: 56px; }
 .app-site .hero { padding-block: 64px; }
-.app-site .hero-product { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; align-items: center; text-align: left; }
+.app-site .hero-product { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; align-items: center; text-align: left; }
 .app-site .hero h1 { font-size: clamp(40px, 5.5vw, 72px); max-width: 18ch; margin: 0; text-wrap: balance; }
 .app-site .hero .tile { margin: 0 0 24px; width: 72px; height: 72px; border-radius: 18px; }
 .app-site .hero .lede { margin: 24px 0 0; max-width: 42ch; text-wrap: pretty; }
@@ -671,7 +671,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .app-site .device:has(img)::after { content: ''; position: absolute; inset: 0; background: url('/icons/device-frames/iphone-17-black.png') center / 100% 100% no-repeat; pointer-events: none; }
 .app-site .device:has(img) .device-screen { position: absolute; left: 5.333333%; top: 2.5%; width: 89.333333%; height: 95%; border-radius: 14% / 6.5%; }
 .app-site .device-screen img { height: auto; object-fit: contain; }
-.app-site .feature { gap: 80px; align-items: center; padding-block: 72px; }
+.app-site .feature { gap: 56px; align-items: center; padding-block: 48px; }
 .app-site .feature-copy { padding-top: 0; }
 .app-site .feature .device { margin: 0; justify-self: start; }
 .app-site .feature:not(.feature-flip) .device { justify-self: end; }

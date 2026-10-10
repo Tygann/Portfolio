@@ -19,6 +19,8 @@ test('privacy routes while preserving API and website routing', async () => {
       ['/support/?source=app', 'https://tylerkeegan.com/renfo/support/?source=app'],
       ['/privacy', 'https://tylerkeegan.com/renfo/privacy/'],
       ['/privacy/?source=app', 'https://tylerkeegan.com/renfo/privacy/?source=app'],
+      ['/legal', 'https://tylerkeegan.com/renfo/legal/'],
+      ['/legal/?source=footer', 'https://tylerkeegan.com/renfo/legal/?source=footer'],
       ['/', 'https://tylerkeegan.com/renfo/'],
       ['/api/v1/festivals', 'https://web.renfo.app/api/v1/festivals'],
       ['/.well-known/apple-app-site-association', 'https://web.renfo.app/.well-known/apple-app-site-association'],

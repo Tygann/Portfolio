@@ -769,16 +769,8 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 @media (prefers-contrast: more) { .app-site .nav-floating .nav-inner { border-color: var(--text-2); } }
 @media (max-height: 400px) { .app-site .nav { position: relative; } .app-site .nav-floating .nav-inner { transform: none; } }
 
-/* A quiet shared footer separates useful links from ownership and asset credits. */
-.app-site .app-footer { display: block; text-align: left; padding-block: 24px 32px; font-size: 14px; line-height: 1.6; }
-.app-footer .footer-main { display: flex; align-items: center; justify-content: space-between; gap: 16px 32px; }
+/* One quiet ownership and navigation row, with natural wrapping on small screens. */
+.app-footer { display: flex; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap; text-align: left; padding-block: 24px 32px; gap: 8px 32px; font-size: 14px; line-height: 1.6; }
 .app-footer p { margin: 0; }
-.app-footer .footer-creator { color: var(--text); }
-.app-footer nav { gap: 8px 24px; }
-.app-footer .footer-legal { margin-top: 16px; font-size: 12px; }
-.app-footer .trademark-credit { margin-top: 8px; max-width: 90ch; }
-@media (max-width: 760px) {
-  .app-footer .footer-main { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .app-footer nav { justify-content: flex-start; gap: 4px 24px; }
-  .app-footer .footer-legal { margin-top: 16px; }
-}
+.app-footer nav { justify-content: flex-start; gap: 4px 24px; }
+.app-footer .footer-attribution { display: inline; }

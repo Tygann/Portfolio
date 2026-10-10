@@ -26,6 +26,9 @@ export default {
     if (path === "/privacy" || path === "/privacy/") {
       return fetch(SITE + "/renfo/privacy/" + url.search);
     }
+    if (path === "/legal" || path === "/legal/") {
+      return fetch(SITE + "/renfo/legal/" + url.search);
+    }
     if (path === "/") {
       return fetch(SITE + "/renfo/");
     }

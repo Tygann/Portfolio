@@ -40,7 +40,7 @@ Do not move api/connect, edit secrets, delete KV data, or change email/tunnel DN
 ## Renfo website routing
 
 `renfo-site` is captured in `cloudflare/renfo-site/`. It serves the Portfolio Renfo
-landing page, `/support`, and `/privacy` while preserving the existing API, well-known,
+landing page, `/support`, `/privacy`, and `/legal` while preserving the existing API, well-known,
 festival deep-link, and web-app routing. Deploy with:
 
 ```

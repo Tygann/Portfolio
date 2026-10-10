@@ -29,3 +29,11 @@ Checks: all ten pages at 320/390/760/1024 CSS pixels without horizontal overflow
 Shared corner tokens: 8px control rows, 16px menus, 24px cards, 32px feature panels. Hover feedback is limited to fine pointers; menu rows share pressed and focus states, with reduced-motion support. Featured panels stack at intermediate 761–1000px widths to avoid crowding the device imagery.
 
 Validation: ten pages at eight widths (320, 390, 740, 760, 780, 900, 1000, 1024 CSS pixels), no horizontal overflow; all ten pages switched between Light and Dark without overflow. Metadata and whitespace checks passed. This was not a new formal contrast or screen-reader audit.
+
+## Unified app landing pages
+
+This supersedes the split-hero and selected cropped-panel designs above. All five app landing pages use the app-site class: centered icon/headline/copy, stacked primary and secondary actions, full device frames below the hero, and alternating screenshot feature rows that stack at 900px. Shared sizing and spacing live in CSS; palettes and actual content remain app-specific.
+
+Reeve, DishFork, and iWatch retain placeholder hero frames; iWatch also retains two feature frames until screenshots are available. No blank frames were added to support/privacy pages.
+
+Verified all five app pages in Light and Dark at measured 320, 390, 760, 900, and 1280 CSS pixel widths: 50 checks passed without horizontal overflow, with centered heroes and stacked actions. Metadata validation and whitespace checks passed. The original backup remains unchanged.

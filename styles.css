@@ -1,5 +1,9 @@
 /* Default palette: DishFork (dishfork.com). */
 :root {
+  --radius-control: 8px;
+  --radius-menu: 16px;
+  --radius-card: 24px;
+  --radius-panel: 32px;
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
@@ -358,7 +362,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
   min-height: 48px; background: var(--button); color: var(--on-button);
   font-size: 17px; font-weight: 600; padding: 12px 24px; border-radius: 980px;
 }
-.button:hover { text-decoration: none; filter: brightness(1.08); }
+.button:hover { text-decoration: none; }
 .link { font-size: 17px; font-weight: 500; }
 /* Apple's official badge, shown unaltered at the height of a .button */
 .store-badge { display: inline-block; line-height: 0; }
@@ -387,7 +391,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 /* Landing: project cards */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--space-3); }
 .card {
-  background: var(--card); border: 1px solid var(--hairline); border-radius: 24px; padding: var(--space-4);
+  background: var(--card); border: 1px solid var(--hairline); border-radius: var(--radius-card); padding: var(--space-4);
   display: flex; flex-direction: column; align-items: center; text-align: center;
 }
 .card .tile { margin-bottom: var(--space-3); }
@@ -463,10 +467,10 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
   width: 44px; height: 44px; border: 0; border-radius: 50%;
   background: transparent; color: var(--text); cursor: pointer;
 }
-.appearance-trigger:hover { background: var(--card); }
+
 .appearance-menu {
   position: absolute; top: calc(100% + 10px); right: 0; z-index: 20;
-  min-width: 140px; padding: 6px; border-radius: 14px;
+  min-width: 140px; padding: 6px; border-radius: var(--radius-menu);
   border: 1px solid var(--hairline); background: var(--bg);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
   background: color-mix(in srgb, var(--bg) 92%, transparent);
@@ -476,10 +480,10 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .appearance-menu[hidden] { display: none; }
 .appearance-menu button {
   display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 10px;
-  border: 0; border-radius: 8px; font: inherit; font-size: 14px;
+  border: 0; border-radius: var(--radius-control); font: inherit; font-size: 14px;
   background: transparent; color: var(--text); cursor: pointer; text-align: left;
 }
-.appearance-menu button:hover, .appearance-menu button:focus-visible { background: var(--card); }
+.appearance-menu button:focus-visible { background: var(--card); }
 .appearance-check { width: 14px; flex-shrink: 0; text-align: center; visibility: hidden; }
 .appearance-menu button[aria-checked="true"] .appearance-check { visibility: visible; }
 .appearance-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -526,7 +530,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 }
 .navigation-panel {
   position: absolute; top: calc(100% + 8px); right: max(16px, calc((100vw - 1032px) / 2));
-  width: min(200px, calc(100vw - 32px)); padding: 8px; border-radius: 20px;
+  width: min(200px, calc(100vw - 32px)); padding: 8px; border-radius: var(--radius-menu);
   background: var(--bg); background: color-mix(in srgb, var(--bg) 92%, transparent);
   border: 1px solid var(--hairline); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
   backdrop-filter: saturate(150%) blur(24px); -webkit-backdrop-filter: saturate(150%) blur(24px);
@@ -534,9 +538,9 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .navigation-panel[hidden] { display: none; }
 .navigation-panel a {
   display: flex; align-items: center; min-height: 48px; padding: 12px 16px;
-  border-radius: 12px; color: var(--text); font-size: 17px; font-weight: 500;
+  border-radius: var(--radius-control); color: var(--text); font-size: 17px; font-weight: 500;
 }
-.navigation-panel a:hover, .navigation-panel a:focus-visible { background: var(--card); text-decoration: none; }
+.navigation-panel a:focus-visible { background: var(--card); text-decoration: none; }
 @media (max-width: 760px) { .nav-ready .navigation-toggle { display: inline-flex; } }
 
 .button, .nav-links .pill, .appearance-trigger, .navigation-toggle, .link {
@@ -545,7 +549,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .button:active, .nav-links .pill:active, .appearance-trigger:active, .navigation-toggle:active {
   transform: scale(.97); filter: brightness(.94);
 }
-.appearance-trigger:hover, .navigation-toggle:hover { background: var(--card); }
+
 @keyframes popover-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 .appearance-menu:not([hidden]), .navigation-panel:not([hidden]) { animation: popover-in 160ms ease-out; }
 @media (prefers-reduced-motion: reduce) {
@@ -567,7 +571,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .card .badge, .card .badge-mine { background: transparent; color: var(--text-2); font-weight: 400; padding: 0; margin: var(--space-1) 0 var(--space-2); }
 .tile { box-shadow: 0 6px 18px rgba(0, 0, 0, .10); }
 .product-hero .hero-copy { min-width: 0; }
-.feature-panel { background: var(--card); border-radius: 28px; padding: 64px; margin-block: 48px; overflow: hidden; }
+.feature-panel { background: var(--card); border-radius: var(--radius-panel); padding: 64px; margin-block: 48px; overflow: hidden; }
 .feature-panel .device { margin-bottom: -160px; }
 .feature-text { grid-template-columns: 1fr; text-align: center; padding-block: 64px; }
 .feature-text p { margin-inline: auto; max-width: 600px; }
@@ -622,6 +626,25 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
   .nav-inner { min-height: 56px; padding-block: 0; }
   .theme-portfolio .hero { padding-bottom: var(--space-4); }
   .theme-portfolio #work { padding-top: var(--space-4); }
+}
+
+/* Shared states work with mouse, touch, and keyboard without sticky hover. */
+.appearance-menu button, .navigation-panel a { transition: background-color 160ms ease; }
+.appearance-menu button:active, .navigation-panel a:active { background: var(--card); }
+.link:hover { text-underline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .button:hover, .nav-links .pill:hover { filter: brightness(1.06); }
+  .appearance-trigger:hover, .navigation-toggle:hover,
+  .appearance-menu button:hover, .navigation-panel a:hover { background: var(--card); text-decoration: none; }
+}
+.appearance-trigger:focus-visible, .navigation-toggle:focus-visible { outline-offset: 4px; }
+@media (min-width: 761px) and (max-width: 1000px) {
+  .feature-panel { grid-template-columns: 1fr; text-align: center; padding: 48px 32px 0; gap: 32px; }
+  .feature-panel p { margin-inline: auto; }
+  .feature-panel .device { margin-bottom: -100px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .appearance-menu button, .navigation-panel a { transition: none; }
 }
 
 @media (prefers-reduced-transparency: reduce) {

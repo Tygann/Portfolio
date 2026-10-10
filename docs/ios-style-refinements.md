@@ -23,3 +23,9 @@ Validated all ten pages at 320, 390, 760, and 1024 CSS pixels with no horizontal
 Defined shared 8/16/24/32/48/64/96px spacing values, eased body tracking, distinguished section and card heading sizes/leading, tightened project metadata spacing, and retained the 8px card action gap and 44px link targets. Light cards use subtle outlines without shadows; dark mode slightly strengthens outline separation. Shared decorative chevrons and an SVG menu checkmark align control details. Content, screenshots, app palettes, and the original backup are retained.
 
 Checks: all ten pages at 320/390/760/1024 CSS pixels without horizontal overflow, light/dark appearance switching and visual inspection, JavaScript syntax, search metadata, and whitespace validation.
+
+## Consistency pass
+
+Shared corner tokens: 8px control rows, 16px menus, 24px cards, 32px feature panels. Hover feedback is limited to fine pointers; menu rows share pressed and focus states, with reduced-motion support. Featured panels stack at intermediate 761–1000px widths to avoid crowding the device imagery.
+
+Validation: ten pages at eight widths (320, 390, 740, 760, 780, 900, 1000, 1024 CSS pixels), no horizontal overflow; all ten pages switched between Light and Dark without overflow. Metadata and whitespace checks passed. This was not a new formal contrast or screen-reader audit.

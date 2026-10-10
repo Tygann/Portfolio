@@ -35,15 +35,19 @@
     trigger.setAttribute('aria-expanded', 'true');
     panel.querySelector('a').focus();
   });
-  panel.addEventListener('click', event => { if (event.target.closest('a')) close(); });
+  panel.addEventListener('click', event => { if (event.target.closest('a')) setTimeout(() => close(), 0); });
   header.addEventListener('keydown', event => {
     if (event.key === 'Escape' && !panel.hidden) { event.preventDefault(); close(true); }
   });
   document.addEventListener('click', event => {
     if (!panel.contains(event.target) && !trigger.contains(event.target)) close();
   });
-  header.addEventListener('focusout', event => {
-    if (!panel.contains(event.relatedTarget) && !trigger.contains(event.relatedTarget)) close();
+  // Touch Safari can blur a focused link before delivering its click.
+  // Dismiss keyboard focus departures after Tab, not during pointer focus changes.
+  header.addEventListener('keydown', event => {
+    if (event.key === 'Tab') setTimeout(() => {
+      if (!panel.contains(document.activeElement) && document.activeElement !== trigger) close();
+    }, 0);
   });
   document.addEventListener('site-appearance-open', () => close());
   matchMedia('(max-width: 760px)').addEventListener('change', () => close());

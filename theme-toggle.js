@@ -86,7 +86,11 @@
   });
   document.addEventListener('click', event => { if (!picker.contains(event.target)) close(); });
   document.addEventListener('site-navigation-open', () => close());
-  picker.addEventListener('focusout', event => { if (!picker.contains(event.relatedTarget)) close(); });
+  picker.addEventListener('keydown', event => {
+    if (event.key === 'Tab') setTimeout(() => {
+      if (!picker.contains(document.activeElement)) close();
+    }, 0);
+  });
   picker.append(trigger, menu);
   nav.insertBefore(picker, nav.querySelector('.pill'));
 

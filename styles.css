@@ -732,8 +732,9 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 }
 .app-site .nav-floating .navigation-panel { top: calc(100% + 20px); }
 @media (max-width: 760px) {
-  .app-site .nav-ready .nav-links > .pill { display: inline-flex; min-height: 44px; margin-block: 0; padding: 8px 12px; }
-  .app-site .nav-ready .nav-links > .pill::before { display: none; }
+  .app-site .nav-ready .nav-links > .pill { display: inline-flex; min-height: 32px; margin-block: 6px; padding: 5px 12px; }
+  /* Extend the hit area without increasing the visible pill height. */
+  .app-site .nav-ready .nav-links > .pill::before { display: block; inset: -6px 0; }
   .app-site .nav-links { gap: 4px; }
   .app-site .nav-inner { gap: 8px; flex-wrap: nowrap; }
   .app-site .nav-name { font-size: 15px; gap: 6px; min-width: 0; }

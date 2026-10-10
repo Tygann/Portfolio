@@ -779,6 +779,10 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 .app-footer p { margin: 0; }
 .app-footer nav { justify-content: flex-start; gap: 4px 24px; }
 .app-footer .footer-attribution { display: inline; }
+/* A brief privacy reassurance leads into the full-width closing invitation. */
+.app-site .privacy-summary { padding-block: 32px; }
+.app-site .privacy-summary h2 { margin-bottom: 16px; }
+@media (max-width: 760px) { .app-site .privacy-summary { padding-block: 24px; } }
 @media (max-width: 760px) {
   .app-footer { flex-direction: column; align-items: stretch; gap: 16px; padding-block: 20px 24px; }
   .app-footer nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; }

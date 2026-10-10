@@ -663,3 +663,10 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
   .footer nav { justify-content: center; }
   .appearance-menu, .navigation-panel { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
+
+/* Visual review: balanced phone headline and stable mobile action groups. */
+.meta a { white-space: nowrap; }
+@media (max-width: 760px) {
+  .theme-portfolio .hero h1 { font-size: clamp(32px, 10vw, 40px); }
+  .theme-reeve .hero .actions, .theme-dishfork .hero .actions { flex-direction: column; gap: var(--space-2); }
+}

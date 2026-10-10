@@ -23,7 +23,7 @@
   <meta name="twitter:image" content="https://homesteadcontrol.com/social/homestead.png">
   <meta name="twitter:image:alt" content="Homestead — branded app preview">
   <link rel="icon" type="image/png" href="/icons/homestead-web.png">
-  <link rel="stylesheet" href="/styles.css?v=20261010-feature-heading">
+  <link rel="stylesheet" href="/styles.css?v=20261010-footer">
 </head>
 <body class="theme-homestead app-site">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -102,9 +102,14 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <p>A personal project by Tyler Keegan.<br>© <span class="year">2026</span> Tyler Keegan</p>
-    <nav aria-label="Footer"><a href="/homestead/support/">Support</a> · <a href="/homestead/privacy/">Privacy</a> · <a href="https://tylerkeegan.com/">All projects</a></nav>
+  <footer class="footer app-footer">
+    <div class="footer-main">
+      <p class="footer-creator">Made by Tyler Keegan</p>
+      <nav aria-label="Footer"><a href="/homestead/support/">Support</a><a href="/homestead/privacy/">Privacy</a><a href="https://tylerkeegan.com/">All projects</a></nav>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; <span class="year">2026</span> Tyler Keegan</p>
+    </div>
   </footer>
 
   <script>document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());</script>

@@ -733,7 +733,6 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 /* App pages retain one navigation bar that detaches after its original position. */
 html:has(.app-site) { scroll-padding-top: 92px; }
 .app-site .nav { transition: background-color 220ms ease, border-color 220ms ease; }
-.app-site .hero-action-visible .nav-links > .pill { visibility: hidden; pointer-events: none; }
 /* Match section gutters inside the 12px floating inset, accounting for its 1px border.
    Keep the same geometry in both states so controls never shift sideways. */
 .app-site .nav-inner { width: calc(100% - 24px); max-width: 1080px; padding-inline: clamp(11px, calc(50vw - 529px), 23px); border: 1px solid transparent; transform: translateY(0); transition: transform 220ms ease, border-radius 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease; }

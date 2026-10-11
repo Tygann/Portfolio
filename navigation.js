@@ -22,6 +22,11 @@
       if (top < clearance) window.scrollBy({ top: top - clearance, behavior: 'instant' });
     });
   }
+  if (appPage) {
+    // App headers expose appearance and the primary action directly at every size.
+    header.classList.add('nav-ready');
+    return;
+  }
   const links = [...nav.children].filter(element => element.tagName === 'A');
   if (!links.length) return;
   const trigger = document.createElement('button');
@@ -68,20 +73,10 @@
       if (!panel.contains(document.activeElement) && document.activeElement !== trigger) close();
     }, 0);
   });
-  document.addEventListener('site-appearance-open', () => { if (!appPage) close(); });
+  document.addEventListener('site-appearance-open', () => close());
   const mobile = matchMedia('(max-width: 760px)');
-  function updateLayout() {
-    close();
-    if (!appPage) return;
-    const picker = header.querySelector('.appearance');
-    if (!picker) return;
-    document.dispatchEvent(new Event('site-navigation-open'));
-    if (mobile.matches) panel.append(picker);
-    else nav.insertBefore(picker, nav.querySelector('.pill'));
-  }
-  mobile.addEventListener('change', updateLayout);
+  mobile.addEventListener('change', () => close());
   nav.append(trigger);
   header.append(panel);
   header.classList.add('nav-ready');
-  updateLayout();
 })();

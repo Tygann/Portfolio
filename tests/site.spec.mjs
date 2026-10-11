@@ -11,6 +11,17 @@ for (const width of [1440, 390, 320]) for (const theme of ['light', 'dark']) for
     await page.emulateMedia({ colorScheme: theme });
     await page.goto(route || '/');
     await expect(page.locator('h1')).toHaveCount(1);
+    if (await page.locator('body.app-site').count()) {
+      await expect(page.getByRole('button', { name: 'Navigation', exact: true })).toHaveCount(0);
+      const appearance = page.locator('.nav-links > .appearance');
+      const action = page.locator('.nav-links > .pill');
+      await expect(appearance).toBeVisible();
+      await expect(action).toBeVisible();
+      const pickerBox = await appearance.boundingBox();
+      const actionBox = await action.boundingBox();
+      expect(pickerBox.x + pickerBox.width).toBeLessThanOrEqual(actionBox.x);
+      expect(Math.abs(pickerBox.y + pickerBox.height / 2 - actionBox.y - actionBox.height / 2)).toBeLessThan(2);
+    }
     await page.evaluate(async () => Promise.all([...document.images].filter(i => new URL(i.src).origin === location.origin).map(i => {
       i.loading = 'eager'; return i.decode();
     })));
@@ -35,11 +46,11 @@ test('floating navigation and appearance survive scrolling and resizing', async 
   await expect.poll(() => page.locator('#features').evaluate(el => el.getBoundingClientRect().top)).toBeGreaterThanOrEqual(90);
   await page.locator('.contact .button').evaluate(el => { scrollTo(0, el.getBoundingClientRect().top + scrollY - 20); el.focus({ preventScroll: true }); });
   expect(await page.locator('.contact .button').evaluate(el => el.getBoundingClientRect().top)).toBeGreaterThanOrEqual(80);
-  await page.getByRole('button', { name: 'Navigation', exact: true }).click();
   await page.getByRole('button', { name: 'Appearance', exact: true }).click();
   await page.getByRole('menuitemradio', { name: 'Dark', exact: true }).click();
   await page.keyboard.press('Escape');
-  await expect(page.getByRole('button', { name: 'Navigation', exact: true })).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.getByRole('button', { name: 'Appearance', exact: true })).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.getByRole('button', { name: 'Appearance', exact: true })).toBeFocused();
   await page.setViewportSize({ width: 1440, height: 900 });
   await expect(page.getByRole('button', { name: 'Appearance', exact: true })).toBeVisible();
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));

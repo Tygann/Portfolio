@@ -801,3 +801,8 @@ html:has(.app-site) { scroll-padding-top: 92px; }
   .app-footer nav a { justify-content: center; text-align: center; }
   .app-footer > p { order: 1; text-align: center; font-size: 12px; }
 }
+
+/* Group the portfolio appearance control with Contact without tightening text navigation. */
+@media (min-width: 761px) {
+  .theme-portfolio .nav-links > .appearance { margin-right: -12px; }
+}

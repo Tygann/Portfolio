@@ -382,6 +382,17 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 /* The Memoji stands on its own: no tile background or shadow */
 .tile.tile-me { background: none; box-shadow: none; }
 .tile-me img { object-fit: contain; }
+
+/* A single greeting on pointer hover; touch and reduced-motion users see a still image. */
+@keyframes memoji-greeting {
+  0%, 100% { transform: rotate(0deg); }
+  40% { transform: rotate(5deg); }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .theme-portfolio .nav-name .tile-me img { transform-origin: 50% 80%; }
+  .theme-portfolio .nav-name:hover .tile-me img { animation: memoji-greeting 500ms ease-in-out; }
+}
+
 .tile-reeve     { --tile-a: #0AB0C0; --tile-b: #077D8A; }
 .tile-dishfork  { --tile-a: #DE7A57; --tile-b: #B6492E; }
 .tile-renfo     { --tile-a: #b33a46; --tile-b: #5e1a22; }

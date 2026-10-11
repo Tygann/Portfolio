@@ -657,6 +657,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 @media (max-width: 760px) {
   .footer { --footer-gutter: 20px; flex-direction: column; justify-content: center; text-align: center; gap: 8px; padding-block: 12px max(12px, env(safe-area-inset-bottom)); }
   .footer nav { justify-content: center; }
+  .footer > p { order: 1; font-size: 12px; }
   .appearance-menu, .navigation-panel { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
 
@@ -802,10 +803,11 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 @media (max-width: 760px) { .app-site .privacy-summary { padding-block: 24px; } }
 @media (max-width: 760px) {
   .app-footer { flex-direction: column; align-items: stretch; gap: 8px; padding-block: 12px max(12px, env(safe-area-inset-bottom)); }
-  .app-footer nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; }
-  .app-footer nav:has(a:nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .app-footer nav a { justify-content: center; text-align: center; }
-  .app-footer > p { order: 1; text-align: center; font-size: 12px; }
+  .app-footer nav { display: flex; justify-content: center; flex-wrap: wrap; align-self: center; max-width: min(100%, 300px); gap: 0 24px; }
+  /* Four links form two centered pairs rather than a row with one orphan. */
+  .app-footer nav:has(> a:nth-child(4)):not(:has(> a:nth-child(5))) { max-width: min(100%, 220px); }
+  .app-footer nav a { justify-content: center; text-align: center; padding-inline: 8px; }
+  .app-footer > p { text-align: center; }
 }
 
 /* Group the portfolio appearance control with Contact without tightening text navigation. */

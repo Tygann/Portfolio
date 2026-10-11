@@ -804,5 +804,5 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 
 /* Group the portfolio appearance control with Contact without tightening text navigation. */
 @media (min-width: 761px) {
-  .theme-portfolio .nav-links > .appearance { margin-right: -12px; }
+  .theme-portfolio .nav-links > .appearance { margin-inline: -12px; }
 }

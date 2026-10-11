@@ -754,7 +754,7 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 .app-site .nav-inner { width: calc(100% - 24px); max-width: 1056px; padding-inline: 11px; border: 1px solid transparent; transform: translateY(0); transition: transform 220ms ease, border-radius 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease; }
 /* Compact visible pills retain a 44px target through their existing hit-area extension. */
 .app-site .nav-links > .pill { min-height: 32px; line-height: 20px; padding: 4px 10px; }
-.app-site .nav-links { gap: 16px; }
+.app-site .nav-links { gap: 8px; }
 .app-site .nav-floating { background: transparent; border-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
 .app-site .nav-floating .nav-inner {
   transform: translateY(12px);

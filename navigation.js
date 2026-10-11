@@ -16,7 +16,7 @@
     observer.observe(marker);
     // Keep keyboard-focused content clear of the persistent floating bar.
     document.addEventListener('focusin', event => {
-      if (header.contains(event.target) || !event.target.closest('main')) return;
+      if (header.contains(event.target) || !event.target.closest('main') || event.target.matches('main')) return;
       const top = event.target.getBoundingClientRect().top;
       const clearance = header.getBoundingClientRect().bottom + 16;
       if (top < clearance) window.scrollBy({ top: top - clearance, behavior: 'instant' });

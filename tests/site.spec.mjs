@@ -79,3 +79,40 @@ test('header download action stays visible and aligned while scrolling', async (
   await page.emulateMedia({ reducedMotion: 'reduce' });
   expect(await page.locator('.nav-inner').evaluate(el => getComputedStyle(el).transitionDuration)).toBe('0s');
 });
+
+test.describe('mobile appearance dismissal', () => {
+  test.use({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 900 } });
+
+  test('outside taps, selection, and Escape preserve the reading position', async ({ page }) => {
+    // Use screen taps so the test does not scroll controls into view before touching them.
+    const tap = async locator => {
+      await expect(locator).toBeVisible();
+      const box = await locator.boundingBox();
+      await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2);
+    };
+    for (const route of ['renfo/', 'homestead/', 'iwatch/', 'reeve/', 'dishfork/']) {
+      await page.goto(route);
+      await page.evaluate(() => scrollTo({ top: 650, behavior: 'instant' }));
+      await expect(page.locator('.nav')).toHaveClass(/nav-floating/);
+      const position = await page.evaluate(() => scrollY);
+      const trigger = page.getByRole('button', { name: 'Appearance', exact: true });
+      await tap(trigger);
+      await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+      expect(await page.evaluate(() => scrollY)).toBe(position);
+      // Tap noninteractive content: mobile browsers focus its tabindex=-1 main ancestor.
+      await page.touchscreen.tap(30, 450);
+      await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+      expect(await page.evaluate(() => scrollY)).toBe(position);
+      await tap(trigger);
+      // Re-select the current mode to isolate focus scrolling from theme/image layout changes.
+      await tap(page.getByRole('menuitemradio', { name: 'Auto', exact: true }));
+      await expect(trigger).toBeFocused();
+      expect(await page.evaluate(() => scrollY)).toBe(position);
+      await tap(trigger);
+      await page.keyboard.press('Escape');
+      await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+      await expect(trigger).toBeFocused();
+      expect(await page.evaluate(() => scrollY)).toBe(position);
+    }
+  });
+});

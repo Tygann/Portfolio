@@ -60,13 +60,13 @@
   function close(focus = false) {
     menu.hidden = true;
     trigger.setAttribute('aria-expanded', 'false');
-    if (focus) trigger.focus();
+    if (focus) trigger.focus({ preventScroll: true });
   }
   function open(index = options.findIndex(option => option.mode === mode)) {
     document.dispatchEvent(new Event('site-appearance-open'));
     menu.hidden = false;
     trigger.setAttribute('aria-expanded', 'true');
-    buttons[index].focus();
+    buttons[index].focus({ preventScroll: true });
   }
   trigger.addEventListener('click', () => menu.hidden ? open() : close());
   trigger.addEventListener('keydown', event => {
@@ -81,7 +81,7 @@
     if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
       event.preventDefault();
       const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : (index + (event.key === 'ArrowDown' ? 1 : -1) + buttons.length) % buttons.length;
-      buttons[next].focus();
+      buttons[next].focus({ preventScroll: true });
     }
   });
   document.addEventListener('click', event => { if (!picker.contains(event.target)) close(); });
@@ -95,8 +95,9 @@
   nav.insertBefore(picker, nav.querySelector('.pill'));
 
   function apply() {
-    darkRules.forEach(rule => { rule.media.mediaText = media(mode); });
-    darkSources.forEach(source => { source.media = media(mode); });
+    const preference = media(mode);
+    darkRules.forEach(rule => { if (rule.media.mediaText !== preference) rule.media.mediaText = preference; });
+    darkSources.forEach(source => { if (source.media !== preference) source.media = preference; });
     document.documentElement.style.colorScheme = mode === 'auto' ? '' : mode;
     trigger.innerHTML = options.find(option => option.mode === mode).icon;
     buttons.forEach((button, i) => button.setAttribute('aria-checked', options[i].mode === mode));

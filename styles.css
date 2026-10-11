@@ -699,8 +699,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
    Keep dark surfaces and the manual appearance picker on the existing palette. */
 @media (prefers-color-scheme: dark) {
   .app-site .hero-wrap { background: var(--field) top / 100% 100% no-repeat; }
-  .app-site .features-chapter { --features-surface: color-mix(in srgb, var(--bg) 97%, var(--text) 3%); }
-  .app-site .contact { background: var(--card); }
+  .app-site { --features-surface: color-mix(in srgb, var(--bg) 97%, var(--text) 3%); }
 }
 .app-site .about .meta { font-size: 14px; margin-top: 24px; }
 .app-site .footer { font-size: 14px; }

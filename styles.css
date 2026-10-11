@@ -385,12 +385,12 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 
 /* A single greeting on pointer hover; touch and reduced-motion users see a still image. */
 @keyframes memoji-greeting {
-  0%, 100% { transform: rotate(0deg); }
-  40% { transform: rotate(5deg); }
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  32% { transform: translateY(2px) rotate(2deg); }
 }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .theme-portfolio .hero .tile-me img { transform-origin: 50% 80%; }
-  .theme-portfolio .hero .tile-me.is-greeting img { animation: memoji-greeting 500ms ease-in-out; }
+  .theme-portfolio .hero .tile-me.is-greeting img { animation: memoji-greeting 650ms cubic-bezier(.4, 0, .2, 1); }
 }
 
 .tile-reeve     { --tile-a: #0AB0C0; --tile-b: #077D8A; }

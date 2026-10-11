@@ -80,3 +80,23 @@
   header.append(panel);
   header.classList.add('nav-ready');
 })();
+
+// The portfolio greeting finishes independently of the pointer's hover state.
+(() => {
+  const memoji = document.querySelector('.theme-portfolio .hero .tile-me');
+  if (!memoji) return;
+  const image = memoji.querySelector('img');
+  const motion = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+  memoji.addEventListener('pointerenter', event => {
+    if (event.pointerType === 'touch' || !motion.matches || memoji.classList.contains('is-greeting')) return;
+    memoji.classList.add('is-greeting');
+  });
+  const finish = event => {
+    if (event.target === image && event.animationName === 'memoji-greeting') memoji.classList.remove('is-greeting');
+  };
+  memoji.addEventListener('animationend', finish);
+  memoji.addEventListener('animationcancel', finish);
+  motion.addEventListener('change', () => {
+    if (!motion.matches) memoji.classList.remove('is-greeting');
+  });
+})();

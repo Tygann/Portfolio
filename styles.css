@@ -605,15 +605,23 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .theme-portfolio .section-head { margin-bottom: var(--space-4); }
 .theme-portfolio .hero { padding-bottom: var(--space-6); }
 .theme-portfolio #work { padding-top: var(--space-6); padding-bottom: var(--space-6); }
-.theme-portfolio #about { padding-top: var(--space-6); padding-bottom: var(--space-6); }
-.theme-portfolio #contact { padding-top: var(--space-6); padding-bottom: var(--space-8); }
-.theme-portfolio .about p { max-width: 62ch; text-wrap: pretty; }
+.theme-portfolio #about { display: grid; grid-template-columns: 2fr 3fr; gap: var(--space-8); text-align: left; padding-block: var(--space-8); }
+.theme-portfolio .about h2 { margin-bottom: 0; text-wrap: balance; }
+.theme-portfolio .about p { max-width: 46ch; margin: 0; text-wrap: pretty; }
+.theme-portfolio .about p + p { margin-top: var(--space-3); }
+.theme-portfolio #contact { max-width: 1032px; margin: var(--space-3) auto var(--space-8); padding: var(--space-8) var(--space-3); background: var(--card); border-radius: var(--radius-card); }
 .theme-portfolio .contact .lede { text-wrap: balance; }
 @media (max-width: 760px) {
   .nav-links { gap: 8px; }
   .nav-inner { min-height: 56px; padding-block: 0; }
   .theme-portfolio .hero { padding-bottom: var(--space-4); }
   .theme-portfolio #work { padding-top: var(--space-4); }
+  .theme-portfolio #about { grid-template-columns: 1fr; gap: var(--space-3); padding-block: var(--space-6); }
+  .theme-portfolio #contact { margin: var(--space-3) 20px var(--space-6); padding: var(--space-6) var(--space-3); }
+}
+
+@media (min-width: 761px) and (max-width: 1080px) {
+  .theme-portfolio #contact { margin-inline: 24px; }
 }
 
 /* Shared states work with mouse, touch, and keyboard without sticky hover. */

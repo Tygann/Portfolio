@@ -2,9 +2,15 @@
 
 Applied across the portfolio and app sites: clearer system-text typography, capsule buttons and press states, softer project chips, refined cards, selective header/popover translucency, and a mobile navigation disclosure with keyboard and focus support. Motion respects reduced-motion preferences.
 
-## Backup
+## Original design history
 
-Before these changes, commit `4935cd9` was preserved as the pushed tag `portfolio-before-ios-2026-10-09`. A source ZIP is also saved at `/Users/tyler/Developer/Portfolio-backups/portfolio-before-ios-2026-10-09.zip`. To undo this styling pass without discarding later work, revert the commit that adds this document and redeploy the two website Workers.
+The original design remains in normal Git history at commit `4935cd9`. Its unused
+backup tag, `portfolio-before-ios-2026-10-09`, was removed during the October 12,
+2026 repository cleanup. The source ZIP previously saved at
+`/Users/tyler/Developer/Portfolio-backups/portfolio-before-ios-2026-10-09.zip`
+was outside this repository; no backup ZIP exists in the current checkout.
+To undo this styling pass without discarding later work, revert the commit that
+adds this document and redeploy the two website Workers.
 
 ## Verification
 

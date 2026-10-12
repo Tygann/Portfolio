@@ -2,9 +2,9 @@
 
 One repository maintains the portfolio at **tylerkeegan.com** and the marketing,
 support, privacy, and legal pages for Renfo, Homestead, and iWatch. Reeve Money and
-DishFork are portfolio contribution pages; Peach Byte Labs owns their policies.
+DishFork appear as collaboration cards linking to their official sites; Peach Byte Labs owns their policies.
 
-Astro builds fourteen pages into static HTML. No Astro browser runtime, server
+Astro builds twelve content pages and three error pages into static HTML. No Astro browser runtime, server
 adapter, or production Node service is required. Renfo and Homestead Workers
 proxy the appropriate Portfolio pages while keeping app services separate.
 
@@ -51,8 +51,9 @@ npm run check:metadata
 npm run check:visual
 ```
 
-Browser checks build and start their own preview server. They cover all fourteen
-pages at desktop and two mobile widths, in light/dark appearance, plus interaction
+Browser checks build and start their own preview server. They cover all twelve content
+pages at desktop and two mobile widths, in light/dark appearance across Chromium,
+Firefox, and WebKit, plus interaction
 checks. Results go to ignored `.codex-previews/` and `test-results/` directories.
 GitHub Actions runs these checks and retains browser artifacts for seven days.
 
@@ -80,7 +81,8 @@ publish the repository root or `public/`: page HTML is generated into `dist/`.
 Development tooling, editable originals, documentation, and the legacy archive
 are excluded from the active site output.
 `public/_redirects` preserves previously published numbered screenshots and
-original-icon URLs while serving their renamed or optimized replacements.
+original-icon URLs while serving their renamed or optimized replacements. It also
+redirects the retired Reeve and DishFork routes to their official product sites.
 
 Publish Portfolio before any required branded Worker deployment. See
 `cloudflare/README.md` for routing, service boundaries, and rollback guidance, and

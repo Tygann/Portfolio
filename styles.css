@@ -11,8 +11,7 @@
   --space-6: 48px;
   --space-8: 64px;
   --space-12: 96px;
-  --surface-border-strength: 4%;
-  --surface-border-contrast: #000;
+  --surface-border-strength: 16%;
   --bg: #FBF7F2;
   --card: #FFFFFF;
   --text: #201C19;
@@ -583,9 +582,9 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .hero .actions { margin-top: 28px; }
 .hero .device { margin-top: 48px; }
 .hero .lede, .card h3, .section-head h2 { text-wrap: balance; }
-/* Resolve the shared border on each surface so its supplied color stays local. */
+/* One shared edge: mix each surface with 16% of its foreground color. */
 .card, .contact, .professional-pill, .explore-button {
-  --surface-border: color-mix(in srgb, var(--surface-border-color, var(--card)), var(--surface-border-contrast) var(--surface-border-strength));
+  --surface-border: color-mix(in srgb, var(--surface-border-color, var(--card)), var(--surface-border-contrast, var(--text)) var(--surface-border-strength));
 }
 .card { --surface-border-color: var(--card); border-color: var(--surface-border); box-shadow: none; }
 .card .badge, .card .badge-mine { background: transparent; color: var(--text-2); font-weight: 400; padding: 0; margin: var(--space-1) 0 var(--space-2); }
@@ -603,7 +602,6 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .appearance-check svg { width: 14px; height: 14px; }
 .navigation-panel { padding: var(--space-1); }
 @media (prefers-color-scheme: dark) {
-  :root { --surface-border-strength: 6%; --surface-border-contrast: #fff; }
   .tile { box-shadow: 0 6px 18px rgba(0, 0, 0, .16); }
 }
 @media (max-width: 760px) {
@@ -835,12 +833,12 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 .theme-portfolio .professional-links { margin-top: 24px; gap: 12px; }
 .professional-pill {
   --professional-surface: #24272b;
+  --professional-foreground: #f5f5f7;
   --surface-border-color: var(--professional-surface);
-  --surface-border-contrast: #fff;
-  --surface-border-strength: 6%;
+  --surface-border-contrast: var(--professional-foreground);
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 44px; padding: 10px 16px; border-radius: 980px;
-  border: 1px solid var(--surface-border); background: var(--professional-surface); color: #f5f5f7;
+  border: 1px solid var(--surface-border); background: var(--professional-surface); color: var(--professional-foreground);
   font-size: 14px; font-weight: 600; line-height: 20px;
 }
 .professional-pill img, .professional-pill svg { display: block; flex-shrink: 0; }
@@ -852,11 +850,10 @@ html:has(.app-site) { scroll-padding-top: 92px; }
   .theme-portfolio #contact, .app-site .contact { border-color: var(--text-2); }
 }
 
-/* Preview the shared surface-derived edge on portfolio Explore actions only. */
+/* Filled Explore actions supply their fill and on-fill text colors. */
 .explore-button {
   --surface-border-color: var(--button);
   --surface-border-contrast: var(--on-button);
-  --surface-border-strength: 16%;
   border: 1px solid var(--surface-border);
   padding: 11px 23px;
 }

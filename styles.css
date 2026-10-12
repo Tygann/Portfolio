@@ -586,10 +586,10 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .card, .contact, .professional-pill, .explore-button {
   --surface-border: color-mix(in srgb, var(--surface-border-color, var(--card)), var(--surface-border-contrast, var(--text)) 4%);
 }
-/* Preserve hue/chroma; shift dark surfaces up and light surfaces down by at most 0.035. */
+/* Neutral edges stay quiet; chromatic fills receive a gradual boost capped at 0.065. */
 @supports (color: oklch(from white calc(l + 0.01) c h)) {
   .card, .contact, .professional-pill, .explore-button {
-    --surface-border: oklch(from var(--surface-border-color, var(--card)) calc(l + clamp(calc(0 - var(--surface-border-lightness-step)), calc((0.65 - l) * 1000), var(--surface-border-lightness-step))) c h);
+    --surface-border: oklch(from var(--surface-border-color, var(--card)) calc(l + clamp(calc(0 - var(--surface-border-lightness-step) - clamp(0, (c - 0.02) * 0.3, 0.03)), calc((0.65 - l) * 1000), calc(var(--surface-border-lightness-step) + clamp(0, (c - 0.02) * 0.3, 0.03)))) c h);
   }
 }
 .card { --surface-border-color: var(--card); border-color: var(--surface-border); box-shadow: none; }

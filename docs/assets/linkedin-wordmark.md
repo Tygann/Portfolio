@@ -13,10 +13,14 @@ Download page: https://brand.linkedin.com/downloads
 
 LinkedIn's guidance explicitly permits its [in] mark as a hyperlink to a member's
 profile. The portfolio uses the blue mark on light surfaces and white mark on dark
-surfaces, scaled proportionally to 21px high. A separate visible LinkedIn label
-names the destination without recreating a wordmark. The fixed picture container
-accommodates the official assets' different canvas proportions without moving the
-label. Both system appearance and manual appearance selections switch the assets.
+surfaces, scaled proportionally to 21px high. At the user's request, the visible
+text says “Linked” to the left of the [in] mark, with tight spacing and bold Arial
+type to resemble the wider wordmark. This is a site-styled label beside an official
+mark, rather than an official full-wordmark asset. The text matches the blue mark's
+#2867b2 color in light appearance and is white in dark appearance. An explicit
+LinkedIn accessible name identifies the complete link. The fixed picture container
+accommodates the assets' different canvas proportions. Both system appearance and
+manual appearance selections switch the assets and text color.
 
 ## Previously published wordmark
 

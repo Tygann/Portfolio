@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { resolve, extname, sep } from 'node:path';
 
 const root = fileURLToPath(new URL('../dist/', import.meta.url));
-const mime = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.xml': 'application/xml', '.txt': 'text/plain', '.pdf': 'application/pdf' };
+const mime = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.xml': 'application/xml', '.txt': 'text/plain', '.pdf': 'application/pdf' };
 const redirects = new Map((await readFile(resolve(root, '_redirects'), 'utf8'))
   .split(/\r?\n/).filter(line => line && !line.startsWith('#'))
   .map(line => { const [from, to, status] = line.split(/\s+/); return [from.slice(1), { to, status: Number(status) }]; }));

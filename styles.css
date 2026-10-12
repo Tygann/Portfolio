@@ -831,10 +831,10 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 .professional-pill {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 44px; padding: 10px 16px; border-radius: 980px;
-  border: 1px solid #45494f; background: #24272b; color: #f5f5f7;
-  font-size: 14px; font-weight: 500; line-height: 20px;
+  border: 1px solid var(--surface-border); background: #24272b; color: #f5f5f7;
+  font-size: 14px; font-weight: 600; line-height: 20px;
 }
 .professional-pill img, .professional-pill svg { display: block; flex-shrink: 0; }
-.professional-pill .file-label { padding: 1px 5px; border-radius: 4px; background: #3b3f45; color: #f5f5f7; font-size: 10px; line-height: 16px; }
+.professional-pill .file-label { padding: 1px 5px; border-radius: 4px; background: #3b3f45; color: #f5f5f7; font-size: 10px; font-weight: 500; line-height: 16px; }
 .professional-pill:hover { background: #30343a; text-decoration: none; }
 .professional-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }

@@ -584,6 +584,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .hero .lede, .card h3, .section-head h2 { text-wrap: balance; }
 /* Subtle fallback for browsers without relative colors. */
 .card, .contact, .professional-pill, .explore-button {
+  --surface-border-filled: color-mix(in srgb, var(--surface-border-color, var(--card)), var(--surface-border-contrast, var(--text)) 16%);
   --surface-border: color-mix(in srgb, var(--surface-border-color, var(--card)), var(--surface-border-contrast, var(--text)) 4%);
 }
 /* Neutral edges stay quiet; chromatic fills receive a gradual boost capped at 0.065. */
@@ -858,6 +859,7 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 
 /* Filled Explore actions supply their fill and on-fill text colors. */
 .explore-button {
+  --surface-border: var(--surface-border-filled);
   --surface-border-color: var(--button);
   --surface-border-contrast: var(--on-button);
   border: 1px solid var(--surface-border);

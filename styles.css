@@ -11,7 +11,7 @@
   --space-6: 48px;
   --space-8: 64px;
   --space-12: 96px;
-  --surface-border: color-mix(in srgb, var(--text) 5%, transparent);
+  --surface-border: color-mix(in srgb, var(--text) 4%, transparent);
   --bg: #FBF7F2;
   --card: #FFFFFF;
   --text: #201C19;
@@ -598,7 +598,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .appearance-check svg { width: 14px; height: 14px; }
 .navigation-panel { padding: var(--space-1); }
 @media (prefers-color-scheme: dark) {
-  :root { --surface-border: color-mix(in srgb, var(--text) 8%, transparent); }
+  :root { --surface-border: color-mix(in srgb, var(--text) 6%, transparent); }
   .tile { box-shadow: 0 6px 18px rgba(0, 0, 0, .16); }
 }
 @media (max-width: 760px) {

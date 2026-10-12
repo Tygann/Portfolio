@@ -861,22 +861,13 @@ html:has(.app-site) { scroll-padding-top: 92px; }
   padding: 11px 23px;
 }
 
-/* A fine reflective rim, inspired by the supplied iOS button reference. */
+/* A uniform material edge subtly lightens the existing button fill. */
 .button, .professional-pill, .nav-links > .pill { position: relative; }
 .professional-pill, .explore-button { border-color: transparent; }
 .button::after, .professional-pill::after, .nav-links > .pill::after {
   content: ""; position: absolute; inset: 0; border-radius: inherit;
-  pointer-events: none; border: 1px solid rgba(255, 255, 255, .25);
-}
-@supports (mask-composite: exclude) or (-webkit-mask-composite: xor) {
-  .button::after, .professional-pill::after, .nav-links > .pill::after {
-    border: 0; padding: 1px;
-    background: linear-gradient(155deg, rgba(255, 255, 255, .6), rgba(255, 255, 255, .16) 55%, rgba(255, 255, 255, .28));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor; mask-composite: exclude;
-  }
+  pointer-events: none; border: 1px solid rgba(255, 255, 255, .12);
 }
 @media (prefers-contrast: more) {
-  .button::after, .professional-pill::after, .nav-links > .pill::after { background: none; mask: none; -webkit-mask: none; padding: 0; border: 1px solid currentColor; }
+  .button::after, .professional-pill::after, .nav-links > .pill::after { border-color: currentColor; }
 }

@@ -584,7 +584,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .hero .device { margin-top: 48px; }
 .hero .lede, .card h3, .section-head h2 { text-wrap: balance; }
 /* Resolve the shared border on each surface so its supplied color stays local. */
-.card, .professional-pill {
+.card, .contact, .professional-pill {
   --surface-border: color-mix(in srgb, var(--surface-border-color, var(--card)), var(--surface-border-contrast) var(--surface-border-strength));
 }
 .card { --surface-border-color: var(--card); border-color: var(--surface-border); box-shadow: none; }
@@ -628,7 +628,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .theme-portfolio .about-copy { max-width: 60ch; margin-inline: auto; }
 .theme-portfolio .about p { max-width: none; margin: 0; text-wrap: pretty; }
 .theme-portfolio .about p + p { margin-top: var(--space-3); font-size: 17px; line-height: 1.6; }
-.theme-portfolio #contact { max-width: 1032px; margin: var(--space-3) auto 40px; padding: var(--space-8) var(--space-3); background: var(--card); border-radius: var(--radius-card); }
+.theme-portfolio #contact { --surface-border-color: var(--card); border: 1px solid var(--surface-border); max-width: 1032px; margin: var(--space-3) auto 40px; padding: var(--space-8) var(--space-3); background: var(--card); border-radius: var(--radius-card); }
 .theme-portfolio .contact .lede { text-wrap: balance; }
 @media (max-width: 760px) {
   .nav-links { gap: 8px; }
@@ -722,7 +722,7 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .app-site .contact .link, .app-site .features-chapter a { color: color-mix(in srgb, var(--accent) 85%, var(--text) 15%); }
 .app-site .feature + .feature { border-top: 0; }
 .app-site .role { justify-content: flex-start; }
-.app-site .contact { margin-block: 40px; padding: 56px 24px; border-radius: 24px; background: var(--features-surface); max-width: 1032px; }
+.app-site .contact { --surface-border-color: var(--features-surface); border: 1px solid var(--surface-border); margin-block: 40px; padding: 56px 24px; border-radius: 24px; background: var(--features-surface); max-width: 1032px; }
 /* Flat light surfaces separate the hero, feature story, and closing invitation.
    Keep dark surfaces and the manual appearance picker on the existing palette. */
 @media (prefers-color-scheme: dark) {
@@ -847,3 +847,7 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 .professional-pill .file-label { padding: 1px 5px; border-radius: 4px; background: #3b3f45; color: #f5f5f7; font-size: 10px; font-weight: 500; line-height: 16px; }
 .professional-pill:hover { --professional-surface: #30343a; text-decoration: none; }
 .professional-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+@media (prefers-contrast: more) {
+  .theme-portfolio #contact, .app-site .contact { border-color: var(--text-2); }
+}

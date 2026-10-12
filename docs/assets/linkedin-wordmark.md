@@ -1,11 +1,18 @@
 # LinkedIn wordmarks
 
-The portfolio profile link uses complete, unmodified LinkedIn artwork in a picture:
+The portfolio profile link uses complete LinkedIn wordmark artwork in a picture:
 
-- Light appearance: `public/icons/linkedin-wordmark-blue.png`, the 2212 × 540
+- Light appearance: `public/icons/linkedin-wordmark-blue.png`, the 2212 Ã— 540
   `LI-Logo.png` from the official download below.
-- Dark appearance: `public/icons/linkedin-wordmark.png`, the 83 × 20 white-lettered
-  wordmark from LinkedIn's official open-source website repository below.
+- Dark appearance: `public/icons/linkedin-wordmark-white.svg`, vector paths from
+  the `linkedin-logo-full` symbol embedded in LinkedIn's official brand homepage.
+  The paths, proportions, and trademark symbol are preserved. Lettering and
+  the icon square are white; a mask cuts the “in” lettering out of the square
+  so the button background shows through, matching the treatment in the
+  user’s screenshot of LinkedIn’s dark appearance.
+  This is a color-adapted vector from LinkedIn's own artwork, not an unchanged
+  downloadable white SVG. The extracted original is in
+  `source-assets/logos/linkedin-logo-full.svg`.
 
 Both assets are displayed proportionally at 88px wide. Their alternative text is
 LinkedIn and the button links to https://www.linkedin.com/in/tylerbkeegan. There is
@@ -20,7 +27,10 @@ https://content.linkedin.com/content/dam/me/business/en-us/amp/xbu/linkedin-revi
 Official download page: https://brand.linkedin.com/downloads
 Wordmark usage guidance: https://brand.linkedin.com/linkedin-logo
 
-White-lettered wordmark source:
+Vector wordmark source, retrieved October 12, 2026:
+https://brand.linkedin.com/ (inline symbol `linkedin-logo-full`, viewBox 0 0 103 24).
+
+Previously published 83 Ã— 20 white-lettered bitmap source:
 https://github.com/linkedin/linkedin.github.com/blob/f22504bc48a280ee5dd76bd693166d5dbe03c3fe/images/linkedin-logo.png
 
 ## Previously published standalone marks
@@ -31,3 +41,6 @@ remain available at their published URLs for compatibility. They are the unmodif
 https://content.linkedin.com/content/dam/me/business/en-us/amp/xbu/linkedin-revised-brand-guidelines/logos/in-logo.zip
 
 The current button uses the complete wordmarks, as requested by the user.
+`public/icons/linkedin-wordmark.png` is also retained at its published URL, but is
+no longer used by the button because its small raster canvas looked soft on
+high-density displays.

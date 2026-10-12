@@ -4,9 +4,9 @@ import { fileURLToPath } from 'node:url';
 import { resolve, extname, sep } from 'node:path';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const mime = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.xml': 'application/xml', '.txt': 'text/plain' };
+const mime = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.xml': 'application/xml', '.txt': 'text/plain', '.pdf': 'application/pdf' };
 const publicRoots = new Set(['renfo', 'homestead', 'iwatch', 'reeve', 'dishfork', 'icons', 'social']);
-const publicFiles = new Set(['index.html', 'styles.css', 'theme-toggle.js', 'navigation.js', 'robots.txt', 'sitemap.xml']);
+const publicFiles = new Set(['index.html', 'styles.css', 'theme-toggle.js', 'navigation.js', 'robots.txt', 'sitemap.xml', 'assets/tyler-keegan-resume.pdf']);
 
 createServer(async (req, res) => {
   try {

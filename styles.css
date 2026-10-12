@@ -855,6 +855,8 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 /* Preview the shared surface-derived edge on portfolio Explore actions only. */
 .explore-button {
   --surface-border-color: var(--button);
+  --surface-border-contrast: var(--on-button);
+  --surface-border-strength: 16%;
   border: 1px solid var(--surface-border);
   padding: 11px 23px;
 }

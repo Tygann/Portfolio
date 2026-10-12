@@ -17,7 +17,8 @@ The portfolio profile link uses adapted LinkedIn wordmark artwork in a picture:
 The trademark symbol is removed from both displayed variants at the user's request.
 The original source SVG and previously published blue PNG remain unchanged.
 
-Both assets are displayed proportionally at 88px wide. Their alternative text is
+Both assets have the unused trademark margin trimmed and are displayed
+proportionally at 81px wide, preserving the previous visible lettering size. Their alternative text is
 LinkedIn and the button links to https://www.linkedin.com/in/tylerbkeegan. There is
 no separate text recreating the wordmark. System appearance and the manual picker
 select the matching artwork and button surface.

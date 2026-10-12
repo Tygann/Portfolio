@@ -1,6 +1,7 @@
 ---
 const { light, dark, alt = '', hero = false } = Astro.props;
-const srcset = path => `${path.replace('.webp', '-360w.webp')} 360w, ${path.replace('.webp', '-720w.webp')} 720w, ${path} 1206w`;
+// Delivery variants exist after a production build; dev serves the originals.
+const srcset = path => import.meta.env.DEV ? path : `${path.replace('.webp', '-360w.webp')} 360w, ${path.replace('.webp', '-720w.webp')} 720w, ${path} 1206w`;
 const sizes = '(max-width: 384px) 69.68vw, 268px';
 ---
 <div class="device"><div class="device-screen">

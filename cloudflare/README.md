@@ -1,6 +1,6 @@
 # Homestead website hosting
 
-The Portfolio Pages project remains the source of the current website. `homestead-site`
+The `portfolio-site` Pages project remains the source of the current website. `homestead-site`
 proxies its Homestead pages and assets; it never handles app API or OAuth traffic.
 
 Portfolio source pages live in `src/pages/`; browser assets live in `public/`.
@@ -34,8 +34,9 @@ Check root, support, privacy, screenshots, styles, and appearance on the branded
 website. Check API GET /health and the connect page's OAuth metadata. Use existing
 API tests for push behavior without registering production devices or sending pushes.
 
-For rollback, move root/www back to homestead-api and restore those two entries in
-its Wrangler configuration. The preserved old sitePage.ts remains available there.
+For website rollback, restore a known-good Portfolio build or homestead-site Worker
+version. The retired API website handler remains recoverable from Homestead Git
+history, but is no longer packaged or deployed by homestead-api.
 Do not move api/connect, edit secrets, delete KV data, or change email/tunnel DNS.
 
 ## Renfo website routing

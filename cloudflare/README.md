@@ -67,3 +67,12 @@ PNG files are in `public/social/`. `npm run preview:social` exposes the noindex
 renderer locally; it is excluded from the production build.
 
 Homestead legal information is served from `/homestead/legal/` on Portfolio. Deploy the updated homestead-site Worker to enable the branded `/legal` route and its aliases; footer links use the Portfolio URL so they remain usable before that deployment.
+
+## Missing pages
+
+Portfolio Pages serves `dist/404.html` for missing URLs. Homestead's Worker fetches
+the noindex page at `/homestead/404/` and returns it with HTTP 404 for unknown
+website paths. It continues to reject unrelated hosts and unsupported methods.
+Renfo exposes a branded HTTP 404 at `/404` while retaining its existing redirects
+for unrecognized paths to the web app; this preserves account and festival routes.
+Publish the Pages build before deploying these Worker changes.

@@ -8,6 +8,13 @@ const mime = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript
 const redirects = new Map((await readFile(resolve(root, '_redirects'), 'utf8'))
   .split(/\r?\n/).filter(line => line && !line.startsWith('#'))
   .map(line => { const [from, to, status] = line.split(/\s+/); return [from.slice(1), { to, status: Number(status) }]; }));
+async function notFound(req, res) {
+  const pathname = new URL(req.url, 'http://localhost').pathname;
+  const brand = pathname.match(/^\/(renfo|homestead)\//)?.[1];
+  const html = await readFile(resolve(root, brand ? `${brand}/404/index.html` : '404.html'));
+  res.writeHead(404, { 'Content-Type': 'text/html', 'Cache-Control': 'no-store' });
+  res.end(req.method === 'HEAD' ? undefined : html);
+}
 
 createServer(async (req, res) => {
   try {
@@ -30,10 +37,10 @@ createServer(async (req, res) => {
     if (parts.some(part => part.startsWith('.') || part.includes('\\')) ||
         !target.startsWith(root.endsWith(sep) ? root : root + sep) ||
         !mime[extname(path)]) {
-      res.writeHead(404).end(); return;
+      await notFound(req, res); return;
     }
     const data = await readFile(target);
     res.writeHead(200, { 'Content-Type': mime[extname(path)], 'Cache-Control': 'no-store' });
     res.end(req.method === 'HEAD' ? undefined : data);
-  } catch { res.writeHead(404).end(); }
+  } catch { await notFound(req, res); }
 }).listen(8766, '127.0.0.1', () => console.log('Preview: http://127.0.0.1:8766'));

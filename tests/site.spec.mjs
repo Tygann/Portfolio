@@ -6,7 +6,7 @@ const axePath = require.resolve('axe-core/axe.min.js');
 const routes = ['', 'renfo/', 'homestead/', 'iwatch/', 'iwatch/privacy/', 'iwatch/support/', 'reeve/', 'dishfork/', 'renfo/support/', 'renfo/privacy/', 'renfo/legal/', 'homestead/support/', 'homestead/privacy/', 'homestead/legal/'];
 
 for (const width of [1440, 390, 320]) for (const theme of ['light', 'dark']) for (const route of routes) {
-  test(`${route || 'portfolio'} ${width}px ${theme}`, async ({ page }) => {
+  test(`${route || 'portfolio'} ${width}px ${theme}`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
     await page.emulateMedia({ colorScheme: theme });
     await page.goto(route || '/');
@@ -37,10 +37,10 @@ for (const width of [1440, 390, 320]) for (const theme of ['light', 'dark']) for
     })).violations.map(v => ({ id: v.id, targets: v.nodes.map(n => n.target) })));
     expect(violations).toEqual([]);
     await mkdir('.codex-previews', { recursive: true });
-    await page.screenshot({ path: `.codex-previews/${route.replaceAll('/', '-') || 'portfolio-'}${width}-${theme}.png` });
+    await page.screenshot({ path: `.codex-previews/${testInfo.project.name}-${route.replaceAll('/', '-') || 'portfolio-'}${width}-${theme}.png` });
     if (!route) {
       await page.locator('#about').evaluate(el => scrollTo({ top: el.offsetTop - 100, behavior: 'instant' }));
-      await page.screenshot({ path: `.codex-previews/portfolio-about-${width}-${theme}.png` });
+      await page.screenshot({ path: `.codex-previews/${testInfo.project.name}-portfolio-about-${width}-${theme}.png` });
     }
   });
 }

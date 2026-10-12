@@ -32,6 +32,13 @@ export default {
     if (path === "/") {
       return fetch(SITE + "/renfo/");
     }
+    if (path === "/404" || path === "/404.html") {
+      const error = await fetch(new Request(SITE + '/renfo/404/', { method: request.method }));
+      const headers = new Headers(error.headers);
+      headers.set('Cache-Control', 'no-store');
+      headers.set('X-Robots-Tag', 'noindex');
+      return new Response(request.method === 'HEAD' ? null : error.body, { status: 404, headers });
+    }
     if (PAGE_FILES.some((p) => path.startsWith(p))) {
       return fetch(SITE + path + url.search);
     }

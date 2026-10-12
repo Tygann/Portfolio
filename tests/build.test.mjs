@@ -13,9 +13,9 @@ async function files(directory) {
     ? files(resolve(directory, entry.name)) : resolve(directory, entry.name)))).flat();
 }
 
-test('static output contains fourteen pages and no tooling, originals, or archive', async () => {
+test('static output contains fourteen content pages and three error pages, without authoring files', async () => {
   const output = await files(root);
-  assert.equal(output.filter(path => path.endsWith('.html')).length, 14);
+  assert.equal(output.filter(path => path.endsWith('.html')).length, 17);
   for (const path of output) {
     const relative = path.slice(root.length + 1).replaceAll('\\', '/');
     assert.ok(!/^(src|docs|scripts|source-assets|cloudflare|node_modules|_astro)\//.test(relative), relative);
@@ -26,11 +26,13 @@ test('static output contains fourteen pages and no tooling, originals, or archiv
 test('generated pages resolve local assets, links, and content-versioned shared files', async () => {
   for (const path of (await files(root)).filter(path => path.endsWith('.html'))) {
     const html = await readFile(path, 'utf8');
-    for (const [, attribute, url] of html.matchAll(/\b(src|srcset|href)="(\/[^"\s]*)"/g)) {
-      const pathname = url.split(/[?#]/)[0];
-      let target = resolve(root, '.' + pathname);
-      if (pathname.endsWith('/')) target = resolve(target, 'index.html');
-      assert.ok((await stat(target)).isFile(), `${path}: ${attribute}=${url}`);
+    for (const [, attribute, value] of html.matchAll(/\b(src|srcset|href)="([^"]*)"/g)) {
+      for (const url of (attribute === 'srcset' ? value.split(',').map(item => item.trim().split(/\s+/)[0]) : [value]).filter(url => url.startsWith('/'))) {
+        const pathname = url.split(/[?#]/)[0];
+        let target = resolve(root, '.' + pathname);
+        if (pathname.endsWith('/')) target = resolve(target, 'index.html');
+        assert.ok((await stat(target)).isFile(), `${path}: ${attribute}=${url}`);
+      }
     }
     for (const name of ['styles.css', 'theme-toggle.js', 'navigation.js']) {
       const version = createHash('sha256').update(await readFile(resolve(root, name))).digest('hex').slice(0, 12);

@@ -22,6 +22,9 @@ pages = [ROOT / 'index.html'] + list(ROOT.glob('*/index.html')) + list((ROOT / '
 canonical = set()
 for page in pages:
     h = Head(); h.feed(page.read_text())
+    if h.meta.get('robots') == 'noindex':
+        assert not h.canonical, page
+        continue
     assert h.title == 1 and len(h.canonical) == 1, page
     url = h.canonical[0]; canonical.add(url)
     assert h.meta['og:url'] == url
@@ -43,4 +46,4 @@ for file, host in [('sitemap.xml', 'tylerkeegan.com'), ('renfo/sitemap.xml', 're
         assert loc.text not in listed
         listed.add(loc.text)
 assert listed == canonical, (listed, canonical)
-print(f'Validated metadata and preview images for {len(pages)} pages; all canonical URLs appear in the correct sitemap.')
+print(f'Validated metadata and preview images for {len(canonical)} pages; all canonical URLs appear in the correct sitemap.')

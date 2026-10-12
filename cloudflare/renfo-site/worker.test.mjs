@@ -43,3 +43,20 @@ test('privacy routes while preserving API and website routing', async () => {
     globalThis.fetch = original;
   }
 });
+
+test('explicit error page returns 404 while web-app routes keep their redirects', async () => {
+  const original = globalThis.fetch;
+  globalThis.fetch = async input => {
+    assert.equal(input.url, 'https://tylerkeegan.com/renfo/404/');
+    return new Response(input.method === 'HEAD' ? null : '<h1>Page not found.</h1>', { headers: { 'Content-Type': 'text/html' } });
+  };
+  try {
+    for (const method of ['GET', 'HEAD']) {
+      const response = await worker.fetch(new Request('https://renfo.app/404', { method }));
+      assert.equal(response.status, 404);
+      assert.equal(response.headers.get('X-Robots-Tag'), 'noindex');
+      assert.equal(await response.text(), method === 'HEAD' ? '' : '<h1>Page not found.</h1>');
+    }
+    assert.equal((await worker.fetch(new Request('https://renfo.app/account'))).headers.get('Location'), 'https://web.renfo.app/account');
+  } finally { globalThis.fetch = original; }
+});

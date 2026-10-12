@@ -1,0 +1,21 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+const { brand = 'portfolio' } = Astro.props;
+const apps = {
+  portfolio: { bodyClass: 'theme-portfolio', name: 'portfolio', home: '/', support: 'mailto:Tyler@Keegan.me' },
+  renfo: { bodyClass: 'theme-renfo app-site', name: 'Renfo', home: 'https://renfo.app/', support: 'https://renfo.app/support' },
+  homestead: { bodyClass: 'theme-homestead app-site', name: 'Homestead', home: 'https://homesteadcontrol.com/', support: 'https://homesteadcontrol.com/support' },
+};
+const app = apps[brand];
+---
+<SiteLayout brand={brand} bodyClass={app.bodyClass} title={`Page not found · ${app.name}`} description="This page could not be found. Return to the homepage or get help." noindex footerClass="footer app-footer" footerLinks={[{ label: 'Support', href: app.support }]}>
+  <section class="not-found">
+    <p class="eyebrow">404</p>
+    <h1>Page not found.</h1>
+    <p class="lede">The page may have moved, or the link may be incorrect.</p>
+    <div class="actions">
+      <a class="button" href={app.home}>Back to {app.name === 'portfolio' ? 'the portfolio' : app.name}</a>
+      <a class="link" href={app.support}>{brand === 'portfolio' ? 'Contact Tyler' : 'Get support'}</a>
+    </div>
+  </section>
+</SiteLayout>

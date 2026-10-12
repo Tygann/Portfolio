@@ -9,7 +9,7 @@ Cloudflare Pages must use `npm run build` with output directory `dist`, from the
 In Codex on desktop or web, choose **Work in > Cloud > Select environment > Create environment**.
 Select `Tygann/Portfolio`, then ask the setup task to:
 
-> Prepare this static portfolio repository using AGENTS.md and CLOUD_WORKFLOW.md. Install Node.js 24 LTS and Python 3, run npm ci, and install Playwright Chromium with its Linux system dependencies using npx playwright install --with-deps chromium. Build the site, verify the preview server, and run the build-output, routing, metadata, and visual checks. Configure repository access for commits and pushes requested by the user. Keep the environment private. Do not change hosting, DNS, API credentials, or production services.
+> Prepare this static portfolio repository using AGENTS.md and CLOUD_WORKFLOW.md. Install Node.js 24 LTS and Python 3, run npm ci, and install Playwright Chromium, Firefox, and WebKit with their Linux system dependencies using npx playwright install --with-deps chromium. Build the site, verify the preview server, and run the build-output, routing, metadata, and visual checks. Configure repository access for commits and pushes requested by the user. Keep the environment private. Do not change hosting, DNS, API credentials, or production services.
 
 Review the setup report and publish only after the cloud checks pass. Then select
 the published environment for a new task on mobile. An existing local chat is not
@@ -19,7 +19,7 @@ automatically moved into that environment.
 
 ```sh
 npm ci
-npx playwright install --with-deps chromium
+npx playwright install --with-deps chromium firefox webkit
 npm run build
 npm run check:build
 npm run check:routing
@@ -33,9 +33,16 @@ are saved to `.codex-previews/`, which is excluded from Git. Use those screensho
 in visual-change reports, while confirming whether they display on the user's client.
 
 The visual checks cover fourteen active pages at 1440, 390, and 320 pixels in light and
-dark appearance, including local image decoding, horizontal overflow, automated
+dark appearance in Chromium, Firefox, and WebKit, including local image decoding, horizontal overflow, automated
 accessibility checks, and floating-header/menu behavior. These checks do not establish
-full accessibility certification or validate third-party artwork rights.
+full accessibility certification or validate third-party artwork rights. Additional
+checks cover saved appearance before footer scripts load, system-theme changes,
+JavaScript-disabled navigation, branded 404 recovery, responsive screenshot selection,
+landscape layouts, 200% text enlargement, and forced-color keyboard navigation.
+Real-device Safari and VoiceOver checks still require an iPhone or Mac.
+
+The build creates 360px and 720px WebP delivery variants in `dist/` from the
+unchanged screenshots in `public/`. Generated variants are not checked into Git.
 
 Allow package and browser downloads during setup. Renfo's official App Store badge
 is served from `toolbox.marketingtools.apple.com`; allow that host for visual previews.

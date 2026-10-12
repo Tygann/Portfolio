@@ -1,18 +1,19 @@
 ---
 import { assetUrl } from '../data/assets.js';
-const { brand, title, description, canonical, appStoreId, portfolio } = Astro.props;
+import appearanceInit from '../scripts/appearance-init.js?raw';
+const { brand, title, description, canonical, appStoreId, noindex = false } = Astro.props;
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="light dark" />
-{portfolio && <>
-  <meta name="theme-color" content="#F8F7F4" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#191A1C" media="(prefers-color-scheme: dark)" />
-</>}
+<meta name="theme-color" content={brand.themeColors[0]} media="(prefers-color-scheme: light)" data-theme-color="light" />
+<meta name="theme-color" content={brand.themeColors[1]} media="(prefers-color-scheme: dark)" data-theme-color="dark" />
+{noindex && <meta name="robots" content="noindex" />}
+<script is:inline set:html={appearanceInit}></script>
 <title>{title}</title>
 <meta name="description" content={description} />
 {appStoreId && <meta name="apple-itunes-app" content={appStoreId} />}
-<link rel="canonical" href={canonical} />
+{canonical && <link rel="canonical" href={canonical} />}
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content={brand.siteName} />
 <meta property="og:title" content={title} />

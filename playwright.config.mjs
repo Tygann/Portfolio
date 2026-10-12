@@ -4,8 +4,9 @@ export default defineConfig({
   testDir: './tests',
   testMatch: '**/*.spec.mjs',
   workers: 1,
+  projects: ['chromium', 'firefox', 'webkit'].map(browserName => ({ name: browserName, use: { browserName } })),
   reporter: 'list',
-  use: { baseURL: 'http://127.0.0.1:8766', browserName: 'chromium',
+  use: { baseURL: 'http://127.0.0.1:8766',
     ...(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {}) },
   webServer: { command: 'npm run preview', url: 'http://127.0.0.1:8766', reuseExistingServer: !process.env.CI },
 });

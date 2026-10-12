@@ -3,19 +3,20 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/build-screenshots.mjs",
     "preview": "npm run build && node scripts/preview.mjs",
     "preview:social": "npm run build && node scripts/preview.mjs --social",
     "check:routing": "node --test cloudflare/renfo-site/worker.test.mjs cloudflare/homestead-site/worker.test.mjs",
     "check:build": "node --test tests/build.test.mjs",
     "check:metadata": "python scripts/check-search.py",
     "check:visual": "playwright test",
-    "setup:browser": "playwright install chromium"
+    "setup:browser": "playwright install chromium firefox webkit"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.0",
     "astro": "^7.3.8",
-    "axe-core": "^4.14.0"
+    "axe-core": "^4.14.0",
+    "sharp": "^0.35.5"
   },
   "type": "module",
   "engines": {

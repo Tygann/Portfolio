@@ -40,7 +40,13 @@ export default {
     const asset = ['/styles.css', '/theme-toggle.js', '/navigation.js'].includes(url.pathname) ||
       url.pathname.startsWith('/icons/') || url.pathname.startsWith('/social/') || url.pathname.startsWith('/homestead/screens/');
     const path = pages.get(url.pathname) || (asset ? url.pathname : null);
-    if (!path) return new Response('Not found.', { status: 404 });
+    if (!path) {
+      const error = await fetch(new Request(ORIGIN + '/homestead/404/', { method: request.method }));
+      const headers = new Headers(error.headers);
+      headers.set('Cache-Control', 'no-store');
+      headers.set('X-Robots-Tag', 'noindex');
+      return new Response(request.method === 'HEAD' ? null : error.body, { status: 404, headers });
+    }
     const upstream = new URL(path, ORIGIN);
     upstream.search = url.search;
     // Website requests never forward visitor cookies or authorization credentials.

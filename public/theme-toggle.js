@@ -1,28 +1,12 @@
 // Shared header appearance menu. Auto follows the system preference.
 (() => {
-  const DARK = '(prefers-color-scheme: dark)';
   const svg = body => `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
   const options = [
     { mode: 'auto', label: 'Auto', icon: svg('<circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/>') },
     { mode: 'light', label: 'Light', icon: svg('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>') },
     { mode: 'dark', label: 'Dark', icon: svg('<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>') },
   ];
-  let mode = 'auto';
-  try { mode = localStorage.getItem('theme') || 'auto'; } catch { /* Storage may be disabled. */ }
-  if (!options.some(option => option.mode === mode)) mode = 'auto';
-
-  const media = mode => (mode === 'auto' ? DARK : mode === 'dark' ? 'all' : 'not all');
-
-  // Find the dark-mode rules and <picture> sources once, before any are rewritten
-  const darkRules = [];
-  for (const sheet of document.styleSheets) {
-    let rules;
-    try { rules = sheet.cssRules; } catch { continue; }
-    for (const rule of rules) {
-      if (rule instanceof CSSMediaRule && rule.conditionText.includes('prefers-color-scheme: dark')) darkRules.push(rule);
-    }
-  }
-  const darkSources = [...document.querySelectorAll('picture source[media*="prefers-color-scheme: dark"]')];
+  let mode = window.siteAppearance.mode;
 
   const nav = document.querySelector('.nav-links');
   if (!nav) return;
@@ -95,10 +79,7 @@
   nav.insertBefore(picker, nav.querySelector('.pill'));
 
   function apply() {
-    const preference = media(mode);
-    darkRules.forEach(rule => { if (rule.media.mediaText !== preference) rule.media.mediaText = preference; });
-    darkSources.forEach(source => { if (source.media !== preference) source.media = preference; });
-    document.documentElement.style.colorScheme = mode === 'auto' ? '' : mode;
+    window.siteAppearance.set(mode);
     trigger.innerHTML = options.find(option => option.mode === mode).icon;
     buttons.forEach((button, i) => button.setAttribute('aria-checked', options[i].mode === mode));
   }

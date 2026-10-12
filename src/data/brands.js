@@ -1,6 +1,7 @@
 // Brand identity and primary actions shared by landing and document pages.
 export const brands = {
   "portfolio": {
+    "themeColors": ["#F8F7F4", "#191A1C"],
     "name": "Tyler Keegan",
     "home": "/",
     "tile": "tile-me",
@@ -15,6 +16,7 @@ export const brands = {
     }
   },
   "renfo": {
+    "themeColors": ["#FCF8F0", "#1C090B"],
     "name": "Renfo",
     "home": "/renfo/",
     "tile": "tile-renfo",
@@ -29,6 +31,7 @@ export const brands = {
     }
   },
   "homestead": {
+    "themeColors": ["#F5F8FD", "#0B1526"],
     "name": "Homestead",
     "home": "/homestead/",
     "tile": "tile-homestead",
@@ -43,6 +46,7 @@ export const brands = {
     }
   },
   "iwatch": {
+    "themeColors": ["#F7F9FD", "#0C1628"],
     "name": "iWatch",
     "home": "/iwatch/",
     "tile": "tile-iwatch",
@@ -57,6 +61,7 @@ export const brands = {
     }
   },
   "reeve": {
+    "themeColors": ["#F2F7F8", "#011C24"],
     "name": "Reeve Money",
     "home": "/reeve/",
     "tile": "tile-reeve",
@@ -72,6 +77,7 @@ export const brands = {
     }
   },
   "dishfork": {
+    "themeColors": ["#FBF7F2", "#201C19"],
     "name": "DishFork",
     "home": "/dishfork/",
     "tile": "tile-dishfork",

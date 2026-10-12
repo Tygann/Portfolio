@@ -11,6 +11,11 @@ for (const width of [1440, 390, 320]) for (const theme of ['light', 'dark']) for
     await page.emulateMedia({ colorScheme: theme });
     await page.goto(route || '/');
     await expect(page.locator('h1')).toHaveCount(1);
+    if (!route) {
+      const links = page.getByRole('navigation', { name: 'Professional background' });
+      await expect(links.getByRole('link', { name: 'GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/Tygann');
+      await expect(links.getByRole('link')).toHaveCount(3);
+    }
     if (await page.locator('body.app-site').count()) {
       await expect(page.getByRole('button', { name: 'Navigation', exact: true })).toHaveCount(0);
       const appearance = page.locator('.nav-links > .appearance');
@@ -33,8 +38,20 @@ for (const width of [1440, 390, 320]) for (const theme of ['light', 'dark']) for
     expect(violations).toEqual([]);
     await mkdir('.codex-previews', { recursive: true });
     await page.screenshot({ path: `.codex-previews/${route.replaceAll('/', '-') || 'portfolio-'}${width}-${theme}.png` });
+    if (!route) {
+      await page.locator('#about').evaluate(el => scrollTo({ top: el.offsetTop - 100, behavior: 'instant' }));
+      await page.screenshot({ path: `.codex-previews/portfolio-about-${width}-${theme}.png` });
+    }
   });
 }
+
+test('preview excludes repository documents, source artwork, and authoring tools', async ({ request }) => {
+  for (const path of ['/AGENTS.md', '/package.json', '/docs/resume/tyler-keegan-resume.docx',
+    '/source-assets/icons/me.png', '/cloudflare/homestead-legacy/public/', '/__tools/social/preview.html']) {
+    expect((await request.get(path)).status()).toBe(404);
+  }
+  expect((await request.get('/assets/tyler-keegan-resume.pdf')).status()).toBe(200);
+});
 
 test('floating navigation and appearance survive scrolling and resizing', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 900 });

@@ -3,21 +3,33 @@ import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { resolve, extname, sep } from 'node:path';
 
-const root = fileURLToPath(new URL('../', import.meta.url));
+const root = fileURLToPath(new URL('../dist/', import.meta.url));
 const mime = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.xml': 'application/xml', '.txt': 'text/plain', '.pdf': 'application/pdf' };
-const publicRoots = new Set(['renfo', 'homestead', 'iwatch', 'reeve', 'dishfork', 'icons', 'social']);
-const publicFiles = new Set(['index.html', 'styles.css', 'theme-toggle.js', 'navigation.js', 'robots.txt', 'sitemap.xml', 'assets/tyler-keegan-resume.pdf']);
+const redirects = new Map((await readFile(resolve(root, '_redirects'), 'utf8'))
+  .split(/\r?\n/).filter(line => line && !line.startsWith('#'))
+  .map(line => { const [from, to, status] = line.split(/\s+/); return [from.slice(1), { to, status: Number(status) }]; }));
 
 createServer(async (req, res) => {
   try {
     if (!['GET', 'HEAD'].includes(req.method)) { res.writeHead(405).end(); return; }
     let path = decodeURIComponent(new URL(req.url, 'http://localhost').pathname).slice(1);
+    if (redirects.has(path)) {
+      const { to, status } = redirects.get(path);
+      res.writeHead(status, { Location: to }).end();
+      return;
+    }
+    if (path === '__tools/social/preview.html' && process.argv.includes('--social')) {
+      const data = await readFile(new URL('../source-assets/social/preview.html', import.meta.url));
+      res.writeHead(200, { 'Content-Type': 'text/html', 'Cache-Control': 'no-store' });
+      res.end(req.method === 'HEAD' ? undefined : data);
+      return;
+    }
     if (!path || path.endsWith('/')) path += 'index.html';
     const parts = path.split('/');
     const target = resolve(root, path);
     if (parts.some(part => part.startsWith('.') || part.includes('\\')) ||
         !target.startsWith(root.endsWith(sep) ? root : root + sep) ||
-        !(publicFiles.has(path) || publicRoots.has(parts[0])) || !mime[extname(path)]) {
+        !mime[extname(path)]) {
       res.writeHead(404).end(); return;
     }
     const data = await readFile(target);

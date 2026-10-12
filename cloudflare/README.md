@@ -3,6 +3,11 @@
 The Portfolio Pages project remains the source of the current website. `homestead-site`
 proxies its Homestead pages and assets; it never handles app API or OAuth traffic.
 
+Portfolio source pages live in `src/pages/`; browser assets live in `public/`.
+Pages builds with `npm run build` and publishes only `dist/`. Repository folders
+do not change the public `/homestead/`, `/renfo/`, `/icons/`, or shared script URLs.
+Content hashes version shared CSS/scripts without changing Worker asset paths.
+
 | Host | Owner |
 | --- | --- |
 | homesteadcontrol.com, www.homesteadcontrol.com | homestead-site |
@@ -57,7 +62,8 @@ app copies canonicalize to the branded domains for Renfo and Homestead. Website
 Workers also proxy `/social/` assets; API, OAuth, and festival routing stay separate.
 Validate with `python3 scripts/check-search.py` and both Worker routing tests.
 
-Social preview sources are in `scripts/social-previews.html`; rendered 1200 × 630
-PNG files are in `social/`. The renderer is noindex and excluded by robots.txt.
+Social preview sources are in `source-assets/social/preview.html`; rendered 1200 × 630
+PNG files are in `public/social/`. `npm run preview:social` exposes the noindex
+renderer locally; it is excluded from the production build.
 
 Homestead legal information is served from `/homestead/legal/` on Portfolio. Deploy the updated homestead-site Worker to enable the branded `/legal` route and its aliases; footer links use the Portfolio URL so they remain usable before that deployment.

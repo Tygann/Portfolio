@@ -1,0 +1,114 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+const page = {
+  "brand": "portfolio",
+  "title": "Tyler Keegan · App Designer and Developer",
+  "description": "Tyler Keegan designs and builds apps for iPhone and iPad. Explore independent projects and collaborations with Peach Byte Labs.",
+  "canonical": "https://tylerkeegan.com/",
+  "bodyClass": "theme-portfolio",
+  "documentPage": false,
+  "footerClass": "footer",
+  "footerLinks": [
+    {
+      "href": "mailto:Tyler@Keegan.me",
+      "label": "Tyler@Keegan.me"
+    }
+  ],
+  "footerSeparators": false
+};
+---
+<SiteLayout {...page}>
+<div class="hero-wrap">
+      <section class="hero">
+        <span class="tile tile-me"><img fetchpriority="high" width="88" height="88" decoding="async" src="/icons/me-web.png" alt="Tyler Keegan"></span>
+        <h1>Familiar by design.<br>Personal by nature.</h1>
+        <p class="lede">I’m Tyler Keegan. I design and build apps for iPhone and iPad. Some are my own. Others are a collaboration. Every detail matters.</p>
+      </section>
+    </div>
+
+    <section id="work">
+      <div class="section-head">
+        <h2>A few things I’ve helped bring to life.</h2>
+      </div>
+      <div class="cards">
+        <article class="card accent-renfo">
+          <span class="tile tile-renfo"><img loading="lazy" width="88" height="88" decoding="async" src="/icons/renfo-web.png" alt="Renfo app icon"></span>
+          <p class="name">Renfo</p>
+          <p class="badge badge-mine">Independent Project</p>
+          <h3>Your next faire<br>awaits.</h3>
+          <p>Find renaissance festivals around the world and plan your next adventure.</p>
+          <div class="actions">
+            <a class="button" href="https://renfo.app/">Explore Renfo</a>
+            <a class="link" href="https://web.renfo.app/">Use it on the web<span class="link-chevron" aria-hidden="true"></span></a>
+          </div>
+        </article>
+        <article class="card accent-homestead">
+          <span class="tile tile-homestead"><img loading="lazy" width="88" height="88" decoding="async" src="/icons/homestead-web.png" alt="Homestead app icon"></span>
+          <p class="name">Homestead</p>
+          <p class="badge badge-mine">Independent Project</p>
+          <h3>Your home,<br>truly native.</h3>
+          <p>Bring Home Assistant to iPhone and iPad, with dashboards that feel like your own.</p>
+          <div class="actions">
+            <a class="button" href="https://homesteadcontrol.com/">Explore Homestead</a>
+            <a class="link" href="https://testflight.apple.com/join/WU5kETTE">Join the beta<span class="link-chevron" aria-hidden="true"></span></a>
+          </div>
+        </article>
+        <article class="card accent-iwatch">
+          <span class="tile tile-iwatch"><img loading="lazy" width="88" height="88" decoding="async" src="/icons/iwatch-web.png" alt="iWatch app icon"></span>
+          <p class="name">iWatch</p>
+          <p class="badge badge-mine">Independent Project</p>
+          <h3>Every show.<br>One list.</h3>
+          <p>Keep what you’re watching—and what you want to watch—in one place.</p>
+          <div class="actions">
+            <a class="button" href="/iwatch/">Explore iWatch</a>
+            <a class="link" href="https://testflight.apple.com/join/r6MFxreq">Join the beta<span class="link-chevron" aria-hidden="true"></span></a>
+          </div>
+        </article>
+        <article class="card accent-reeve">
+          <span class="tile tile-reeve"><img loading="lazy" width="88" height="88" decoding="async" src="/icons/reeve-web.png" alt="Reeve Money app icon"></span>
+          <p class="name">Reeve Money</p>
+          <p class="badge">Contributor · Peach Byte Labs</p>
+          <h3>You wrote the plan.<br>Reeve keeps it.</h3>
+          <p>Keep your money plan in focus, with clear answers and the details behind them.</p>
+          <div class="actions">
+            <a class="button" href="/reeve/">Explore Reeve</a>
+            <a class="link" href="https://reevemoney.com">reevemoney.com<span class="link-chevron" aria-hidden="true"></span></a>
+          </div>
+        </article>
+        <article class="card accent-dishfork">
+          <span class="tile tile-dishfork"><img loading="lazy" width="88" height="88" decoding="async" src="/icons/dishfork-web.png" alt="DishFork app icon"></span>
+          <p class="name">DishFork</p>
+          <p class="badge">Contributor · Peach Byte Labs</p>
+          <h3>Every dish.<br>Better each time.</h3>
+          <p>Make recipes your own. Adjust, cook, and keep every version along the way.</p>
+          <div class="actions">
+            <a class="button" href="/dishfork/">Explore DishFork</a>
+            <a class="link" href="https://dishfork.com">dishfork.com<span class="link-chevron" aria-hidden="true"></span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2>Designed for everyday life.</h2>
+      <div class="about-copy">
+        <p>I build apps that feel right at home on iPhone and iPad, with familiar interactions, thoughtful details, and a personal point of view.</p>
+        <p>My independent apps grow out of the things I enjoy. I also contribute interface design and development to Reeve Money and DishFork with Peach Byte Labs.</p>
+      </div>
+      <nav class="actions professional-links" aria-label="Professional background">
+        <a class="professional-pill" href="/assets/tyler-keegan-resume.pdf" aria-label="Resume (PDF)">
+          <span>Resume</span><span class="file-label" aria-hidden="true">PDF</span>
+        </a>
+        <a class="professional-pill" href="https://www.linkedin.com/in/tylerbkeegan"><img src="/icons/linkedin-wordmark.png" width="83" height="20" alt="LinkedIn" decoding="async"></a>
+        <a class="professional-pill" href="https://github.com/Tygann">GitHub</a>
+      </nav>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Let’s make something good.</h2>
+      <p class="lede">Have a project in mind? I’d love to hear about it.</p>
+      <div class="actions">
+        <a class="button" href="mailto:Tyler@Keegan.me">Email me</a>
+      </div>
+    </section>
+</SiteLayout>

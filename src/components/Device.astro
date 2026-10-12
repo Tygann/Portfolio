@@ -1,0 +1,10 @@
+---
+const { light, dark, alt = '', hero = false } = Astro.props;
+---
+<div class="device"><div class="device-screen">
+  {light ? <picture>
+    <source media="(prefers-color-scheme: dark)" srcset={dark} />
+    <img width="1206" height="2622" decoding="async" src={light} alt={alt}
+      loading={hero ? undefined : 'lazy'} fetchpriority={hero ? 'high' : undefined} />
+  </picture> : <span class="device-placeholder">Screenshot coming soon</span>}
+</div></div>

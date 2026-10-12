@@ -1,14 +1,15 @@
 # Portfolio cloud environment
 
 Repository: `Tygann/Portfolio`. Use a private environment named `Portfolio`.
-The website remains static; the Node dependencies are development tools only.
+Astro generates static HTML into `dist/`; Node dependencies are build/development tools only.
+Cloudflare Pages must use `npm run build` with output directory `dist`, from the repository root.
 
 ## Create the environment
 
 In Codex on desktop or web, choose **Work in > Cloud > Select environment > Create environment**.
 Select `Tygann/Portfolio`, then ask the setup task to:
 
-> Prepare this static portfolio repository using AGENTS.md and CLOUD_WORKFLOW.md. Install Node.js 22 or newer and Python 3, run npm ci, and install Playwright Chromium with its Linux system dependencies using npx playwright install --with-deps chromium. Verify the preview server and run the routing, metadata, and visual checks. Configure repository access for commits and pushes requested by the user. Keep the environment private. Do not change hosting, DNS, API credentials, or production services.
+> Prepare this static portfolio repository using AGENTS.md and CLOUD_WORKFLOW.md. Install Node.js 24 LTS and Python 3, run npm ci, and install Playwright Chromium with its Linux system dependencies using npx playwright install --with-deps chromium. Build the site, verify the preview server, and run the build-output, routing, metadata, and visual checks. Configure repository access for commits and pushes requested by the user. Keep the environment private. Do not change hosting, DNS, API credentials, or production services.
 
 Review the setup report and publish only after the cloud checks pass. Then select
 the published environment for a new task on mobile. An existing local chat is not
@@ -19,12 +20,14 @@ automatically moved into that environment.
 ```sh
 npm ci
 npx playwright install --with-deps chromium
+npm run build
+npm run check:build
 npm run check:routing
 python3 scripts/check-search.py
 npm run check:visual
 ```
 
-`npm run preview` serves the active website at `http://127.0.0.1:8766`.
+`npm run preview` builds and serves `dist/` at `http://127.0.0.1:8766`.
 Playwright starts and stops that server automatically when running tests. Screenshots
 are saved to `.codex-previews/`, which is excluded from Git. Use those screenshots
 in visual-change reports, while confirming whether they display on the user's client.

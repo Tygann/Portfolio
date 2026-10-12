@@ -1,0 +1,93 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import Device from "../../components/Device.astro";
+const page = {
+  "brand": "homestead",
+  "title": "Homestead · Home Assistant for iPhone and iPad",
+  "description": "Homestead brings Home Assistant to iPhone and iPad with native controls, flexible dashboards, widgets, and sensor history.",
+  "canonical": "https://homesteadcontrol.com/",
+  "bodyClass": "theme-homestead app-site",
+  "documentPage": false,
+  "footerClass": "footer app-footer",
+  "footerLinks": [
+    {
+      "href": "/homestead/support/",
+      "label": "Support"
+    },
+    {
+      "href": "/homestead/privacy/",
+      "label": "Privacy"
+    },
+    {
+      "href": "https://tylerkeegan.com/",
+      "label": "Portfolio"
+    },
+    {
+      "href": "https://tylerkeegan.com/homestead/legal/",
+      "label": "Legal"
+    }
+  ],
+  "footerSeparators": false
+};
+---
+<SiteLayout {...page}>
+<div class="hero-wrap">
+      <section class="hero hero-product">
+        <div class="hero-copy">
+          <span class="tile tile-homestead"><img fetchpriority="high" width="88" height="88" decoding="async" src="/icons/homestead-web.png" alt="Homestead app icon"></span>
+          <h1>Your home,<br>truly native.</h1>
+          <p class="lede">Control your Home Assistant home on iPhone and iPad. Your devices, dashboards, and history. All close at hand.</p>
+          <div class="actions">
+            <a class="button testflight-button" href="https://testflight.apple.com/join/WU5kETTE">Join the beta on TestFlight</a>
+          </div>
+          <p class="meta">In beta for iPhone and iPad.<br>Requires an existing Home Assistant installation.</p>
+        </div>
+        <Device light="/homestead/screens/welcome-light.webp" dark="/homestead/screens/welcome-dark.webp" alt="Homestead welcome screen" hero />
+      </section>
+    </div>
+
+    <div id="features" class="features-chapter">
+      <section class="feature feature-flip">
+        <div class="feature-copy">
+          <p class="eyebrow">Controls</p>
+          <h2>One tap. Done.</h2>
+          <p>Browse your devices by area. Adjust lights and climate, secure doors, and run scenes with familiar controls.</p>
+        </div>
+        <Device light="/homestead/screens/controls-light.webp" dark="/homestead/screens/controls-dark.webp" alt="Homestead controls" />
+      </section>
+
+      <section class="feature">
+        <div class="feature-copy">
+          <p class="eyebrow">Customization</p>
+          <h2>Every card. Your way.</h2>
+          <p>Arrange controls and card sizes to suit your home. Keep key devices close with Home Screen widgets.</p>
+        </div>
+        <Device light="/homestead/screens/thermostat-customization-light.webp" dark="/homestead/screens/thermostat-customization-dark.webp" alt="Customizing a thermostat card in Homestead" />
+      </section>
+
+      <section class="feature feature-flip">
+        <div class="feature-copy">
+          <p class="eyebrow">History</p>
+          <h2>Every detail tells a story.</h2>
+          <p>Explore sensor history, spot trends, and see how your home changes throughout the day.</p>
+        </div>
+        <Device light="/homestead/screens/temperature-history-light.webp" dark="/homestead/screens/temperature-history-dark.webp" alt="Temperature history in Homestead" />
+      </section>
+
+
+      <section class="about privacy-summary">
+        <p class="eyebrow">Privacy</p>
+        <h2>Private by design.</h2>
+        <p>Connect to your own Home Assistant server, with credentials stored in your device’s Keychain. <a href="/homestead/privacy/">Read the privacy policy<span class="link-chevron" aria-hidden="true"></span></a></p>
+      </section>
+    </div>
+
+    <section class="contact">
+      <h2>Make yourself at home.</h2>
+      <p class="lede">Your home. At your fingertips.</p>
+      <div class="actions">
+        <a class="button testflight-button" href="https://testflight.apple.com/join/WU5kETTE">Join the beta on TestFlight</a>
+        <a class="link" href="/homestead/support/">Get support</a>
+      </div>
+    </section>
+</SiteLayout>

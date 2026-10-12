@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 import struct
 import xml.etree.ElementTree as ET
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent / "dist"
 class Head(HTMLParser):
     def __init__(self):
         super().__init__(); self.meta = {}; self.canonical = []; self.title = 0

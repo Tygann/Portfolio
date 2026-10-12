@@ -1,0 +1,10 @@
+---
+const { className, links, separators = false, portfolio = false } = Astro.props;
+---
+<footer class={className}>
+  <p>© <span class="year">{new Date().getFullYear()}</span> Tyler Keegan</p>
+  {portfolio ? <a href="mailto:Tyler@Keegan.me">Tyler@Keegan.me</a> :
+    <nav aria-label="Footer">{links.map(({ label, ...attributes }, index) => <>
+      {separators && index > 0 && ' · '}<a {...attributes}>{label}</a>
+    </>)}</nav>}
+</footer>

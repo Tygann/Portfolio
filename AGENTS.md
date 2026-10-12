@@ -13,11 +13,11 @@
 # Repository context
 
 - For cloud environment setup and portable preview/browser checks, follow `CLOUD_WORKFLOW.md`. Use `npm ci` and the checked-in lockfile; development tooling is not part of the deployed static site.
-- This repository contains static portfolio and app marketing pages with shared styling in `styles.css`.
+- This repository builds static portfolio and app marketing pages with Astro. Page sources are in `src/pages/`, shared components in `src/components/` and `src/layouts/`, browser assets in `public/`, and generated deployment output in `dist/`. Shared styling is in `public/styles.css`.
 - Renfo and Homestead branded sites use the page sources here through the Cloudflare routing described in `cloudflare/README.md`.
 - Keep archived files in `cloudflare/homestead-legacy` unchanged unless the user specifically requests archive changes.
-- When shared CSS changes, update its version query in the active HTML pages to avoid stale cached styling.
-- Validate metadata with `scripts/check-search.py`. When relevant, run the Cloudflare Worker routing tests with `node --test cloudflare/renfo-site/worker.test.mjs cloudflare/homestead-site/worker.test.mjs`.
+- Shared CSS/script versions are derived from content hashes by `src/data/assets.js`; do not manually add version strings to pages.
+- Run `npm run build` before validating generated metadata with `scripts/check-search.py` or output with `npm run check:build`. When relevant, run the Cloudflare Worker routing tests with `node --test cloudflare/renfo-site/worker.test.mjs cloudflare/homestead-site/worker.test.mjs`.
 
 # Privacy policy status
 

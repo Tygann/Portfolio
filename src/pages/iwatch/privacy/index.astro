@@ -1,0 +1,49 @@
+---
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+const page = {
+  "brand": "iwatch",
+  "title": "Privacy Policy · iWatch",
+  "description": "Provisional privacy information for iWatch and its website.",
+  "canonical": "https://tylerkeegan.com/iwatch/privacy/",
+  "bodyClass": "theme-iwatch",
+  "documentPage": true,
+  "footerClass": "footer app-footer",
+  "footerLinks": [
+    {
+      "href": "/iwatch/support/",
+      "label": "Support"
+    },
+    {
+      "href": "/iwatch/privacy/",
+      "aria-current": "page",
+      "label": "Privacy"
+    },
+    {
+      "href": "/",
+      "label": "Portfolio"
+    }
+  ],
+  "footerSeparators": false
+};
+---
+<SiteLayout {...page}>
+<div class="hero-wrap"><section class="hero document-hero">
+      <span class="tile"><img fetchpriority="high" width="88" height="88" decoding="async" src="/icons/iwatch-web.png" alt="iWatch app icon"></span>
+      <h1>Privacy Policy</h1><p class="meta">Provisional &middot; Last updated October 10, 2026</p>
+    </section></div>
+    <article class="document-copy" aria-label="Privacy Policy">
+      <p><strong>This policy is provisional.</strong> It describes the known iWatch beta and website features. The app's storage, account and sync behavior, analytics, and external data services have not yet been verified. These details will be added after reviewing the app. For questions before using the beta, contact <a href="mailto:Tyler@Keegan.me">Tyler@Keegan.me</a>.</p>
+      <h2>Your watch activity</h2>
+      <p>iWatch helps you keep track of movies and TV shows you are watching, have finished, or plan to watch, including your next episodes and watchlist. Where this activity is stored, whether it syncs, and whether any app service receives it still need confirmation. This policy does not claim that activity stays only on your device.</p>
+      <h2>Beta testing through TestFlight</h2>
+      <p>Apple operates TestFlight and processes beta-testing information, including crash and usage data and feedback. Apple makes beta diagnostics and submitted feedback available to the app developer. Feedback can include screenshots and information you choose to send. Review <a href="https://www.apple.com/legal/privacy/data/en/test-flight/">Apple's TestFlight privacy information</a> for details. Avoid including passwords or other sensitive information in feedback.</p>
+      <h2>The iWatch website</h2>
+      <p>This website stores your selected appearance preference in your browser's local storage. You can remove it by clearing this website's data. Loading a website also sends technical request information, such as your IP address and browser details, to its hosting infrastructure. Links to TestFlight and other external sites are governed by those services' privacy policies.</p>
+      <h2>Contact and privacy requests</h2>
+      <p>If you email support, your email address, message, and any attachments are used to respond to your request. Send privacy questions or requests to access, correct, or delete information to <a href="mailto:Tyler@Keegan.me">Tyler@Keegan.me</a>. The available options depend on what information is actually held; account and app-data deletion procedures and retention periods remain to be confirmed.</p>
+      <h2>Details still under review</h2>
+      <p>Before this policy can describe the app completely, the app's account requirements, storage and sync services, movie and TV data providers, analytics and advertising, permissions, sharing, retention, deletion options, and intended age audience need verification. No statement that iWatch collects no data, sells no data, or uses no tracking is made without that review.</p>
+      <h2>Updates</h2>
+      <p>This page will be updated as the beta's data practices are confirmed or change. The date above identifies the latest revision.</p>
+    </article>
+</SiteLayout>

@@ -1,0 +1,23 @@
+---
+import Head from '../components/Head.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { brands } from '../data/brands.js';
+import { assetUrl } from '../data/assets.js';
+const { brand: key, bodyClass, documentPage, footerClass, footerLinks, footerSeparators, ...metadata } = Astro.props;
+const brand = brands[key];
+const portfolio = key === 'portfolio';
+---
+<!doctype html>
+<html lang="en">
+  <head><Head {...metadata} brand={brand} portfolio={portfolio} /></head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header brand={brand} portfolio={portfolio} documentPage={documentPage} />
+    <main id="main-content" tabindex="-1"><slot /></main>
+    <Footer className={footerClass} links={footerLinks} separators={footerSeparators} portfolio={portfolio} />
+    <script is:inline>document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());</script>
+    <script is:inline src={assetUrl('theme-toggle.js')}></script>
+    <script is:inline src={assetUrl('navigation.js')}></script>
+  </body>
+</html>

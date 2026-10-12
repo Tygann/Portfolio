@@ -1,0 +1,14 @@
+---
+const { brand, portfolio, documentPage } = Astro.props;
+const { label, ...action } = brand.action;
+---
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href={brand.home}><span class:list={['tile', brand.tile]}><img width="24" height="24" decoding="async" src={brand.icon} alt="" /></span>{brand.name}</a>
+    <nav class="nav-links" aria-label="Primary">
+      {portfolio && <><a href="#work">Apps</a><a class="hide-sm" href="#about">About</a></>}
+      {documentPage && <a href="https://tylerkeegan.com/">Tyler Keegan</a>}
+      <a {...action}>{label}</a>
+    </nav>
+  </div>
+</header>

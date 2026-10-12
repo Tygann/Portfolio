@@ -11,12 +11,9 @@ Content hashes version shared CSS/scripts without changing Worker asset paths.
 | Host | Owner |
 | --- | --- |
 | homesteadcontrol.com, www.homesteadcontrol.com | homestead-site |
-| legacy.homesteadcontrol.com | homestead-legacy (static snapshot) |
 | api.homesteadcontrol.com, connect.homesteadcontrol.com | Homestead repository: api/wrangler.jsonc |
 | review.homesteadcontrol.com | Existing Cloudflare tunnel |
 
-The legacy HTML and og.png were captured from the live old website on October 9,
-2026. The archive is excluded from indexing. It contains no API or notification code.
 Email DNS records and the review tunnel are independent and must remain unchanged.
 
 ## Deployment
@@ -25,7 +22,6 @@ Use an authenticated Wrangler CLI. Run routing tests before deploying:
 
 ```
 node --test cloudflare/homestead-site/worker.test.mjs
-wrangler deploy --config cloudflare/homestead-legacy/wrangler.jsonc
 wrangler deploy --config cloudflare/homestead-site/wrangler.jsonc
 ```
 

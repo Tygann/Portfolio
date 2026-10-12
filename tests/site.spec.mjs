@@ -47,7 +47,7 @@ for (const width of [1440, 390, 320]) for (const theme of ['light', 'dark']) for
 
 test('preview excludes repository documents, source artwork, and authoring tools', async ({ request }) => {
   for (const path of ['/AGENTS.md', '/package.json', '/docs/resume/tyler-keegan-resume.docx',
-    '/source-assets/icons/me.png', '/source-assets/pages/reeve/index.astro', '/source-assets/pages/dishfork/index.astro', '/cloudflare/homestead-legacy/public/', '/__tools/social/preview.html']) {
+    '/source-assets/icons/me.png', '/source-assets/pages/reeve/index.astro', '/source-assets/pages/dishfork/index.astro', '/cloudflare/homestead-site/worker.js', '/__tools/social/preview.html']) {
     expect((await request.get(path)).status()).toBe(404);
   }
   expect((await request.get('/assets/tyler-keegan-resume.pdf')).status()).toBe(200);

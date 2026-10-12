@@ -20,7 +20,6 @@ proxy the appropriate Portfolio pages while keeping app services separate.
 | `source-assets/` | Original icon artwork and social-preview authoring source |
 | `dist/` | Generated deployment output; ignored by Git |
 | `cloudflare/` | Branded-domain Workers, routing tests, and deployment instructions |
-| `cloudflare/homestead-legacy/` | Frozen archive with its own deployment; leave unchanged |
 | `docs/` | Design decisions, audits, asset attribution/licenses, and editable resume |
 | `scripts/` | Preview server, metadata validator, and preview authoring tools |
 | `tests/` | Static-output checks and responsive browser/accessibility checks |

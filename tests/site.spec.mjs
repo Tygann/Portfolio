@@ -64,7 +64,7 @@ test('professional artwork and surfaces follow manual appearance overrides and A
       await expect.poll(() => github.locator('img').evaluate(img => img.currentSrc ? new URL(img.currentSrc).pathname : ''))
         .toBe(`/icons/github-lockup-${appearance === 'dark' ? 'white' : 'black'}.svg`);
       await expect.poll(() => linkedin.locator('img').evaluate(img => img.currentSrc ? new URL(img.currentSrc).pathname : ''))
-        .toBe(`/icons/linkedin-mark-${appearance === 'dark' ? 'white' : 'blue'}.png`);
+        .toBe(appearance === 'dark' ? '/icons/linkedin-wordmark.png' : '/icons/linkedin-wordmark-blue.png');
       await expect(github).toHaveCSS('background-color', appearance === 'dark' ? 'rgb(36, 38, 41)' : 'rgb(255, 255, 255)');
       const heights = await links.getByRole('link').evaluateAll(elements => elements.map(el => el.getBoundingClientRect().height));
       expect(Math.max(...heights) - Math.min(...heights)).toBeLessThan(1);

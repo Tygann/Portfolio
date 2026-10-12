@@ -855,7 +855,7 @@ html:has(.app-site) { scroll-padding-top: 92px; }
 .professional-pill picture { display: flex; align-items: center; justify-content: center; }
 .professional-pill .linkedin-wordmark { width: 88px; height: auto; }
 .professional-pill .github-lockup { width: 88px; height: auto; }
-.professional-pill .resume-label { font-size: 20px; }
+.professional-pill .resume-label { font-size: 20px; font-weight: 500; }
 .professional-pill .file-label { padding: 1px 5px; border-radius: 4px; background: color-mix(in srgb, var(--professional-foreground) 10%, var(--professional-surface)); color: var(--professional-foreground); font-size: 10px; font-weight: 500; line-height: 16px; }
 .professional-pill:hover { --professional-surface: color-mix(in srgb, var(--card) 94%, var(--text)); text-decoration: none; }
 .professional-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }

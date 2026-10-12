@@ -860,14 +860,3 @@ html:has(.app-site) { scroll-padding-top: 92px; }
   border: 1px solid var(--surface-border);
   padding: 11px 23px;
 }
-
-/* A uniform material edge subtly lightens the existing button fill. */
-.button, .professional-pill, .nav-links > .pill { position: relative; }
-.professional-pill, .explore-button { border-color: transparent; }
-.button::after, .professional-pill::after, .nav-links > .pill::after {
-  content: ""; position: absolute; inset: 0; border-radius: inherit;
-  pointer-events: none; border: 1px solid rgba(255, 255, 255, .12);
-}
-@media (prefers-contrast: more) {
-  .button::after, .professional-pill::after, .nav-links > .pill::after { border-color: currentColor; }
-}

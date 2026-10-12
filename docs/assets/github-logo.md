@@ -1,6 +1,7 @@
 # GitHub logo lockup
 
-`public/icons/github-lockup-white.svg` is the unmodified
+`public/icons/github-lockup-black.svg` and `public/icons/github-lockup-white.svg`
+are the unmodified `GitHub Logos/SVG/GitHub_Lockup_Black.svg` and
 `GitHub Logos/SVG/GitHub_Lockup_White.svg` from GitHub's official logo archive,
 downloaded October 12, 2026:
 
@@ -8,7 +9,9 @@ downloaded October 12, 2026:
 - Download: https://brand.github.com/GitHub_Logos.zip
 
 The SVG's original canvas is 416 × 95. The portfolio scales it proportionally to
-88px wide inside the existing dark professional-link pill, alongside LinkedIn.
+88px wide inside the professional-link pill, alongside LinkedIn. A picture uses
+black artwork on the light surface and white artwork on the dark surface, following
+both system appearance and the manual appearance picker.
 The image's alternative text supplies the link name, GitHub, and the link goes to
 https://github.com/Tygann. The artwork is served locally without external scripts.
 

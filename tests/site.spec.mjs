@@ -53,6 +53,30 @@ test('preview excludes repository documents, source artwork, and authoring tools
   expect((await request.get('/assets/tyler-keegan-resume.pdf')).status()).toBe(200);
 });
 
+test('professional artwork and surfaces follow manual appearance overrides and Auto', async ({ page }) => {
+  for (const system of ['light', 'dark']) {
+    await page.emulateMedia({ colorScheme: system });
+    await page.goto('/');
+    const links = page.getByRole('navigation', { name: 'Professional background' });
+    const github = links.getByRole('link', { name: 'GitHub', exact: true });
+    const linkedin = links.getByRole('link', { name: 'LinkedIn', exact: true });
+    const verify = async appearance => {
+      await expect.poll(() => github.locator('img').evaluate(img => img.currentSrc ? new URL(img.currentSrc).pathname : ''))
+        .toBe(`/icons/github-lockup-${appearance === 'dark' ? 'white' : 'black'}.svg`);
+      await expect.poll(() => linkedin.locator('img').evaluate(img => img.currentSrc ? new URL(img.currentSrc).pathname : ''))
+        .toBe(`/icons/linkedin-mark-${appearance === 'dark' ? 'white' : 'blue'}.png`);
+      await expect(github).toHaveCSS('background-color', appearance === 'dark' ? 'rgb(36, 38, 41)' : 'rgb(255, 255, 255)');
+      const heights = await links.getByRole('link').evaluateAll(elements => elements.map(el => el.getBoundingClientRect().height));
+      expect(Math.max(...heights) - Math.min(...heights)).toBeLessThan(1);
+    };
+    for (const mode of ['Dark', 'Light', 'Auto']) {
+      await page.getByRole('button', { name: 'Appearance', exact: true }).click();
+      await page.getByRole('menuitemradio', { name: mode, exact: true }).click();
+      await verify(mode === 'Auto' ? system : mode.toLowerCase());
+    }
+  }
+});
+
 test('floating navigation and appearance survive scrolling and resizing', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 900 });
   await page.goto('/renfo/');

@@ -3,7 +3,7 @@ import { createRequire } from 'node:module';
 import { mkdir } from 'node:fs/promises';
 const require = createRequire(import.meta.url);
 const axePath = require.resolve('axe-core/axe.min.js');
-const routes = ['', 'renfo/', 'homestead/', 'iwatch/', 'iwatch/privacy/', 'iwatch/support/', 'reeve/', 'dishfork/', 'renfo/support/', 'renfo/privacy/', 'renfo/legal/', 'homestead/support/', 'homestead/privacy/', 'homestead/legal/'];
+const routes = ['', 'renfo/', 'homestead/', 'iwatch/', 'iwatch/privacy/', 'iwatch/support/', 'renfo/support/', 'renfo/privacy/', 'renfo/legal/', 'homestead/support/', 'homestead/privacy/', 'homestead/legal/'];
 
 for (const width of [1440, 390, 320]) for (const theme of ['light', 'dark']) for (const route of routes) {
   test(`${route || 'portfolio'} ${width}px ${theme}`, async ({ page }, testInfo) => {
@@ -47,10 +47,31 @@ for (const width of [1440, 390, 320]) for (const theme of ['light', 'dark']) for
 
 test('preview excludes repository documents, source artwork, and authoring tools', async ({ request }) => {
   for (const path of ['/AGENTS.md', '/package.json', '/docs/resume/tyler-keegan-resume.docx',
-    '/source-assets/icons/me.png', '/cloudflare/homestead-legacy/public/', '/__tools/social/preview.html']) {
+    '/source-assets/icons/me.png', '/source-assets/pages/reeve/index.astro', '/source-assets/pages/dishfork/index.astro', '/cloudflare/homestead-legacy/public/', '/__tools/social/preview.html']) {
     expect((await request.get(path)).status()).toBe(404);
   }
   expect((await request.get('/assets/tyler-keegan-resume.pdf')).status()).toBe(200);
+});
+
+test('collaboration cards describe the Design Lead role and link to official sites', async ({ page, request }, testInfo) => {
+  await page.goto('/');
+  for (const [app, label, destination] of [['reeve', 'Visit Reeve Money', 'https://reevemoney.com'], ['dishfork', 'Visit DishFork', 'https://dishfork.com']]) {
+    const card = page.locator(`.card.accent-${app}`);
+    await expect(card.locator('.badge')).toHaveText('Design Lead · Peach Byte Labs');
+    await expect(card.getByRole('link')).toHaveCount(1);
+    await expect(card.getByRole('link', { name: label, exact: true })).toHaveAttribute('href', destination);
+    await expect(card.getByRole('link')).not.toHaveAttribute('target', '_blank');
+    for (const path of [`/${app}`, `/${app}/`, `/${app}/index.html`]) {
+      const response = await request.get(path, { maxRedirects: 0 });
+      expect(response.status()).toBe(301);
+      expect(response.headers().location).toBe(destination);
+    }
+  }
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: width === 390 ? 1200 : 900 });
+    await page.locator('.card.accent-reeve').evaluate(el => scrollTo({ top: el.getBoundingClientRect().top + scrollY - 90, behavior: 'instant' }));
+    await page.screenshot({ path: `.codex-previews/${testInfo.project.name}-collaboration-cards-${width}.png` });
+  }
 });
 
 test('professional artwork and surfaces follow manual appearance overrides and Auto', async ({ page }) => {
@@ -131,7 +152,7 @@ test.describe('mobile appearance dismissal', () => {
       const box = await locator.boundingBox();
       await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2);
     };
-    for (const route of ['renfo/', 'homestead/', 'iwatch/', 'reeve/', 'dishfork/']) {
+    for (const route of ['renfo/', 'homestead/', 'iwatch/']) {
       await page.goto(route);
       await page.evaluate(() => scrollTo({ top: 650, behavior: 'instant' }));
       await expect(page.locator('.nav')).toHaveClass(/nav-floating/);

@@ -28,8 +28,8 @@ test('without JavaScript the system theme and navigation remain usable', async (
     await page.goto('http://127.0.0.1:8766/');
     await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(25, 26, 28)');
     await expect(page.getByRole('link', { name: 'Contact', exact: true })).toBeVisible();
-    await page.goto('http://127.0.0.1:8766/dishfork/');
-    await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(32, 28, 25)');
+    await page.goto('http://127.0.0.1:8766/iwatch/');
+    await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(12, 22, 40)');
   } finally { await context.close(); }
 });
 
@@ -54,7 +54,7 @@ test('screenshots select a smaller delivery asset at standard screen density', a
 });
 
 test('landscape, enlarged text, and forced colors keep navigation and content accessible', async ({ page }, testInfo) => {
-  for (const route of ['/', '/renfo/', '/homestead/', '/iwatch/', '/reeve/', '/dishfork/']) {
+  for (const route of ['/', '/renfo/', '/homestead/', '/iwatch/']) {
     await page.setViewportSize({ width: 844, height: 390 });
     await page.goto(route);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

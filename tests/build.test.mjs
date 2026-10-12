@@ -13,9 +13,9 @@ async function files(directory) {
     ? files(resolve(directory, entry.name)) : resolve(directory, entry.name)))).flat();
 }
 
-test('static output contains fourteen content pages and three error pages, without authoring files', async () => {
+test('static output contains twelve content pages and three error pages, without authoring files', async () => {
   const output = await files(root);
-  assert.equal(output.filter(path => path.endsWith('.html')).length, 17);
+  assert.equal(output.filter(path => path.endsWith('.html')).length, 15);
   for (const path of output) {
     const relative = path.slice(root.length + 1).replaceAll('\\', '/');
     assert.ok(!/^(src|docs|scripts|source-assets|cloudflare|node_modules|_astro)\//.test(relative), relative);
@@ -41,15 +41,16 @@ test('generated pages resolve local assets, links, and content-versioned shared 
   }
 });
 
-test('asset compatibility redirects point to deployed files', async () => {
+test('asset compatibility and retired collaboration redirects have valid destinations', async () => {
   const redirects = await readFile(resolve(root, '_redirects'), 'utf8');
   const lines = redirects.split(/\r?\n/).filter(line => line && !line.startsWith('#'));
-  assert.equal(lines.length, 34);
+  assert.equal(lines.length, 40);
   for (const line of lines) {
     const [from, to, status] = line.split(/\s+/);
-    assert.ok(from.startsWith('/') && to.startsWith('/'));
+    assert.ok(from.startsWith('/'));
     assert.equal(status, '301');
-    assert.ok((await stat(resolve(root, '.' + to))).isFile(), to);
+    if (to.startsWith('/')) assert.ok((await stat(resolve(root, '.' + to))).isFile(), to);
+    else assert.equal(to, from.startsWith('/reeve') ? 'https://reevemoney.com' : 'https://dishfork.com');
   }
 });
 

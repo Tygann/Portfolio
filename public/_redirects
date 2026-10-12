@@ -33,3 +33,11 @@
 /icons/renfo.png /icons/renfo-web.png 301
 /icons/homestead.png /icons/homestead-web.png 301
 /icons/iwatch.png /icons/iwatch-web.png 301
+
+# Retired collaboration marketing pages now lead to the official product sites.
+/reeve https://reevemoney.com 301
+/reeve/ https://reevemoney.com 301
+/reeve/index.html https://reevemoney.com 301
+/dishfork https://dishfork.com 301
+/dishfork/ https://dishfork.com 301
+/dishfork/index.html https://dishfork.com 301

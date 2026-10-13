@@ -1,5 +1,21 @@
 import { test, expect } from '@playwright/test';
 
+test('DishFork icon follows saved appearance and system changes', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'light' });
+  await page.addInitScript(() => localStorage.setItem('theme', 'dark'));
+  await page.goto('/');
+  const icon = page.locator('.tile-dishfork img');
+  await icon.scrollIntoViewIfNeeded();
+  const selectedIcon = () => icon.evaluate(img => new URL(img.currentSrc).pathname);
+  await expect.poll(selectedIcon).toBe('/icons/dishfork-dark-web.png');
+  await page.evaluate(() => window.siteAppearance.set('light'));
+  await expect.poll(selectedIcon).toBe('/icons/dishfork-light-web.png');
+  await page.evaluate(() => window.siteAppearance.set('auto'));
+  await page.emulateMedia({ colorScheme: 'dark' });
+  await expect.poll(selectedIcon).toBe('/icons/dishfork-dark-web.png');
+  await icon.evaluate(img => img.decode());
+});
+
 test('stored appearance controls rendering before the footer scripts load', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light' });
   await page.addInitScript(() => localStorage.setItem('theme', 'dark'));

@@ -81,7 +81,7 @@ export const brands = {
     "name": "DishFork",
     "home": "/dishfork/",
     "tile": "tile-dishfork",
-    "icon": "/icons/dishfork-web.png",
+    "icon": "/icons/dishfork-light-web.png",
     "siteName": "Tyler Keegan",
     "socialImage": "https://tylerkeegan.com/social/dishfork.png",
     "socialAlt": "DishFork — branded app preview",

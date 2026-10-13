@@ -65,7 +65,7 @@ export const brands = {
     "name": "Reeve Money",
     "home": "/reeve/",
     "tile": "tile-reeve",
-    "icon": "/icons/reeve-web.png",
+    "icon": "/icons/reeve-light-web.png",
     "siteName": "Tyler Keegan",
     "socialImage": "https://tylerkeegan.com/social/reeve.png",
     "socialAlt": "Reeve Money — branded app preview",

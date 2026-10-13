@@ -1,18 +1,18 @@
 import { test, expect } from '@playwright/test';
 
-test('DishFork icon follows saved appearance and system changes', async ({ page }) => {
+for (const app of ['dishfork', 'reeve']) test(`${app} icon follows saved appearance and system changes`, async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light' });
   await page.addInitScript(() => localStorage.setItem('theme', 'dark'));
   await page.goto('/');
-  const icon = page.locator('.tile-dishfork img');
+  const icon = page.locator(`.tile-${app} img`);
   await icon.scrollIntoViewIfNeeded();
   const selectedIcon = () => icon.evaluate(img => new URL(img.currentSrc).pathname);
-  await expect.poll(selectedIcon).toBe('/icons/dishfork-dark-web.png');
+  await expect.poll(selectedIcon).toBe(`/icons/${app}-dark-web.png`);
   await page.evaluate(() => window.siteAppearance.set('light'));
-  await expect.poll(selectedIcon).toBe('/icons/dishfork-light-web.png');
+  await expect.poll(selectedIcon).toBe(`/icons/${app}-light-web.png`);
   await page.evaluate(() => window.siteAppearance.set('auto'));
   await page.emulateMedia({ colorScheme: 'dark' });
-  await expect.poll(selectedIcon).toBe('/icons/dishfork-dark-web.png');
+  await expect.poll(selectedIcon).toBe(`/icons/${app}-dark-web.png`);
   await icon.evaluate(img => img.decode());
 });
 

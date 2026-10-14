@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<title>Homestead banner mockup v1 (motion + export)</title>
+<title>Homestead banner mockup v2 (motion + export)</title>
 <style>
   html, body { margin: 0; height: 100%; background: #000; }
   svg { display: block; width: 100vw; height: 100vh; }
@@ -24,7 +24,7 @@
       <stop offset="0.5" stop-color="#0F2A5C"/>
       <stop offset="1" stop-color="#0B1526"/>
     </radialGradient>
-    <linearGradient id="lit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E4ECF8"/></linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD35E"/><stop offset="1" stop-color="#FFA81F"/></linearGradient>
     <linearGradient id="frost" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0.07"/></linearGradient>
     <radialGradient id="warm" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFD978" stop-opacity="0.38"/><stop offset="1" stop-color="#FFD978" stop-opacity="0"/></radialGradient>
     <radialGradient id="cool" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#8FE3D4" stop-opacity="0.22"/><stop offset="1" stop-color="#8FE3D4" stop-opacity="0"/></radialGradient>
@@ -32,10 +32,10 @@
 
     <!-- Glyphs drawn in a 100 × 100 box. -->
     <g id="g-lock"><path d="M33 46 V33 A17 17 0 0 1 67 33 V46" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><rect x="21" y="44" width="58" height="46" rx="11" fill="currentColor"/></g>
-    <g id="g-thermo" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"><path d="M24.5 75.5 A36 36 0 1 1 75.5 75.5"/><circle cx="50" cy="50" r="10" fill="currentColor" stroke="none"/><path d="M50 50 L68 32"/></g>
+    <g id="g-thermo"><rect x="38" y="8" width="24" height="60" rx="12" fill="none" stroke="currentColor" stroke-width="8"/><path d="M50 70 V36" stroke="currentColor" stroke-width="10" stroke-linecap="round"/><circle cx="50" cy="75" r="17" fill="currentColor"/></g>
     <g id="g-bulb" fill="currentColor"><path d="M50 6 C29 6 15 22 15 41 C15 54 22 62 29 70 C33 75 35 78 35 82 L65 82 C65 78 67 75 71 70 C78 62 85 54 85 41 C85 22 71 6 50 6 Z"/><rect x="36" y="86" width="28" height="6" rx="3"/><rect x="41" y="94" width="18" height="5" rx="2.5"/></g>
     <g id="g-moon"><path d="M60 12 A39 39 0 1 0 88 64 A31 31 0 1 1 60 12 Z" fill="currentColor"/></g>
-    <g id="g-power" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"><path d="M32 28 A31 31 0 1 0 68 28"/><path d="M50 12 V46"/></g>
+    <g id="g-history"><path d="M10 75 L28 57 L44 67 L62 39 L78 49 L90 29" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="90" cy="29" r="8" fill="currentColor"/></g>
 
     <!-- A Home-style control tile, 100 units square, centred on its origin -->
     <rect id="frost-tile" x="-50" y="-50" width="100" height="100" rx="26" fill="url(#frost)" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="1.2"/>
@@ -47,10 +47,11 @@
 
   <!-- controls around the home: smaller and higher is farther, the light in front -->
   <g id="room" filter="url(#shadow)">
-    <g transform="translate(1270 1618) scale(3.95)"><g class="tile" data-at="300"><use href="#frost-tile"/><use href="#g-lock" color="#CFE0FF" opacity="0.85" transform="translate(-28 -28) scale(0.56)"/></g></g>
-    <g transform="translate(1946 1748) scale(4.78)"><g class="tile" data-at="800"><use href="#frost-tile"/><use href="#g-thermo" color="#CFE0FF" opacity="0.85" transform="translate(-28 -28) scale(0.56)"/></g></g>
-    <g transform="translate(3298 1748) scale(4.78)"><g class="tile" data-at="950"><use href="#frost-tile"/><use href="#g-moon" color="#CFE0FF" opacity="0.85" transform="translate(-28 -28) scale(0.56)"/></g></g>
-    <g transform="translate(3974 1618) scale(3.95)"><g class="tile" data-at="450"><use href="#frost-tile"/><use href="#g-power" color="#CFE0FF" opacity="0.85" transform="translate(-28 -28) scale(0.56)"/></g></g>
+    <!-- centres set so every gap between neighbouring tiles is the same 170 units -->
+    <g transform="translate(1284 1618) scale(3.95)"><g class="tile" data-at="300"><use href="#frost-tile"/><use href="#g-lock" color="#CFE0FF" opacity="0.85" transform="translate(-28 -28) scale(0.56)"/></g></g>
+    <g transform="translate(1890.5 1748) scale(4.78)"><g class="tile" data-at="800"><use href="#frost-tile"/><use href="#g-thermo" color="#CFE0FF" opacity="0.85" transform="translate(-28 -28) scale(0.56)"/></g></g>
+    <g transform="translate(3353.5 1748) scale(4.78)"><g class="tile" data-at="950"><use href="#frost-tile"/><use href="#g-moon" color="#CFE0FF" opacity="0.85" transform="translate(-28 -28) scale(0.56)"/></g></g>
+    <g transform="translate(3960 1618) scale(3.95)"><g class="tile" data-at="450"><use href="#frost-tile"/><use href="#g-history" color="#CFE0FF" opacity="0.85" transform="translate(-28 -28) scale(0.56)"/></g></g>
   </g>
 
   <!-- the light: off at first, then one tap and it's on -->
@@ -59,8 +60,8 @@
       <use href="#frost-tile"/>
       <use href="#g-bulb" color="#CFE0FF" opacity="0.85" transform="translate(-28 -28) scale(0.56)"/>
       <g id="hero-on">
-        <rect x="-50" y="-50" width="100" height="100" rx="26" fill="#F4F7FC"/>
-        <use href="#g-bulb" color="#FFBE2E" transform="translate(-28 -28) scale(0.56)"/>
+        <rect x="-50" y="-50" width="100" height="100" rx="26" fill="url(#amber)"/>
+        <use href="#g-bulb" color="#FFFFFF" transform="translate(-28 -28) scale(0.56)"/>
       </g>
     </g>
   </g>

@@ -22,8 +22,8 @@ export const brands = {
     "tile": "tile-renfo",
     "icon": "/icons/renfo-web.png",
     "siteName": "Renfo",
-    "socialImage": "https://renfo.app/social/renfo.png",
-    "socialAlt": "Renfo — branded app preview",
+    "socialImage": "https://renfo.app/social/renfo-v2.png",
+    "socialAlt": "Renfo app icon and the line “Your next faire awaits.” above gold crown pins joined by a dotted route",
     "action": {
       "class": "pill",
       "href": "https://apps.apple.com/us/app/renfo/id6502414968",

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<title>Renfo banner mockup v2</title>
+<title>Renfo banner mockup v3</title>
 <style>
   html, body { margin: 0; height: 100%; background: #000; }
   svg { display: block; width: 100vw; height: 100vh; }
@@ -30,6 +30,9 @@
     <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
       <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#2A0306" flood-opacity="0.45"/>
     </filter>
+    <filter id="soft" x="-50%" y="-200%" width="200%" height="500%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
     <!-- Renfo mark, traced from the logo; origin is the bottom tip -->
     <g id="mark" transform="translate(-400 -738)" fill="url(#gold)">
       <path d="M178 345 L138 140 Q136 124 152 130 L245 186 Q285 205 310 170 L388 68 Q400 55 412 68 L490 170 Q515 205 555 186 L648 130 Q664 124 662 140 L628 330 Q625 345 610 345 L525 345 Q480 265 400 265 Q320 265 275 345 Z"/>
@@ -40,39 +43,41 @@
 
   <rect width="5244" height="2950" fill="url(#bg)"/>
 
-  <!-- two routes converging on the next faire -->
+  <!-- two uneven routes converging on the next faire -->
   <g fill="none" stroke="#F7DC86" stroke-opacity="0.6" stroke-width="11" stroke-dasharray="4 36" stroke-linecap="round">
-    <path d="M560 1500 C850 1700 1000 1820 1260 1800 S1700 1500 1920 1560 S2350 1900 2622 2010"/>
-    <path d="M4684 1450 C4400 1650 4250 1760 3990 1750 S3550 1500 3330 1560 S2900 1900 2622 2010"/>
+    <path d="M1050 1330 C1120 1560 1300 1760 1520 1760 S1850 1420 2070 1440 S2440 1760 2622 1820"/>
+    <path d="M4180 1290 C4060 1500 3640 1690 3320 1650 S2850 1730 2622 1820"/>
   </g>
 
-  <!-- faires along the way -->
+  <!-- faires along the way: smaller and higher is farther, bigger and lower is closer -->
   <g filter="url(#shadow)">
-    <use href="#mark" transform="translate(560 1500) scale(0.3)"/>
-    <use href="#mark" transform="translate(1260 1800) scale(0.3)"/>
-    <use href="#mark" transform="translate(1920 1560) scale(0.3)"/>
-    <use href="#mark" transform="translate(3330 1560) scale(0.3)"/>
-    <use href="#mark" transform="translate(3990 1750) scale(0.3)"/>
-    <use href="#mark" transform="translate(4684 1450) scale(0.3)"/>
+    <use href="#mark" transform="translate(1050 1330) scale(0.38)"/>
+    <use href="#mark" transform="translate(1520 1760) scale(0.52)"/>
+    <use href="#mark" transform="translate(2070 1440) scale(0.42)"/>
+    <use href="#mark" transform="translate(3320 1650) scale(0.48)"/>
+    <use href="#mark" transform="translate(4180 1290) scale(0.38)"/>
   </g>
 
-  <!-- the next faire -->
-  <circle cx="2622" cy="1760" r="560" fill="url(#glow)"/>
-  <use href="#mark" transform="translate(2622 2010) scale(0.78)" filter="url(#shadow)"/>
+  <!-- the next faire, planted on the map -->
+  <circle cx="2622" cy="1560" r="600" fill="url(#glow)"/>
+  <ellipse cx="2622" cy="1825" rx="190" ry="34" fill="#2A0306" opacity="0.45" filter="url(#soft)"/>
+  <use href="#mark" transform="translate(2622 1820) scale(0.85)" filter="url(#shadow)"/>
 
-  <text class="headline" x="2622" y="1110" text-anchor="middle" font-size="210" fill="#FFF6E6">Your next faire awaits.</text>
+  <!-- site version only; the App Store crop drops it -->
+  <text id="headline" class="headline" x="2622" y="960" text-anchor="middle" font-size="210" fill="#FFF6E6">Your next faire awaits.</text>
 
   <!-- 21:9 header crop marks -->
   <g id="marks">
     <rect x="0" y="351" width="5244" height="2248" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-dasharray="40 30"/>
     <text class="label" x="60" y="320" font-size="80" fill="#FFFFFF" fill-opacity="0.8">App Store header crop, 21:9 (scales to 3840 × 1646)</text>
-    <text class="label" x="60" y="2720" font-size="80" fill="#FFFFFF" fill-opacity="0.8">Full canvas: universal 16:9, 5244 × 2950</text>
+    <text class="label" x="60" y="2720" font-size="80" fill="#FFFFFF" fill-opacity="0.8">Full canvas: universal 16:9, 5244 × 2950 (site version, with headline)</text>
   </g>
 </svg>
 <script>
   if (location.search.includes("header")) {
     document.getElementById("art").setAttribute("viewBox", "0 351 5244 2248");
     document.getElementById("marks").style.display = "none";
+    document.getElementById("headline").style.display = "none";
   }
 </script>
 </body>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renfo link preview mockup</title>
+<style>
+  body { margin: 0; padding: 40px 24px 80px; background: #F2F2F7; color: #1C1C1E; font: 15px/1.4 -apple-system, system-ui, sans-serif; }
+  @media (prefers-color-scheme: dark) { body { background: #000; color: #F2F2F7; } }
+  main { max-width: 800px; margin: 0 auto; display: grid; gap: 16px; }
+  h2 { margin: 32px 0 0; font-size: 17px; }
+  p.note { margin: 0; opacity: 0.7; }
+
+  /* The card renders at 800 × 420 and exports at 1.5× (1200 × 630), like the existing cards. */
+  .card { position: relative; width: 800px; height: 420px; overflow: hidden; border-radius: 0; background: radial-gradient(120% 100% at 50% 92%, #B8212B, #7E0F18 48%, #1C090B 100%); color: #FFF4DF; font-family: -apple-system, system-ui, sans-serif; }
+  .card .top { position: absolute; left: 53px; top: 48px; display: flex; align-items: center; gap: 28px; }
+  .card .top img { width: 96px; height: 96px; border-radius: 22px; }
+  .card .name { margin: 0 0 6px; font-size: 17px; font-weight: 600; color: #F5D477; }
+  .card h1 { margin: 0; font-family: "SF Pro Rounded", ui-rounded, -apple-system, system-ui, sans-serif; font-size: 40px; line-height: 1.08; letter-spacing: -0.035em; }
+  .card .domain { margin: 8px 0 0; font-size: 14px; color: #E2C9BE; }
+  .card svg { position: absolute; left: 0; bottom: 0; width: 800px; height: 241px; }
+  .current { width: 800px; height: 420px; display: block; }
+  .scroll { overflow-x: auto; }
+
+  .bubble { width: 300px; border-radius: 18px; overflow: hidden; background: #E9E9EB; color: #1C1C1E; }
+  @media (prefers-color-scheme: dark) { .bubble { background: #26252A; color: #F2F2F7; } }
+  .bubble .thumb { width: 300px; height: 157.5px; overflow: hidden; }
+  .bubble .thumb .card { zoom: 0.375; }
+  .bubble .meta { padding: 10px 12px 12px; }
+  .bubble .meta strong { display: block; font-size: 14px; }
+  .bubble .meta span { font-size: 13px; opacity: 0.6; }
+</style>
+</head>
+<body>
+<main>
+  <h1 style="margin:0;font-size:28px">Renfo link preview</h1>
+  <p class="note">What people see when someone shares a renfo.app link in Messages, Slack, social apps and so on. It's a still image, so no motion here.</p>
+
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="gold" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#F6D86C"/><stop offset="1" stop-color="#D6A436"/></linearGradient>
+      <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F7DC86" stop-opacity="0.4"/><stop offset="1" stop-color="#F7DC86" stop-opacity="0"/></radialGradient>
+      <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#2A0306" flood-opacity="0.45"/></filter>
+      <filter id="soft" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="16"/></filter>
+      <g id="mark" transform="translate(-400 -738)" fill="url(#gold)">
+        <path d="M178 345 L138 140 Q136 124 152 130 L245 186 Q285 205 310 170 L388 68 Q400 55 412 68 L490 170 Q515 205 555 186 L648 130 Q664 124 662 140 L628 330 Q625 345 610 345 L525 345 Q480 265 400 265 Q320 265 275 345 Z"/>
+        <path d="M185 392 L248 392 Q258 392 258 405 Q258 470 300 515 L392 608 Q400 615 408 608 L500 515 Q545 470 545 405 Q545 392 556 392 L615 392 Q625 392 625 402 Q625 500 560 575 L412 732 Q400 742 388 732 L240 575 Q177 500 177 402 Q177 392 185 392 Z"/>
+        <path d="M400 512 L345 455 Q325 432 325 405 A75 75 0 1 1 475 405 Q475 432 455 455 Z"/>
+      </g>
+      <g id="art">
+        <circle cx="2622" cy="1560" r="600" fill="url(#glow)" opacity="0.9"/>
+        <g fill="none" stroke="#F7DC86" stroke-opacity="0.6" stroke-width="11" stroke-dasharray="4 36" stroke-linecap="round">
+          <path d="M1050 1330 C1120 1560 1300 1760 1520 1760 S1850 1420 2070 1440 S2440 1760 2622 1820"/>
+          <path d="M4180 1290 C4060 1500 3640 1690 3320 1650 S2850 1730 2622 1820"/>
+        </g>
+        <g filter="url(#shadow)">
+          <use href="#mark" transform="translate(1050 1330) scale(0.38)"/>
+          <use href="#mark" transform="translate(1520 1760) scale(0.52)"/>
+          <use href="#mark" transform="translate(2070 1440) scale(0.42)"/>
+          <use href="#mark" transform="translate(4180 1290) scale(0.38)"/>
+          <use href="#mark" transform="translate(3320 1650) scale(0.48)"/>
+        </g>
+        <ellipse cx="2622" cy="1818" rx="120" ry="20" fill="#2A0306" opacity="0.35" filter="url(#soft)"/>
+        <use href="#mark" transform="translate(2622 1820) scale(0.85)" filter="url(#shadow)"/>
+      </g>
+    </defs>
+  </svg>
+
+  <template id="card-template">
+    <div class="card">
+      <div class="top">
+        <img src="/icons/renfo-web.png" alt="">
+        <div>
+          <p class="name">Renfo</p>
+          <h1>Your next faire awaits.</h1>
+          <p class="domain">renfo.app</p>
+        </div>
+      </div>
+      <svg viewBox="800 950 3650 1100" preserveAspectRatio="xMidYMid slice"><use href="#art"/></svg>
+    </div>
+  </template>
+
+  <h2>Proposed (1200 × 630, shown at 800 × 420)</h2>
+  <div class="scroll" id="proposed"></div>
+
+  <h2>Current</h2>
+  <div class="scroll"><img class="current" src="/social/renfo.png" alt="The current Renfo link preview"></div>
+
+  <h2>As it would appear in Messages</h2>
+  <div class="bubble">
+    <div class="thumb" id="thumb"></div>
+    <div class="meta"><strong>Renfo · Discover Renaissance Festivals</strong><span>renfo.app</span></div>
+  </div>
+</main>
+<script>
+  const template = document.getElementById("card-template");
+  document.getElementById("proposed").append(template.content.cloneNode(true));
+  document.getElementById("thumb").append(template.content.cloneNode(true));
+</script>
+</body>
+</html>

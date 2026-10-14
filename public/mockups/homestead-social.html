@@ -14,11 +14,12 @@
 
   /* The card renders at 800 × 420 and exports at 1.5× (1200 × 630), like the existing cards. */
   .card { position: relative; width: 800px; height: 420px; overflow: hidden; border-radius: 0; background: radial-gradient(120% 100% at 50% 92%, #1E56B8, #0F2A5C 48%, #0B1526 100%); color: #F5F8FD; font-family: -apple-system, system-ui, sans-serif; }
-  .card .top { position: absolute; left: 0; right: 0; top: 46px; display: flex; justify-content: center; align-items: center; gap: 22px; }
+  .card .top { position: absolute; left: 0; right: 0; top: 46px; z-index: 1; display: flex; justify-content: center; align-items: center; gap: 22px; }
   .card .top img { width: 84px; height: 84px; border-radius: 19px; }
   /* SF Pro Rounded exists only on Apple devices; elsewhere this falls back to a non-rounded face. */
   .card h1 { margin: 0; font-family: "SF Pro Rounded", ui-rounded, -apple-system, system-ui, sans-serif; font-size: 48px; font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; }
-  .card svg { position: absolute; left: 0; top: 150px; width: 800px; height: 270px; }
+  /* The scene spans the whole card so the glow above the light isn't clipped. */
+  .card svg { position: absolute; left: 0; top: 0; width: 800px; height: 420px; }
   .export { display: grid; gap: 10px; justify-items: start; }
   .export button { padding: 12px 20px; border: 0; border-radius: 980px; background: #2F7BE0; color: #fff; font: 600 16px -apple-system, system-ui, sans-serif; }
   .export img { width: 100%; max-width: 800px; display: block; }
@@ -81,7 +82,7 @@
         <img src="/icons/homestead-web.png" alt="">
         <h1>Your home, truly native.</h1>
       </div>
-      <svg viewBox="0 0 800 270"><use href="#art"/></svg>
+      <svg viewBox="0 -150 800 420"><use href="#art"/></svg>
     </div>
   </template>
 
@@ -141,7 +142,7 @@
           <clipPath id="icon-clip"><rect x="${ix}" y="${iy}" width="${icon.width}" height="${icon.height}" rx="19"/></clipPath>
         </defs>
         <rect width="800" height="420" fill="url(#bg)"/>
-        <svg x="0" y="150" width="800" height="270" viewBox="0 0 800 270"><use href="#art"/></svg>
+        <svg x="0" y="0" width="800" height="420" viewBox="0 -150 800 420"><use href="#art"/></svg>
         <image href="${iconData}" x="${ix}" y="${iy}" width="${icon.width}" height="${icon.height}" clip-path="url(#icon-clip)"/>
       </svg>`;
       const url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));

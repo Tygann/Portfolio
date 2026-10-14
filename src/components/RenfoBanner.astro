@@ -1,0 +1,119 @@
+---
+// Renfo's routes-and-pins banner, the same artwork as the App Store header.
+// Decorative: the surrounding section carries the words.
+---
+<div class="renfo-banner" aria-hidden="true">
+  <svg viewBox="800 950 3650 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="rb-gold" x1="0" y1="0" x2="0.3" y2="1">
+        <stop offset="0" stop-color="#F6D86C"/>
+        <stop offset="1" stop-color="#D6A436"/>
+      </linearGradient>
+      <radialGradient id="rb-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#F7DC86" stop-opacity="0.4"/>
+        <stop offset="1" stop-color="#F7DC86" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="rb-shadow" x="-30%" y="-30%" width="160%" height="160%">
+        <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#2A0306" flood-opacity="0.45"/>
+      </filter>
+      <filter id="rb-soft" x="-50%" y="-200%" width="200%" height="500%">
+        <feGaussianBlur stdDeviation="16"/>
+      </filter>
+      <g id="rb-mark" transform="translate(-400 -738)" fill="url(#rb-gold)">
+        <path d="M178 345 L138 140 Q136 124 152 130 L245 186 Q285 205 310 170 L388 68 Q400 55 412 68 L490 170 Q515 205 555 186 L648 130 Q664 124 662 140 L628 330 Q625 345 610 345 L525 345 Q480 265 400 265 Q320 265 275 345 Z"/>
+        <path d="M185 392 L248 392 Q258 392 258 405 Q258 470 300 515 L392 608 Q400 615 408 608 L500 515 Q545 470 545 405 Q545 392 556 392 L615 392 Q625 392 625 402 Q625 500 560 575 L412 732 Q400 742 388 732 L240 575 Q177 500 177 402 Q177 392 185 392 Z"/>
+        <path d="M400 512 L345 455 Q325 432 325 405 A75 75 0 1 1 475 405 Q475 432 455 455 Z"/>
+      </g>
+      <mask id="rb-draw-left" maskUnits="userSpaceOnUse" x="0" y="0" width="5244" height="2950">
+        <path id="rb-reveal-left" d="M1050 1330 C1120 1560 1300 1760 1520 1760 S1850 1420 2070 1440 S2440 1760 2622 1820" fill="none" stroke="#fff" stroke-width="80" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="0"/>
+      </mask>
+      <mask id="rb-draw-right" maskUnits="userSpaceOnUse" x="0" y="0" width="5244" height="2950">
+        <path id="rb-reveal-right" d="M4180 1290 C4060 1500 3640 1690 3320 1650 S2850 1730 2622 1820" fill="none" stroke="#fff" stroke-width="80" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="0"/>
+      </mask>
+    </defs>
+
+    <circle id="rb-glow-disc" cx="2622" cy="1560" r="600" fill="url(#rb-glow)" opacity="0.8"/>
+
+    <g id="rb-journey">
+      <g fill="none" stroke="#F7DC86" stroke-opacity="0.6" stroke-width="11" stroke-dasharray="4 36" stroke-linecap="round">
+        <path mask="url(#rb-draw-left)" d="M1050 1330 C1120 1560 1300 1760 1520 1760 S1850 1420 2070 1440 S2440 1760 2622 1820"/>
+        <path mask="url(#rb-draw-right)" d="M4180 1290 C4060 1500 3640 1690 3320 1650 S2850 1730 2622 1820"/>
+      </g>
+      <g filter="url(#rb-shadow)">
+        <g transform="translate(1050 1330)"><g class="rb-pin" data-at="300"><use href="#rb-mark" transform="scale(0.38)"/></g></g>
+        <g transform="translate(1520 1760)"><g class="rb-pin" data-at="1150"><use href="#rb-mark" transform="scale(0.52)"/></g></g>
+        <g transform="translate(2070 1440)"><g class="rb-pin" data-at="1900"><use href="#rb-mark" transform="scale(0.42)"/></g></g>
+        <g transform="translate(4180 1290)"><g class="rb-pin" data-at="800"><use href="#rb-mark" transform="scale(0.38)"/></g></g>
+        <g transform="translate(3320 1650)"><g class="rb-pin" data-at="1750"><use href="#rb-mark" transform="scale(0.48)"/></g></g>
+      </g>
+    </g>
+
+    <ellipse cx="2622" cy="1818" rx="120" ry="20" fill="#2A0306" opacity="0.35" filter="url(#rb-soft)"/>
+    <g transform="translate(2622 1820)" filter="url(#rb-shadow)"><g id="rb-hero"><use href="#rb-mark" transform="scale(0.85)"/></g></g>
+  </svg>
+</div>
+<script is:inline>
+  // An 8 second loop: the routes draw toward the centre, each faire pops in as
+  // its route reaches it, the hero lands, then the journey fades and repeats.
+  // Plays only while on screen, and holds the finished picture for Reduce Motion.
+  (() => {
+    const root = document.querySelector('.renfo-banner');
+    if (!root) return;
+    const LOOP = 8000, LAND = 2600, STILL = 5000;
+    const clamp = v => Math.min(1, Math.max(0, v));
+    const seg = (t, a, b) => clamp((t - a) / (b - a));
+    const inOut = p => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
+    const out = p => 1 - (1 - p) * (1 - p);
+    const back = p => 1 + 2.4 * Math.pow(p - 1, 3) + 1.4 * Math.pow(p - 1, 2);
+    const left = document.getElementById('rb-reveal-left');
+    const right = document.getElementById('rb-reveal-right');
+    const journey = document.getElementById('rb-journey');
+    const hero = document.getElementById('rb-hero');
+    const glow = document.getElementById('rb-glow-disc');
+    const pins = [...root.querySelectorAll('.rb-pin')];
+
+    function frame(t) {
+      left.setAttribute('stroke-dashoffset', 1 - inOut(seg(t, 300, LAND)));
+      right.setAttribute('stroke-dashoffset', 1 - inOut(seg(t, 800, LAND)));
+      journey.setAttribute('opacity', 1 - inOut(seg(t, 6800, 7500)));
+      for (const pin of pins) {
+        const p = seg(t, Number(pin.dataset.at), Number(pin.dataset.at) + 450);
+        const e = back(p);
+        pin.setAttribute('opacity', p);
+        pin.setAttribute('transform', `translate(0 ${-150 * (1 - e)}) scale(${0.6 + 0.4 * e})`);
+      }
+      let y = 0, sx = 1, sy = 1;
+      if (t >= LAND - 250 && t < LAND) {
+        y = -70 * out(seg(t, LAND - 250, LAND));
+      } else if (t >= LAND && t < LAND + 220) {
+        const p = seg(t, LAND, LAND + 220);
+        y = -70 * (1 - p * p); sx = 1 + 0.06 * p; sy = 1 - 0.07 * p;
+      } else if (t >= LAND + 220 && t < LAND + 520) {
+        const p = out(seg(t, LAND + 220, LAND + 520));
+        sx = 1.06 - 0.06 * p; sy = 0.93 + 0.07 * p;
+      }
+      hero.setAttribute('transform', `translate(0 ${y}) scale(${sx} ${sy})`);
+      const g = t < LAND ? 0.7 + 0.05 * (t / LAND)
+        : t < LAND + 400 ? 0.75 + 0.25 * inOut(seg(t, LAND, LAND + 400))
+        : t < 5500 ? 1 - 0.2 * inOut(seg(t, LAND + 400, 5500))
+        : 0.8 - 0.1 * inOut(seg(t, 5500, LOOP));
+      glow.setAttribute('opacity', g);
+    }
+
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    let visible = false, start = null, raf = 0;
+    const tick = now => {
+      if (start === null) start = now;
+      frame((now - start) % LOOP);
+      raf = requestAnimationFrame(tick);
+    };
+    const update = () => {
+      cancelAnimationFrame(raf);
+      if (reduce.matches) { frame(STILL); return; }
+      if (visible) { start = null; raf = requestAnimationFrame(tick); }
+    };
+    frame(reduce.matches ? STILL : 0);
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); }, { threshold: 0.25 }).observe(root);
+    reduce.addEventListener('change', update);
+  })();
+</script>

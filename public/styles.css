@@ -855,6 +855,19 @@ section { padding: var(--space-12) var(--space-3); max-width: 1080px; margin: 0 
 .app-site .feature + .feature { border-top: 0; }
 .app-site .role { justify-content: flex-start; }
 .app-site .contact { --surface-border-color: var(--features-surface); border: 1px solid var(--surface-border); margin-block: 40px; padding: 56px 24px; border-radius: 24px; background: var(--features-surface); max-width: 1032px; }
+/* Renfo's closing chapter: the App Store header artwork beneath the final invitation.
+   It stays dark crimson in both appearances, so the section carries Renfo's dark palette. */
+.app-site .contact-finale {
+  --text: #FFF4DF; --text-2: #E2C9BE; --accent: #F5D477; --button: #F5D477; --on-button: #321416;
+  --surface-border-color: #5A0E15;
+  overflow: hidden; padding-bottom: 0; color: var(--text);
+  background: radial-gradient(120% 90% at 50% 88%, #B8212B, #7E0F18 48%, #1C090B 100%);
+}
+.app-site .contact-finale h2 { color: var(--text); }
+.app-site .contact-finale .lede { color: var(--text-2); }
+.renfo-banner { margin: 24px -24px 0; aspect-ratio: 3.3; }
+.renfo-banner svg { display: block; width: 100%; height: 100%; }
+@media (max-width: 760px) { .renfo-banner { aspect-ratio: 1.5; } }
 /* Flat light surfaces separate the hero, feature story, and closing invitation.
    Keep dark surfaces and the manual appearance picker on the existing palette. */
 @media (prefers-color-scheme: dark) {

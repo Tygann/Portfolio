@@ -1,6 +1,7 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import Device from "../../components/Device.astro";
+import RenfoBanner from "../../components/RenfoBanner.astro";
 const page = {
   "brand": "renfo",
   "title": "Renfo · Discover Renaissance Festivals",
@@ -90,12 +91,13 @@ const page = {
       </section>
     </div>
 
-    <section class="contact">
+    <section class="contact contact-finale">
       <h2>Your next adventure starts here.</h2>
       <p class="lede">Find your faire, plan your visit, and make it a tradition.</p>
       <div class="actions">
         <a class="button" href="https://apps.apple.com/us/app/renfo/id6502414968">Get Renfo for iPhone</a>
         <a class="link" href="https://web.renfo.app/">Open web app</a>
       </div>
+      <RenfoBanner />
     </section>
 </SiteLayout>

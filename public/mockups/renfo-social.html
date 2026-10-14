@@ -137,9 +137,6 @@
         <rect width="800" height="420" fill="url(#bg)"/>
         <svg x="0" y="${420 - 10 - 241}" width="800" height="241" viewBox="700 940 3850 1160"><use href="#art"/></svg>
         <image href="${iconData}" x="${ix}" y="${iy}" width="${icon.width}" height="${icon.height}" clip-path="url(#icon-clip)"/>
-        <text x="${text.left - box.left}" y="${text.top - box.top + text.height / 2}" dominant-baseline="central"
-          font-family="${font.fontFamily.replace(/"/g, "'")}" font-size="${font.fontSize}" font-weight="${font.fontWeight}"
-          letter-spacing="${font.letterSpacing}" fill="#FFF4DF">${title.textContent}</text>
       </svg>`;
       const url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
       const img = new Image();
@@ -148,8 +145,22 @@
       const canvas = document.createElement("canvas");
       canvas.width = 1200;
       canvas.height = 630;
-      canvas.getContext("2d", { alpha: false }).drawImage(img, 0, 0, 1200, 630);
+      const ctx = canvas.getContext("2d", { alpha: false });
+      ctx.drawImage(img, 0, 0, 1200, 630);
       URL.revokeObjectURL(url);
+
+      // Text inside an SVG image can't reach the rounded system font, so the
+      // headline is drawn on the canvas directly, where ui-rounded works in Safari.
+      const size = parseFloat(font.fontSize) * 1.5;
+      const words = title.textContent;
+      ctx.font = `${font.fontWeight} ${size}px system-ui`;
+      const plainWidth = ctx.measureText(words).width;
+      ctx.font = `${font.fontWeight} ${size}px ui-rounded, "SF Pro Rounded", system-ui`;
+      const rounded = ctx.measureText(words).width !== plainWidth;
+      if ("letterSpacing" in ctx) ctx.letterSpacing = `${parseFloat(font.letterSpacing) * 1.5}px`;
+      ctx.fillStyle = "#FFF4DF";
+      ctx.textBaseline = "middle";
+      ctx.fillText(words, (text.left - box.left) * 1.5, (text.top - box.top + text.height / 2) * 1.5);
       const png = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
       const link = document.createElement("a");
       link.href = URL.createObjectURL(png);
@@ -157,7 +168,9 @@
       link.click();
       result.src = link.href;
       result.hidden = false;
-      status.textContent = "Saved renfo-v2.png. Check the headline below is rounded; if the download didn't appear, press and hold the image to save it.";
+      status.textContent = rounded
+        ? "Saved renfo-v2.png with the rounded headline. If the download didn't appear, press and hold the image to save it."
+        : "Saved renfo-v2.png, but this browser has no rounded font, so the headline is not rounded. Use Safari on an iPhone, iPad or Mac.";
     } catch (error) {
       status.textContent = `Something went wrong: ${error.message}. Send me a screenshot of this.`;
     }

@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Renfo banner mockup</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; }
+  svg { display: block; width: 100vw; height: 100vh; }
+  .headline { font-family: "SF Pro Rounded", ui-rounded, -apple-system, system-ui, sans-serif; font-weight: 700; letter-spacing: -6px; }
+  .label { font-family: -apple-system, system-ui, sans-serif; font-weight: 600; }
+</style>
+</head>
+<body>
+<svg id="art" viewBox="0 0 5244 2950" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="58%" r="70%">
+      <stop offset="0" stop-color="#B8212B"/>
+      <stop offset="0.45" stop-color="#7E0F18"/>
+      <stop offset="1" stop-color="#1C090B"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F7DC86"/>
+      <stop offset="1" stop-color="#D98E2E"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#F7DC86" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#F7DC86" stop-opacity="0"/>
+    </radialGradient>
+    <g id="pin">
+      <path d="M-15 -27 L-15 -42 L-7.5 -34 L0 -46 L7.5 -34 L15 -42 L15 -27 Z" fill="url(#gold)"/>
+      <path d="M0 30 C-6 20 -18 10 -18 -2 A18 18 0 1 1 18 -2 C18 10 6 20 0 30 Z" fill="url(#gold)"/>
+      <circle cx="0" cy="-3" r="6.5" fill="#8E1219"/>
+    </g>
+  </defs>
+
+  <rect width="5244" height="2950" fill="url(#bg)"/>
+
+  <!-- faint contour lines, a hint of a map -->
+  <g fill="none" stroke="#F7DC86" stroke-opacity="0.07" stroke-width="5">
+    <ellipse cx="1300" cy="2100" rx="900" ry="420"/>
+    <ellipse cx="1300" cy="2100" rx="620" ry="280"/>
+    <ellipse cx="1300" cy="2100" rx="340" ry="150"/>
+    <ellipse cx="4000" cy="1650" rx="1000" ry="480"/>
+    <ellipse cx="4000" cy="1650" rx="700" ry="330"/>
+    <ellipse cx="4000" cy="1650" rx="400" ry="180"/>
+    <ellipse cx="2622" cy="1850" rx="1500" ry="700"/>
+  </g>
+
+  <!-- the route from faire to faire -->
+  <path d="M600 2080 C1100 1650 1600 1650 1950 1960 S2400 1950 2622 1780 S3100 1500 3350 1580 S3800 1800 4050 1700 S4500 1700 4680 1920"
+        fill="none" stroke="#F7DC86" stroke-opacity="0.55" stroke-width="10" stroke-dasharray="4 34" stroke-linecap="round"/>
+
+  <!-- distant pins -->
+  <g opacity="0.35">
+    <use href="#pin" transform="translate(900 1500) scale(2)"/>
+    <use href="#pin" transform="translate(1700 2350) scale(2)"/>
+    <use href="#pin" transform="translate(3000 2300) scale(2)"/>
+    <use href="#pin" transform="translate(3750 1250) scale(2)"/>
+    <use href="#pin" transform="translate(4450 2350) scale(2)"/>
+    <use href="#pin" transform="translate(2150 1450) scale(2)"/>
+  </g>
+
+  <!-- pins along the route -->
+  <use href="#pin" transform="translate(600 2010) scale(2.6)"/>
+  <use href="#pin" transform="translate(1340 1650) scale(2.6)"/>
+  <use href="#pin" transform="translate(1950 1890) scale(2.6)"/>
+  <use href="#pin" transform="translate(3350 1510) scale(2.6)"/>
+  <use href="#pin" transform="translate(4050 1630) scale(2.6)"/>
+  <use href="#pin" transform="translate(4680 1850) scale(2.6)"/>
+
+  <!-- the next faire -->
+  <circle cx="2622" cy="1640" r="520" fill="url(#glow)"/>
+  <use href="#pin" transform="translate(2622 1640) scale(5.2)"/>
+
+  <text class="headline" x="2622" y="1000" text-anchor="middle" font-size="330" fill="#FFF6E6">Your next faire awaits.</text>
+
+  <!-- 21:9 header crop marks -->
+  <g id="marks">
+    <rect x="0" y="351" width="5244" height="2248" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-dasharray="40 30"/>
+    <text class="label" x="60" y="320" font-size="80" fill="#FFFFFF" fill-opacity="0.8">App Store header crop, 21:9 (scales to 3840 × 1646)</text>
+    <text class="label" x="60" y="2720" font-size="80" fill="#FFFFFF" fill-opacity="0.8">Full canvas: universal 16:9, 5244 × 2950</text>
+  </g>
+</svg>
+<script>
+  if (location.search.includes("header")) {
+    document.getElementById("art").setAttribute("viewBox", "0 351 5244 2248");
+    document.getElementById("marks").style.display = "none";
+  }
+</script>
+</body>
+</html>

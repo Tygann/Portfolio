@@ -376,14 +376,14 @@
 
 @media (prefers-color-scheme: dark) {
 :where(:root:not([data-theme])) .accent-reeve { --accent: #2FE0E6; --button: #2FE0E6; --on-button: #011C24; --glow: rgba(10, 176, 192, 0.38); }
-:where(:root:not([data-theme])) .accent-dishfork { --accent: #DE7A57; --button: #B6492E; --on-button: #FFFFFF; --glow: rgba(182, 73, 46, 0.35); }
+:where(:root:not([data-theme])) .accent-dishfork { --accent: #DE7A57; --button: #DE7A57; --on-button: #201C19; --glow: rgba(182, 73, 46, 0.35); }
 :where(:root:not([data-theme])) .accent-renfo { --accent: #E6C35C; --button: #E6C35C; --on-button: #2A1F02; --glow: rgba(140, 47, 57, 0.45); }
 :where(:root:not([data-theme])) .accent-homestead { --accent: #9ED8F0; --button: #9ED8F0; --on-button: #0A2A55; --glow: rgba(31, 123, 230, 0.40); }
 :where(:root:not([data-theme])) .accent-iwatch { --accent: #4DB2FF; --button: #4DB2FF; --on-button: #021A33; --glow: rgba(58, 168, 255, 0.36); }
 }
 
 :where(:root[data-theme="dark"]) .accent-reeve { --accent: #2FE0E6; --button: #2FE0E6; --on-button: #011C24; --glow: rgba(10, 176, 192, 0.38); }
-:where(:root[data-theme="dark"]) .accent-dishfork { --accent: #DE7A57; --button: #B6492E; --on-button: #FFFFFF; --glow: rgba(182, 73, 46, 0.35); }
+:where(:root[data-theme="dark"]) .accent-dishfork { --accent: #DE7A57; --button: #DE7A57; --on-button: #201C19; --glow: rgba(182, 73, 46, 0.35); }
 :where(:root[data-theme="dark"]) .accent-renfo { --accent: #E6C35C; --button: #E6C35C; --on-button: #2A1F02; --glow: rgba(140, 47, 57, 0.45); }
 :where(:root[data-theme="dark"]) .accent-homestead { --accent: #9ED8F0; --button: #9ED8F0; --on-button: #0A2A55; --glow: rgba(31, 123, 230, 0.40); }
 :where(:root[data-theme="dark"]) .accent-iwatch { --accent: #4DB2FF; --button: #4DB2FF; --on-button: #021A33; --glow: rgba(58, 168, 255, 0.36); }

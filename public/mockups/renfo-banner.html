@@ -236,6 +236,10 @@
   document.getElementById("save-poster").onclick = () => busy(() => savePng(HEADER, "renfo-header-poster-3840x1646.png"));
   document.getElementById("save-universal").onclick = () => busy(() => savePng(UNIVERSAL, "renfo-universal-5244x2950.png"));
 
+  if (/Firefox\//.test(navigator.userAgent)) {
+    status.textContent = "Firefox can't save the video at this size yet. Open this page in Edge or Chrome for the MP4; the PNGs work here.";
+  }
+
   document.getElementById("save-video").onclick = () => busy(async () => {
     if (!("VideoEncoder" in window)) throw new Error("this browser can't encode video, use desktop Chrome or Edge");
     status.textContent = "Loading the video encoder…";

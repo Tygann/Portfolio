@@ -18,7 +18,10 @@
   .card .top img { width: 84px; height: 84px; border-radius: 19px; }
   /* SF Pro Rounded exists only on Apple devices; elsewhere this falls back to a non-rounded face. */
   .card h1 { margin: 0; font-family: "SF Pro Rounded", ui-rounded, -apple-system, system-ui, sans-serif; font-size: 48px; font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; }
-  .card svg { position: absolute; left: 0; bottom: 0; width: 800px; height: 241px; }
+  .card svg { position: absolute; left: 0; bottom: 10px; width: 800px; height: 241px; }
+  .export { display: grid; gap: 10px; justify-items: start; }
+  .export button { padding: 12px 20px; border: 0; border-radius: 980px; background: #AD2027; color: #fff; font: 600 16px -apple-system, system-ui, sans-serif; }
+  .export img { width: 100%; max-width: 800px; display: block; }
   .current { width: 800px; height: 420px; display: block; }
   .scroll { overflow-x: auto; }
 
@@ -78,6 +81,11 @@
 
   <h2>Proposed (1200 × 630, shown at 800 × 420)</h2>
   <div class="scroll" id="proposed"></div>
+  <div class="export">
+    <button id="save">Save PNG · 1200 × 630</button>
+    <p class="note" id="status">Open this page in Safari on an iPhone, iPad or Mac so the headline renders in SF Pro Rounded.</p>
+    <img id="result" alt="" hidden>
+  </div>
 
   <h2>Current</h2>
   <div class="scroll"><img class="current" src="/social/renfo.png" alt="The current Renfo link preview"></div>
@@ -92,6 +100,68 @@
   const template = document.getElementById("card-template");
   document.getElementById("proposed").append(template.content.cloneNode(true));
   document.getElementById("thumb").append(template.content.cloneNode(true));
+
+  // Export: redraw the on-screen card as one SVG at 1.5× and rasterise it, using
+  // the browser's own layout for the icon and headline so the PNG matches.
+  const status = document.getElementById("status");
+  const result = document.getElementById("result");
+
+  async function dataUrl(src) {
+    const blob = await (await fetch(src)).blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  document.getElementById("save").onclick = async () => {
+    try {
+      status.textContent = "Rendering…";
+      const card = document.querySelector("#proposed .card");
+      const box = card.getBoundingClientRect();
+      const icon = card.querySelector("img").getBoundingClientRect();
+      const title = card.querySelector("h1");
+      const text = title.getBoundingClientRect();
+      const font = getComputedStyle(title);
+      const defs = document.querySelector("svg defs").innerHTML;
+      const iconData = await dataUrl("/icons/renfo-web.png");
+      const ix = icon.left - box.left, iy = icon.top - box.top;
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 800 420">
+        <defs>${defs}
+          <radialGradient id="bg" gradientUnits="userSpaceOnUse" cx="400" cy="386" r="420" gradientTransform="translate(400 386) scale(2.2857 1) translate(-400 -386)">
+            <stop offset="0" stop-color="#B8212B"/><stop offset="0.48" stop-color="#7E0F18"/><stop offset="1" stop-color="#1C090B"/>
+          </radialGradient>
+          <clipPath id="icon-clip"><rect x="${ix}" y="${iy}" width="${icon.width}" height="${icon.height}" rx="19"/></clipPath>
+        </defs>
+        <rect width="800" height="420" fill="url(#bg)"/>
+        <svg x="0" y="${420 - 10 - 241}" width="800" height="241" viewBox="700 940 3850 1160"><use href="#art"/></svg>
+        <image href="${iconData}" x="${ix}" y="${iy}" width="${icon.width}" height="${icon.height}" clip-path="url(#icon-clip)"/>
+        <text x="${text.left - box.left}" y="${text.top - box.top + text.height / 2}" dominant-baseline="central"
+          font-family="${font.fontFamily.replace(/"/g, "'")}" font-size="${font.fontSize}" font-weight="${font.fontWeight}"
+          letter-spacing="${font.letterSpacing}" fill="#FFF4DF">${title.textContent}</text>
+      </svg>`;
+      const url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
+      const img = new Image();
+      img.src = url;
+      await img.decode();
+      const canvas = document.createElement("canvas");
+      canvas.width = 1200;
+      canvas.height = 630;
+      canvas.getContext("2d", { alpha: false }).drawImage(img, 0, 0, 1200, 630);
+      URL.revokeObjectURL(url);
+      const png = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(png);
+      link.download = "renfo-v2.png";
+      link.click();
+      result.src = link.href;
+      result.hidden = false;
+      status.textContent = "Saved renfo-v2.png. Check the headline below is rounded; if the download didn't appear, press and hold the image to save it.";
+    } catch (error) {
+      status.textContent = `Something went wrong: ${error.message}. Send me a screenshot of this.`;
+    }
+  };
 </script>
 </body>
 </html>

@@ -37,8 +37,8 @@ export const brands = {
     "tile": "tile-homestead",
     "icon": "/icons/homestead-web.png",
     "siteName": "Homestead",
-    "socialImage": "https://homesteadcontrol.com/social/homestead.png",
-    "socialAlt": "Homestead — branded app preview",
+    "socialImage": "https://homesteadcontrol.com/social/homestead-v2.png",
+    "socialAlt": "Homestead app icon and the line “Your home, truly native.” above a row of home control tiles, with a glowing amber light switched on in the middle",
     "action": {
       "class": "pill",
       "href": "https://testflight.apple.com/join/WU5kETTE",

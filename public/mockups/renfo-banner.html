@@ -241,16 +241,30 @@
     status.textContent = "Loading the video encoder…";
     const { Muxer, ArrayBufferTarget } = await import("https://cdn.jsdelivr.net/npm/mp4-muxer@5/+esm");
 
+    // Hardware encoders often stop short of this size, and Chrome's software
+    // H.264 encoder only does Baseline, so try every profile both ways, then HEVC.
     const base = { width: HEADER.width, height: HEADER.height, bitrate: 25_000_000, framerate: FPS };
-    let config = null;
-    for (const codec of ["avc1.640033", "avc1.4d0033", "avc1.640034"]) {
-      const { supported } = await VideoEncoder.isConfigSupported({ ...base, codec });
-      if (supported) { config = { ...base, codec }; break; }
+    const candidates = [
+      ["avc", "avc1.640033"], ["avc", "avc1.640034"], ["avc", "avc1.4d0033"], ["avc", "avc1.4d0034"],
+      ["avc", "avc1.42e033"], ["avc", "avc1.42e034"], ["avc", "avc1.42e03c"],
+      ["hevc", "hvc1.1.6.L153.B0"], ["hevc", "hvc1.1.6.L156.B0"]
+    ];
+    let config = null, family = null;
+    search: for (const [kind, codec] of candidates) {
+      for (const hardwareAcceleration of ["no-preference", "prefer-software", "prefer-hardware"]) {
+        const attempt = { ...base, codec, hardwareAcceleration };
+        if (kind === "avc") attempt.avc = { format: "avc" };
+        try {
+          const { supported } = await VideoEncoder.isConfigSupported(attempt);
+          if (supported) { config = attempt; family = kind; break search; }
+        } catch {}
+      }
     }
-    if (!config) throw new Error("this browser can't encode H.264 at 3840 × 1646");
+    if (!config) throw new Error(`no H.264 or HEVC encoder in this browser handles 3840 × 1646 (${navigator.userAgent})`);
+    status.textContent = `Encoding with ${config.codec} (${config.hardwareAcceleration})…`;
 
     const target = new ArrayBufferTarget();
-    const muxer = new Muxer({ target, video: { codec: "avc", width: HEADER.width, height: HEADER.height, frameRate: FPS }, fastStart: "in-memory" });
+    const muxer = new Muxer({ target, video: { codec: family, width: HEADER.width, height: HEADER.height, frameRate: FPS }, fastStart: "in-memory" });
     let failure = null;
     const encoder = new VideoEncoder({
       output: (chunk, meta) => muxer.addVideoChunk(chunk, meta),
@@ -267,13 +281,13 @@
       encoder.encode(videoFrame, { keyFrame: i % FPS === 0 });
       videoFrame.close();
       while (encoder.encodeQueueSize > 4) await new Promise((r) => setTimeout(r, 10));
-      status.textContent = `Rendering frame ${i + 1} of ${total}…`;
+      status.textContent = `Rendering frame ${i + 1} of ${total} with ${config.codec}…`;
     }
     await encoder.flush();
     if (failure) throw failure;
     muxer.finalize();
     download(new Blob([target.buffer], { type: "video/mp4" }), "renfo-header-3840x1646.mp4");
-    status.textContent = "Saved renfo-header-3840x1646.mp4 (8 seconds, 30 fps, loops seamlessly).";
+    status.textContent = `Saved renfo-header-3840x1646.mp4 (8 seconds, 30 fps, ${family === "hevc" ? "HEVC" : "H.264"}, loops seamlessly).`;
   });
 </script>
 </body>

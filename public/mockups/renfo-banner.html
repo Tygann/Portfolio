@@ -3,12 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<title>Renfo banner mockup v4 (motion)</title>
+<title>Renfo banner mockup v5 (motion + export)</title>
 <style>
   html, body { margin: 0; height: 100%; background: #000; }
   svg { display: block; width: 100vw; height: 100vh; }
   .headline { font-family: "SF Pro Rounded", ui-rounded, -apple-system, system-ui, sans-serif; font-weight: 700; letter-spacing: -4px; }
   .label { font-family: -apple-system, system-ui, sans-serif; font-weight: 600; }
+  .panel { position: fixed; top: 16px; right: 16px; display: flex; flex-direction: column; gap: 8px; width: 300px; padding: 14px; border-radius: 18px; background: rgba(20, 8, 10, 0.82); color: #fff; font: 13px/1.35 -apple-system, system-ui, sans-serif; backdrop-filter: blur(20px); }
+  .panel button { padding: 9px 12px; border: 0; border-radius: 10px; background: #F6D86C; color: #2A0306; font: 600 13px -apple-system, system-ui, sans-serif; text-align: left; cursor: pointer; }
+  .panel button:disabled { opacity: 0.5; cursor: default; }
+  .panel p { margin: 0; color: rgba(255, 255, 255, 0.75); }
 </style>
 </head>
 <body>
@@ -82,9 +86,18 @@
     <text class="label" x="60" y="2720" font-size="80" fill="#FFFFFF" fill-opacity="0.8">Full canvas: universal 16:9, 5244 × 2950 (site version, with headline)</text>
   </g>
 </svg>
+
+<div class="panel">
+  <button id="save-video">Save header video · 3840 × 1646 MP4</button>
+  <button id="save-poster">Save header poster frame · 3840 × 1646 PNG</button>
+  <button id="save-universal">Save universal image · 5244 × 2950 PNG</button>
+  <p id="status">Use desktop Chrome or Edge. The video takes a minute or two to render.</p>
+</div>
+
 <script>
+  const art = document.getElementById("art");
   if (location.search.includes("header")) {
-    document.getElementById("art").setAttribute("viewBox", "0 351 5244 2248");
+    art.setAttribute("viewBox", "0 351 5244 2248");
     document.getElementById("marks").style.display = "none";
     document.getElementById("headline").style.display = "none";
   }
@@ -92,57 +105,176 @@
   // An 8 second loop: the routes draw toward the centre, each faire pops in as
   // its route reaches it, the hero lands, everything holds, then the journey
   // fades so the loop starts clean. The hero and glow never leave.
+  // frame(t) sets every animated attribute for time t, so playback and export
+  // render exactly the same frames.
   const LOOP = 8000;
   const LAND = 2600;
-  const FADE_START = 6800;
-  const FADE_END = 7500;
-  const at = (ms) => ms / LOOP;
-  const loop = { duration: LOOP, iterations: Infinity };
+  const POSTER = 5000;
+  const FPS = 30;
 
-  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const draw = (id, start) => document.getElementById(id).animate([
-      { offset: 0, strokeDashoffset: 1 },
-      { offset: at(start), strokeDashoffset: 1, easing: "cubic-bezier(0.45, 0, 0.25, 1)" },
-      { offset: at(LAND), strokeDashoffset: 0 },
-      { offset: 1, strokeDashoffset: 0 }
-    ], loop);
-    draw("reveal-left", 300);
-    draw("reveal-right", 800);
+  const clamp = (v) => Math.min(1, Math.max(0, v));
+  const seg = (t, a, b) => clamp((t - a) / (b - a));
+  const inOut = (p) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
+  const out = (p) => 1 - (1 - p) * (1 - p);
+  const back = (p) => 1 + 2.4 * Math.pow(p - 1, 3) + 1.4 * Math.pow(p - 1, 2);
 
-    document.querySelectorAll(".pin").forEach((pin) => {
-      const t = Number(pin.dataset.at);
-      pin.animate([
-        { offset: 0, opacity: 0, transform: "translateY(-150px) scale(0.6)" },
-        { offset: at(t), opacity: 0, transform: "translateY(-150px) scale(0.6)", easing: "cubic-bezier(0.2, 0.9, 0.3, 1.3)" },
-        { offset: at(t + 450), opacity: 1, transform: "translateY(0) scale(1)" },
-        { offset: 1, opacity: 1, transform: "translateY(0) scale(1)" }
-      ], loop);
-    });
+  const els = {
+    left: document.getElementById("reveal-left"),
+    right: document.getElementById("reveal-right"),
+    journey: document.getElementById("journey"),
+    hero: document.getElementById("hero"),
+    glow: document.getElementById("glow-disc"),
+    pins: [...document.querySelectorAll(".pin")]
+  };
 
-    document.getElementById("journey").animate([
-      { offset: 0, opacity: 1 },
-      { offset: at(FADE_START), opacity: 1, easing: "ease-in-out" },
-      { offset: at(FADE_END), opacity: 0 },
-      { offset: 1, opacity: 0 }
-    ], loop);
+  function frame(t) {
+    els.left.setAttribute("stroke-dashoffset", 1 - inOut(seg(t, 300, LAND)));
+    els.right.setAttribute("stroke-dashoffset", 1 - inOut(seg(t, 800, LAND)));
+    els.journey.setAttribute("opacity", 1 - inOut(seg(t, 6800, 7500)));
 
-    document.getElementById("hero").animate([
-      { offset: 0, transform: "none" },
-      { offset: at(LAND - 250), transform: "none", easing: "ease-out" },
-      { offset: at(LAND), transform: "translateY(-70px)", easing: "ease-in" },
-      { offset: at(LAND + 220), transform: "scale(1.06, 0.93)", easing: "ease-out" },
-      { offset: at(LAND + 520), transform: "none" },
-      { offset: 1, transform: "none" }
-    ], loop);
+    for (const pin of els.pins) {
+      const p = seg(t, Number(pin.dataset.at), Number(pin.dataset.at) + 450);
+      const e = back(p);
+      pin.setAttribute("opacity", p);
+      pin.setAttribute("transform", `translate(0 ${-150 * (1 - e)}) scale(${0.6 + 0.4 * e})`);
+    }
 
-    document.getElementById("glow-disc").animate([
-      { offset: 0, opacity: 0.7 },
-      { offset: at(LAND), opacity: 0.75, easing: "ease-out" },
-      { offset: at(LAND + 400), opacity: 1.0, easing: "ease-in-out" },
-      { offset: at(5500), opacity: 0.8, easing: "ease-in-out" },
-      { offset: 1, opacity: 0.7 }
-    ], loop);
+    let y = 0, sx = 1, sy = 1;
+    if (t >= LAND - 250 && t < LAND) {
+      y = -70 * out(seg(t, LAND - 250, LAND));
+    } else if (t >= LAND && t < LAND + 220) {
+      const p = seg(t, LAND, LAND + 220);
+      y = -70 * (1 - p * p);
+      sx = 1 + 0.06 * p;
+      sy = 1 - 0.07 * p;
+    } else if (t >= LAND + 220 && t < LAND + 520) {
+      const p = out(seg(t, LAND + 220, LAND + 520));
+      sx = 1.06 - 0.06 * p;
+      sy = 0.93 + 0.07 * p;
+    }
+    els.hero.setAttribute("transform", `translate(0 ${y}) scale(${sx} ${sy})`);
+
+    const g = t < LAND ? 0.7 + 0.05 * (t / LAND)
+      : t < LAND + 400 ? 0.75 + 0.25 * inOut(seg(t, LAND, LAND + 400))
+      : t < 5500 ? 1 - 0.2 * inOut(seg(t, LAND + 400, 5500))
+      : 0.8 - 0.1 * inOut(seg(t, 5500, LOOP));
+    els.glow.setAttribute("opacity", g);
   }
+
+  let playing = true;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    frame(POSTER);
+  } else {
+    const start = performance.now();
+    const tick = (now) => {
+      if (playing) frame((now - start) % LOOP);
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  // Export: render a clean copy of the art (no marks, no headline) to a canvas.
+  const HEADER = { viewBox: "0 351 5244 2248", width: 3840, height: 1646 };
+  const UNIVERSAL = { viewBox: "0 0 5244 2950", width: 5244, height: 2950 };
+  const status = document.getElementById("status");
+  const buttons = [...document.querySelectorAll(".panel button")];
+
+  async function render(view, t, canvas) {
+    frame(t);
+    const copy = art.cloneNode(true);
+    copy.querySelector("#marks").remove();
+    copy.querySelector("#headline").remove();
+    copy.setAttribute("viewBox", view.viewBox);
+    copy.setAttribute("width", view.width);
+    copy.setAttribute("height", view.height);
+    copy.removeAttribute("id");
+    const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(copy)], { type: "image/svg+xml" }));
+    const img = new Image();
+    img.src = url;
+    await img.decode();
+    const ctx = canvas.getContext("2d", { alpha: false });
+    ctx.drawImage(img, 0, 0, view.width, view.height);
+    URL.revokeObjectURL(url);
+  }
+
+  function canvasFor(view) {
+    const canvas = document.createElement("canvas");
+    canvas.width = view.width;
+    canvas.height = view.height;
+    return canvas;
+  }
+
+  function download(blob, name) {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+  }
+
+  async function busy(task) {
+    buttons.forEach((b) => (b.disabled = true));
+    playing = false;
+    try {
+      await task();
+    } catch (error) {
+      status.textContent = `Something went wrong: ${error.message}. Send me a screenshot of this.`;
+    } finally {
+      playing = true;
+      buttons.forEach((b) => (b.disabled = false));
+    }
+  }
+
+  async function savePng(view, name) {
+    const canvas = canvasFor(view);
+    await render(view, POSTER, canvas);
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+    download(blob, name);
+    status.textContent = `Saved ${name}.`;
+  }
+
+  document.getElementById("save-poster").onclick = () => busy(() => savePng(HEADER, "renfo-header-poster-3840x1646.png"));
+  document.getElementById("save-universal").onclick = () => busy(() => savePng(UNIVERSAL, "renfo-universal-5244x2950.png"));
+
+  document.getElementById("save-video").onclick = () => busy(async () => {
+    if (!("VideoEncoder" in window)) throw new Error("this browser can't encode video, use desktop Chrome or Edge");
+    status.textContent = "Loading the video encoder…";
+    const { Muxer, ArrayBufferTarget } = await import("https://cdn.jsdelivr.net/npm/mp4-muxer@5/+esm");
+
+    const base = { width: HEADER.width, height: HEADER.height, bitrate: 25_000_000, framerate: FPS };
+    let config = null;
+    for (const codec of ["avc1.640033", "avc1.4d0033", "avc1.640034"]) {
+      const { supported } = await VideoEncoder.isConfigSupported({ ...base, codec });
+      if (supported) { config = { ...base, codec }; break; }
+    }
+    if (!config) throw new Error("this browser can't encode H.264 at 3840 × 1646");
+
+    const target = new ArrayBufferTarget();
+    const muxer = new Muxer({ target, video: { codec: "avc", width: HEADER.width, height: HEADER.height, frameRate: FPS }, fastStart: "in-memory" });
+    let failure = null;
+    const encoder = new VideoEncoder({
+      output: (chunk, meta) => muxer.addVideoChunk(chunk, meta),
+      error: (e) => { failure = e; }
+    });
+    encoder.configure(config);
+
+    const canvas = canvasFor(HEADER);
+    const total = (LOOP / 1000) * FPS;
+    for (let i = 0; i < total; i++) {
+      if (failure) throw failure;
+      await render(HEADER, (i * 1000) / FPS, canvas);
+      const videoFrame = new VideoFrame(canvas, { timestamp: Math.round((i * 1e6) / FPS), duration: Math.round(1e6 / FPS) });
+      encoder.encode(videoFrame, { keyFrame: i % FPS === 0 });
+      videoFrame.close();
+      while (encoder.encodeQueueSize > 4) await new Promise((r) => setTimeout(r, 10));
+      status.textContent = `Rendering frame ${i + 1} of ${total}…`;
+    }
+    await encoder.flush();
+    if (failure) throw failure;
+    muxer.finalize();
+    download(new Blob([target.buffer], { type: "video/mp4" }), "renfo-header-3840x1646.mp4");
+    status.textContent = "Saved renfo-header-3840x1646.mp4 (8 seconds, 30 fps, loops seamlessly).";
+  });
 </script>
 </body>
 </html>

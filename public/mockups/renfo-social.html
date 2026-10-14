@@ -14,11 +14,11 @@
 
   /* The card renders at 800 × 420 and exports at 1.5× (1200 × 630), like the existing cards. */
   .card { position: relative; width: 800px; height: 420px; overflow: hidden; border-radius: 0; background: radial-gradient(120% 100% at 50% 92%, #B8212B, #7E0F18 48%, #1C090B 100%); color: #FFF4DF; font-family: -apple-system, system-ui, sans-serif; }
-  .card .top { position: absolute; left: 53px; top: 48px; display: flex; align-items: center; gap: 28px; }
+  .card .top { position: absolute; left: 53px; top: 44px; display: flex; align-items: center; gap: 26px; }
   .card .top img { width: 96px; height: 96px; border-radius: 22px; }
-  .card .name { margin: 0 0 6px; font-size: 17px; font-weight: 600; color: #F5D477; }
-  .card h1 { margin: 0; font-family: "SF Pro Rounded", ui-rounded, -apple-system, system-ui, sans-serif; font-size: 40px; line-height: 1.08; letter-spacing: -0.035em; }
-  .card .domain { margin: 8px 0 0; font-size: 14px; color: #E2C9BE; }
+  .card .name { margin: 0 0 4px; font-family: "SF Pro Rounded", ui-rounded, -apple-system, system-ui, sans-serif; font-size: 19px; font-weight: 600; color: #F5D477; }
+  /* SF Pro Rounded exists only on Apple devices; elsewhere this falls back to a non-rounded face. */
+  .card h1 { margin: 0; font-family: "SF Pro Rounded", ui-rounded, -apple-system, system-ui, sans-serif; font-size: 48px; font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; }
   .card svg { position: absolute; left: 0; bottom: 0; width: 800px; height: 241px; }
   .current { width: 800px; height: 420px; display: block; }
   .scroll { overflow-x: auto; }
@@ -74,7 +74,6 @@
         <div>
           <p class="name">Renfo</p>
           <h1>Your next faire awaits.</h1>
-          <p class="domain">renfo.app</p>
         </div>
       </div>
       <svg viewBox="800 950 3650 1100" preserveAspectRatio="xMidYMid slice"><use href="#art"/></svg>

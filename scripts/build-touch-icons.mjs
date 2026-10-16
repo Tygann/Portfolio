@@ -19,9 +19,13 @@ await sharp(gradient)
   .png()
   .toFile(output('me'));
 
-// App icons ship with rounded corners; fill the corners with the icon's own edge colour so iOS can apply its mask.
+// App icons ship with rounded corners and a glass rim; zoom past the rim and fill the corners with the
+// icon's own edge colour so iOS can apply its mask.
+const ZOOMED = Math.round(SIZE * 1.08);
+const inset = Math.round((ZOOMED - SIZE) / 2);
 for (const app of ['renfo', 'homestead', 'iwatch']) {
-  const icon = await sharp(`public/icons/${app}-web.png`).trim().resize(SIZE, SIZE, { fit: 'fill' }).ensureAlpha().raw().toBuffer();
+  const icon = await sharp(`public/icons/${app}-web.png`).trim().resize(ZOOMED, ZOOMED, { fit: 'fill' })
+    .extract({ left: inset, top: inset, width: SIZE, height: SIZE }).ensureAlpha().raw().toBuffer();
   const edge = (Math.round(SIZE / 2) * SIZE + Math.round(SIZE * 0.06)) * 4;
   const background = { r: icon[edge], g: icon[edge + 1], b: icon[edge + 2] };
   await sharp(icon, { raw: { width: SIZE, height: SIZE, channels: 4 } })

@@ -30,4 +30,5 @@ const { brand, title, description, canonical, appStoreId, noindex = false } = As
 <meta name="twitter:image" content={brand.socialImage} />
 <meta name="twitter:image:alt" content={brand.socialAlt} />
 <link rel="icon" type="image/png" href={brand.icon} />
+<link rel="apple-touch-icon" href={brand.touchIcon ?? '/icons/touch-me.png'} />
 <link rel="stylesheet" href={assetUrl('styles.css')} />

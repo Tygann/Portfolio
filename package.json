@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/build-screenshots.mjs",
+    "build": "astro build && node scripts/build-screenshots.mjs && node scripts/build-touch-icons.mjs",
     "preview": "npm run build && node scripts/preview.mjs",
     "preview:social": "npm run build && node scripts/preview.mjs --social",
     "check:routing": "node --test cloudflare/renfo-site/worker.test.mjs cloudflare/homestead-site/worker.test.mjs",

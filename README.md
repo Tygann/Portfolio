@@ -70,7 +70,7 @@ GitHub Actions runs these checks and retains browser artifacts for seven days.
 - Use `npm run preview:social` and open `/__tools/social/preview.html?app=renfo`
   for the local-only social card renderer. Generated
   public sharing cards remain in `public/social/`.
-- Preserve canonical branded domains and the provisional iWatch policy notice.
+- Preserve canonical branded domains and keep the iWatch privacy policy aligned with the companion app's storage, optional sync, data services, and deletion controls.
 
 ## Hosting
 

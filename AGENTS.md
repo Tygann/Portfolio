@@ -20,5 +20,5 @@
 
 # Privacy policy status
 
-- iWatch privacy page is provisional: app source is not available in this repository. Verify accounts, storage/sync, data providers, analytics/advertising, permissions, sharing, retention/deletion, and age audience before treating it as a complete policy. Keep its provisional notice until verified.
+- iWatch privacy page was reviewed against the companion `Tygann/iWatch` source on October 25, 2026. It describes local/private CloudKit library storage, optional Trakt sync, TMDB requests, local reminders, diagnostics, and deletion controls. Keep it aligned with app changes; do not substitute a blanket "no data collected" claim for the service-specific explanation. App Store privacy-label decisions and third-party retention require separate review.
 - Reeve and DishFork belong to Peach Byte Labs; their company owns their privacy policies. Do not create policies for them here.

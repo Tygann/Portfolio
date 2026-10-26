@@ -1,0 +1,24 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "XKQ424HQ33.com.tyler.iWatch"
+        ],
+        "components": [
+          {
+            "/": "/iwatch/oauth/trakt"
+          },
+          {
+            "/": "/iwatch/oauth/trakt/"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "XKQ424HQ33.com.tyler.iWatch"
+    ]
+  }
+}

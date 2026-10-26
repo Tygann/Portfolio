@@ -13,9 +13,9 @@ async function files(directory) {
     ? files(resolve(directory, entry.name)) : resolve(directory, entry.name)))).flat();
 }
 
-test('static output contains twelve content pages and three error pages, without authoring files', async () => {
+test('static output contains twelve content pages, three error pages, and an OAuth fallback, without authoring files', async () => {
   const output = await files(root);
-  assert.equal(output.filter(path => path.endsWith('.html')).length, 15);
+  assert.equal(output.filter(path => path.endsWith('.html')).length, 16);
   for (const path of output) {
     const relative = path.slice(root.length + 1).replaceAll('\\', '/');
     assert.ok(!/^(src|docs|scripts|source-assets|cloudflare|node_modules|_astro)\//.test(relative), relative);
@@ -34,6 +34,8 @@ test('generated pages resolve local assets, links, and content-versioned shared 
         assert.ok((await stat(target)).isFile(), `${path}: ${attribute}=${url}`);
       }
     }
+    // The OAuth fallback intentionally loads no shared scripts or navigation.
+    if (path.endsWith('/iwatch/oauth/trakt/index.html')) continue;
     for (const name of ['styles.css', 'theme-toggle.js', 'navigation.js']) {
       const version = createHash('sha256').update(await readFile(resolve(root, name))).digest('hex').slice(0, 12);
       assert.ok(html.includes(`/${name}?v=${version}`), `${path}: ${name} version`);
@@ -71,4 +73,16 @@ test('branded Workers serve the assets referenced by generated landing pages', a
       assert.equal((await worker.fetch(new Request(`https://${host}/styles.css`))).status, 200);
     }
   } finally { globalThis.fetch = originalFetch; }
+});
+
+
+test('iWatch callback association is restricted to the app and OAuth path', async () => {
+  const association = JSON.parse(await readFile(resolve(root, '.well-known/apple-app-site-association'), 'utf8'));
+  assert.deepEqual(association.webcredentials.apps, ['XKQ424HQ33.com.tyler.iWatch']);
+  assert.deepEqual(association.applinks.details[0].appIDs, ['XKQ424HQ33.com.tyler.iWatch']);
+  assert.deepEqual(association.applinks.details[0].components, [{'/': '/iwatch/oauth/trakt'}, {'/': '/iwatch/oauth/trakt/'}]);
+  const html = await readFile(resolve(root, 'iwatch/oauth/trakt/index.html'), 'utf8');
+  assert.ok(html.includes('noindex, nofollow'));
+  assert.ok(html.includes('no-referrer'));
+  assert.ok(!html.includes('<script'));
 });

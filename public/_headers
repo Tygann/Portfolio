@@ -1,0 +1,11 @@
+/.well-known/apple-app-site-association
+  Content-Type: application/json
+  Cache-Control: public, max-age=3600
+
+/iwatch/oauth/trakt
+  Cache-Control: no-store
+  Referrer-Policy: no-referrer
+
+/iwatch/oauth/trakt/
+  Cache-Control: no-store
+  Referrer-Policy: no-referrer
